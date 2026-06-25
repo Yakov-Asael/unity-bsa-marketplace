@@ -1,0 +1,94 @@
+<!--
+  Unity SFDC Email Alert Template
+  Table-based, email-client safe, inline CSS. Max width 600px.
+  Replace {{mustache}} placeholders. Remove optional blocks if unused.
+  Palette (Unity colors, blue-oriented): black #000000, light gray #F4F4F4,
+           border #E5E5E5, text #1A1A1A, muted #5C5C5C,
+           SLDS blue #0176D3, callout blue #EAF5FE, blue text #014486.
+-->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F4F4;margin:0;padding:24px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <tr>
+    <td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#FFFFFF;border:1px solid #E5E5E5;border-radius:8px;overflow:hidden;">
+
+        <!-- Header bar -->
+        <tr>
+          <td style="background:#000000;padding:18px 24px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="color:#FFFFFF;font-size:18px;font-weight:700;letter-spacing:0.3px;">Unity</td>
+                <!-- OPTIONAL: action-required pill -->
+                <td align="right">
+                  <span style="display:inline-block;background:#0176D3;color:#FFFFFF;font-size:11px;font-weight:700;letter-spacing:0.5px;padding:6px 12px;border-radius:999px;">{{badge_text}}</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Title + intro -->
+        <tr>
+          <td style="padding:28px 24px 8px 24px;">
+            <h1 style="margin:0 0 12px 0;font-size:22px;line-height:1.3;color:#1A1A1A;font-weight:700;">{{title}}</h1>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:#1A1A1A;">{{intro_paragraph}}</p>
+          </td>
+        </tr>
+
+        <!-- Info grid (label / value), 2 columns -->
+        <tr>
+          <td style="padding:20px 24px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F4F4;border:1px solid #E5E5E5;border-radius:6px;">
+              <tr>
+                <td style="padding:14px 18px;font-size:13px;color:#5C5C5C;font-weight:700;width:25%;">{{label_1}}</td>
+                <td style="padding:14px 18px;font-size:13px;color:#1A1A1A;width:25%;">{{value_1}}</td>
+                <td style="padding:14px 18px;font-size:13px;color:#5C5C5C;font-weight:700;width:25%;">{{label_2}}</td>
+                <td style="padding:14px 18px;font-size:13px;color:#1A1A1A;width:25%;">{{value_2}}</td>
+              </tr>
+              <tr>
+                <td style="padding:14px 18px;font-size:13px;color:#5C5C5C;font-weight:700;">{{label_3}}</td>
+                <td style="padding:14px 18px;font-size:13px;color:#1A1A1A;">{{value_3}}</td>
+                <td style="padding:14px 18px;font-size:13px;color:#5C5C5C;font-weight:700;">{{label_4}}</td>
+                <td style="padding:14px 18px;font-size:13px;color:#1A1A1A;">{{value_4}}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Buttons: primary (black) + secondary (outlined) -->
+        <tr>
+          <td align="center" style="padding:8px 24px 24px 24px;">
+            <table role="presentation" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:0 6px;">
+                  <a href="{{primary_url}}" style="display:inline-block;background:#000000;color:#FFFFFF;font-size:14px;font-weight:600;text-decoration:none;padding:12px 28px;border-radius:6px;">{{primary_label}}</a>
+                </td>
+                <td style="padding:0 6px;">
+                  <a href="{{secondary_url}}" style="display:inline-block;background:#FFFFFF;color:#000000;font-size:14px;font-weight:600;text-decoration:none;padding:11px 27px;border:1px solid #000000;border-radius:6px;">{{secondary_label}}</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- OPTIONAL: action-required callout -->
+        <tr>
+          <td style="padding:0 24px 24px 24px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EAF5FE;border-left:4px solid #0176D3;border-radius:4px;">
+              <tr>
+                <td style="padding:14px 18px;font-size:13px;line-height:1.6;color:#014486;">{{callout_text}}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Signature -->
+        <tr>
+          <td style="padding:0 24px 28px 24px;border-top:1px solid #E5E5E5;">
+            <p style="margin:18px 0 0 0;font-size:13px;line-height:1.6;color:#5C5C5C;">Best Regards,<br>{{signature}}</p>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>

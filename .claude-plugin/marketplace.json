@@ -1,0 +1,11 @@
+{
+  "name": "unity-bsa-marketplace",
+  "owner": { "name": "Unity Business Systems" },
+  "plugins": [
+    {
+      "name": "unity-bsa",
+      "source": "./plugins/unity-bsa",
+      "description": "Unity Salesforce BSA toolkit — flow review, TDD/PRD, SLDS mockups, comms."
+    }
+  ]
+}
