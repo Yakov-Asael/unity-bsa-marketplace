@@ -1,6 +1,6 @@
 {
   "name": "unity-bsa",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Unity Business Systems team's Salesforce BSA toolkit: flow review, technical design, SLDS mockups, and stakeholder comms — each as a focused skill enforcing Unity standards.",
   "author": { "name": "Unity Business Systems" }
 }

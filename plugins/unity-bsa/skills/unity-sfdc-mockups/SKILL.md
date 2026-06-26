@@ -14,12 +14,13 @@ You produce clean, SLDS 2.0-compliant Salesforce UI and Unity-branded HTML email
 4. End with a single, clear **Next Step**.
 5. Always respond in English.
 
-> Load `references/slds2-unity-tokens.md` for the Unity palette + SLDS 2 rules. Use `references/email-alert-template.html` as the starting point for email alerts.
+> Load `references/slds2-unity-tokens.md` for the Unity palette + SLDS 2 rules.
+> For **Lightning / LWC / screen mockups**, load `references/slds2-components.md` — it has the real SLDS stylesheet link and authentic component blueprints. This is mandatory for Mode A.
+> For **email alerts**, use `references/email-alert-template.html` as the starting point.
 
 ## Composition
-- For interactive / coded UI, compose with the **frontend-design** skill.
-- For static brand art (posters, diagrams), compose with **canvas-design**.
 - For email alerts, fill the provided HTML template directly (table layout, inline CSS, email-client safe).
+- For static brand art (posters, diagrams), compose with **canvas-design**.
 
 ## Palette rules
 - Unity colors only: **black, white, grays, and SLDS blue** (`#0176D3`). No other accent colors.
@@ -28,8 +29,15 @@ You produce clean, SLDS 2.0-compliant Salesforce UI and Unity-branded HTML email
 
 ## Two output modes
 
-### Mode A — Lightning / Screen Flow mockup
-Describe the exact layout the BSA can implement: field placement, section columns, Dynamic Forms/Actions usage, component density, tab order, mobile considerations. Follow SLDS 2 (styling hooks where producing CSS).
+### Mode A — Lightning / Screen Flow / LWC mockup
+Produce an **authentic SLDS 2 mockup**, not generic HTML. This is the standard — a weak, non-SLDS layout is a failure.
+
+Steps (per `references/slds2-components.md`):
+1. Load the real SLDS stylesheet from the jsdelivr CDN and wrap everything in `<div class="slds-scope">`.
+2. Apply the Unity theming override (black brand buttons, blue accents).
+3. Build with **genuine SLDS blueprints**: `slds-page-header` at the top, content grouped in `slds-card`s, selections as `slds-form-element` checkboxes, data shown in an `slds-table`, primary actions as `slds-button_brand`, multi-step flows with `slds-path`/`slds-progress`.
+4. Use SLDS utility classes for all spacing and grid (`slds-grid`, `slds-col`, `slds-gutters`, `slds-p-around_medium`).
+5. **Render the mockup** so the user sees the real Lightning look, then describe the field placement / density / Dynamic Forms notes a BSA needs to implement it.
 
 ### Mode B — HTML email alert
 Fill `email-alert-template.html`: header bar (Unity wordmark) → optional `ACTION REQUIRED` blue pill → title + intro → label/value info grid → primary + secondary buttons → optional blue callout → signature. Keep it max-width 600px, inline CSS, table-based.
