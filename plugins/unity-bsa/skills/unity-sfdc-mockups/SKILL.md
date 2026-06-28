@@ -1,6 +1,6 @@
 ---
 name: unity-sfdc-mockups
-description: Produces SLDS 2.0-compliant Salesforce UI mockups and Unity-branded HTML email alerts. Use when the user asks for a mockup, wireframe, Lightning page or Screen Flow UI, an email alert/notification, or an HTML template. Outputs clean, low-density designs in Unity's color palette (black primary, SLDS blue accents and links, no other accent colors). Trigger on: mockup, wireframe, SLDS, Lightning page, screen flow UI, email alert, email notification, HTML template, UI design, layout.
+description: Produces SLDS 2.0-compliant Salesforce UI mockups and Unity-branded HTML email alerts. Use when the user asks for a mockup, wireframe, Lightning page or Screen Flow UI, an email alert/notification, or an HTML template. Outputs clean, modern, low-density designs in Unity's real theme (brand blue #2196F3 primary actions, dark blue #0F61A3 hover, near-black #141514 text, no other accent colors). Trigger on: mockup, wireframe, SLDS, Lightning page, screen flow UI, email alert, email notification, HTML template, UI design, layout.
 ---
 
 # Unity SFDC Mockups
@@ -14,6 +14,8 @@ You produce clean, SLDS 2.0-compliant Salesforce UI and Unity-branded HTML email
 4. End with a single, clear **Next Step**.
 5. Always respond in English.
 
+**Fit the use case, don't force the template:** references and templates are starting points and examples, not rigid molds. Adapt the structure to the specific request and produce the best result for it — while always staying inside Unity's hard rules (palette, SLDS 2, modern aesthetic), which are non-negotiable.
+
 > Load `references/slds2-unity-tokens.md` for the Unity palette + SLDS 2 rules.
 > For **Lightning / LWC / screen mockups**, load `references/slds2-components.md` — it has the real SLDS stylesheet link and authentic component blueprints. This is mandatory for Mode A.
 > For **email alerts**, use `references/email-alert-template.html` as the starting point.
@@ -22,10 +24,12 @@ You produce clean, SLDS 2.0-compliant Salesforce UI and Unity-branded HTML email
 - For email alerts, fill the provided HTML template directly (table layout, inline CSS, email-client safe).
 - For static brand art (posters, diagrams), compose with **canvas-design**.
 
-## Palette rules
-- Unity colors only: **black, white, grays, and SLDS blue** (`#0176D3`). No other accent colors.
-- Primary action = **black** button (`#000000`), white text. Secondary = outlined.
-- **Blue is the only accent** — links, in-console actions, badges, and callouts (matches the Salesforce console UI). Surfaces white / light gray (`#F4F4F4`).
+## Palette rules (Unity real theme — see slds2-unity-tokens.md)
+- Primary action = **brand blue button `#2196F3`**, white text. Secondary = outlined blue (`#2196F3` text + border). Hover → `#0F61A3`.
+- Text, nav, icons, headings = near-black `#141514`. Links = `#2196F3` (semibold).
+- Blue family only — no other accent colors. Surfaces white on light gray `#F3F3F4`.
+- Modern + rounded (cards `16px`, buttons `8px`), low density. Match Unity's real LWCs, not classic Salesforce admin UI.
+- Exception: branded **email alerts** keep a near-black header + black buttons with blue accents (matches Unity's real notification emails).
 
 ## Two output modes
 
@@ -40,6 +44,6 @@ Steps (per `references/slds2-components.md`):
 5. **Render the mockup** so the user sees the real Lightning look, then describe the field placement / density / Dynamic Forms notes a BSA needs to implement it.
 
 ### Mode B — HTML email alert
-Fill `email-alert-template.html`: header bar (Unity wordmark) → optional `ACTION REQUIRED` blue pill → title + intro → label/value info grid → primary + secondary buttons → optional blue callout → signature. Keep it max-width 600px, inline CSS, table-based.
+Use `email-alert-template.html` as a **starting point, not a fixed form**. Keep only the blocks the use case actually needs — the `ACTION REQUIRED` pill, the **label/value info grid**, the secondary button, and the callout are all **optional examples**. A simple notification may be just header → title → intro → one button → signature. Build the cleanest email for the specific message. Always keep: near-black header, Unity blue accents, max-width 600px, inline CSS, table-based (email-client safe).
 
 End with the **Next Step** (e.g., "Want this as a rendered preview or as a Salesforce email template?").

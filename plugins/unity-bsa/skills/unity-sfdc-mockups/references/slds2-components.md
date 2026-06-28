@@ -12,13 +12,20 @@ Always start the mockup by loading the official Salesforce Lightning Design Syst
 Then use **genuine SLDS classes** (`slds-*`). Do not hand-roll CSS for things SLDS already provides. Wrap everything in a container with class `slds-scope`.
 
 ## Unity theming (apply over SLDS)
-Unity = black primary + SLDS blue accents. Override SLDS brand hooks so primary actions are black, keep blue for links/accents:
+Unity primary action = brand blue `#2196F3` (white text); hover `#0F61A3`; text/nav/icons `#141514`. Override SLDS brand hooks:
 
 ```html
 <style>
-  .slds-scope { --slds-c-button-brand-color-background:#000000; --slds-c-button-brand-color-border:#000000; --slds-c-button-brand-color-background-hover:#1a1a1a; }
+  .slds-scope {
+    --slds-c-button-brand-color-background:#2196F3;
+    --slds-c-button-brand-color-border:#2196F3;
+    --slds-c-button-brand-color-background-hover:#0F61A3;
+    --slds-c-button-brand-color-border-hover:#0F61A3;
+  }
 </style>
 ```
+
+> Prefer the modern Unity LWC aesthetic in `slds2-unity-tokens.md` (rounded cards, blue pills, minimal tables) over heavy classic-SLDS chrome. Use SLDS blueprints for structure, but keep the look clean and modern, not admin-page dated.
 
 ## Core blueprints (use these patterns)
 
@@ -55,7 +62,7 @@ Unity = black primary + SLDS blue accents. Override SLDS brand hooks so primary 
 </article>
 ```
 
-### Brand button (black, Unity primary)
+### Brand button (Unity blue #2196F3, white text)
 ```html
 <button class="slds-button slds-button_brand">Run export</button>
 <button class="slds-button slds-button_neutral">Cancel</button>

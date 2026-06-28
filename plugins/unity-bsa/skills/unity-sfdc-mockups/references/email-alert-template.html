@@ -1,10 +1,12 @@
 <!--
   Unity SFDC Email Alert Template
   Table-based, email-client safe, inline CSS. Max width 600px.
-  Replace {{mustache}} placeholders. Remove optional blocks if unused.
-  Palette (Unity colors, blue-oriented): black #000000, light gray #F4F4F4,
+  STARTING POINT, NOT A FIXED FORM. Keep only the blocks the use case needs.
+  The badge pill, info grid, secondary button, and callout are OPTIONAL examples —
+  delete any that don't fit the message. Replace {{mustache}} placeholders.
+  Palette (Unity theme tokens): header near-black #141514, light gray #F4F4F4,
            border #E5E5E5, text #1A1A1A, muted #5C5C5C,
-           SLDS blue #0176D3, callout blue #EAF5FE, blue text #014486.
+           brand blue #2196F3, dark blue #0F61A3, callout bg #EAF2FD.
 -->
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F4F4;margin:0;padding:24px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
   <tr>
@@ -13,13 +15,13 @@
 
         <!-- Header bar -->
         <tr>
-          <td style="background:#000000;padding:18px 24px;">
+          <td style="background:#141514;padding:18px 24px;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
               <tr>
                 <td style="color:#FFFFFF;font-size:18px;font-weight:700;letter-spacing:0.3px;">Unity</td>
                 <!-- OPTIONAL: action-required pill -->
                 <td align="right">
-                  <span style="display:inline-block;background:#0176D3;color:#FFFFFF;font-size:11px;font-weight:700;letter-spacing:0.5px;padding:6px 12px;border-radius:999px;">{{badge_text}}</span>
+                  <span style="display:inline-block;background:#2196F3;color:#FFFFFF;font-size:11px;font-weight:700;letter-spacing:0.5px;padding:6px 12px;border-radius:999px;">{{badge_text}}</span>
                 </td>
               </tr>
             </table>
@@ -34,7 +36,7 @@
           </td>
         </tr>
 
-        <!-- Info grid (label / value), 2 columns -->
+        <!-- OPTIONAL example: label/value info grid. Include only if the message needs structured fields; otherwise delete this whole block. -->
         <tr>
           <td style="padding:20px 24px;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F4F4;border:1px solid #E5E5E5;border-radius:6px;">
@@ -73,9 +75,9 @@
         <!-- OPTIONAL: action-required callout -->
         <tr>
           <td style="padding:0 24px 24px 24px;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EAF5FE;border-left:4px solid #0176D3;border-radius:4px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EAF2FD;border-left:4px solid #2196F3;border-radius:4px;">
               <tr>
-                <td style="padding:14px 18px;font-size:13px;line-height:1.6;color:#014486;">{{callout_text}}</td>
+                <td style="padding:14px 18px;font-size:13px;line-height:1.6;color:#0F61A3;">{{callout_text}}</td>
               </tr>
             </table>
           </td>
