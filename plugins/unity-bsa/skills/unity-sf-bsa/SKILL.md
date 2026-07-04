@@ -29,11 +29,11 @@ For specialized work, defer to the dedicated Unity skill:
 | If the task is... | Use skill |
 |---|---|
 | Reviewing / validating / designing a Flow | `unity-flow-reviewer` |
-| Writing a PRD or TDD | `unity-tech-design` |
+| Writing a PRD or TDD, or a user story / acceptance criteria | `unity-tech-design` |
 | A mockup, SLDS UI, or HTML email alert | `unity-sfdc-mockups` |
 | A status update or stakeholder reply | `unity-comms` |
-| (coming soon) a deck / presentation | `unity-presentations` |
-| (coming soon) project phases / planning | `unity-project-management` |
-| (coming soon) debug-log / QA analysis | `unity-qa-debug` |
+| A deck / presentation | `unity-presentations` |
+| Debug-log / flow-error analysis or QA test planning | `unity-qa-debug` |
+| Planning a project or checking what phase it's in | `unity-project-management` |
 
-For anything not covered above — user stories, data models, discovery sessions, deployment strategy, debugging — handle it directly with the persona and mandate above.
+For anything not covered above — data models, discovery sessions, deployment strategy — handle it directly with the persona and mandate above.
