@@ -1,42 +1,37 @@
-# Unity BSA Plugin
+![Unity BSA Marketplace banner](./assets/banner.png)
 
-A Claude Code plugin for the Unity Business Systems team. It packages each "power" of the Unity Salesforce BSA as a focused, standards-enforcing skill.
+# Unity BSA Marketplace
 
-> Private repo — installing requires access to `Yakov-Asael/unity-bsa-plugin`.
+A Claude Code plugin marketplace hosting **`unity-bsa`** — the Unity Business Systems team's Salesforce delivery toolkit. One install gives your team a set of focused skills that turn the BSA workflow (flows, technical design, mockups, comms, decks, QA, project planning) into repeatable, standards-enforcing actions.
 
-## Skills
+## What's inside
 
-**Active (V1):**
-
-| Skill | What it does | Triggers on |
-|---|---|---|
-| `unity-sf-bsa` | Senior Salesforce Architect persona + router to the focused skills | Salesforce, BSA, org, general delivery questions |
-| `unity-flow-reviewer` | Reviews Flow XML/JSON → Deployment Readiness Score /100, zero-tolerance gate, "how to get approved" remediation | review my flow, flow XML, bulkification, fault path |
-| `unity-tech-design` | Writes focused PRDs/TDDs from the combined Unity template; plans before writing; self-reviews | write a PRD/TDD, technical design, document this feature |
-| `unity-sfdc-mockups` | SLDS 2.0 mockups + Unity-branded HTML email alerts (black + SLDS blue, no other accents) | mockup, SLDS, Lightning page, email alert |
-| `unity-comms` | Status updates + stakeholder replies in the team's voice | status update, reply to stakeholder, summarize |
-
-**Work in progress (V2 — not yet active):** `unity-presentations`, `unity-project-management`, `unity-qa-debug`.
+| Plugin | Description |
+| --- | --- |
+| [`unity-bsa`](./plugins/unity-bsa) | Salesforce BSA toolkit — 8 skills covering the full delivery lifecycle, each enforcing Unity's real standards. |
 
 ## Install
 
-### Option A — Marketplace (recommended, updatable)
-In a Claude Code terminal:
+This marketplace is a git repository. How you consume it depends on where your team runs Claude:
+
+### Claude app / Cowork (upload)
+The team runs in the Claude desktop/web app. Install the plugin file directly:
+1. **Customize → Skills → Create plugin → Upload plugin**
+2. Select `plugins/unity-bsa` packaged as a `.plugin` file (see the plugin README).
+
+### Claude Code CLI or Cowork "Add marketplace"
 ```
 /plugin marketplace add Yakov-Asael/unity-bsa-plugin
 /plugin install unity-bsa
 ```
-Restart Claude Code. Run `/help` and confirm the skills appear.
+> **Note:** the marketplace path requires the repo to be **readable** by the client. While this repo is **private**, anonymous fetches fail — use the upload method above, or make the repo accessible.
 
-To update later: re-sync the marketplace, then reinstall.
+## Updating
 
-### Option B — Folder drop (no auto-update)
-1. Download `dist/unity-bsa.zip` from this repo.
-2. Unzip into your plugins directory (e.g. `~/.claude/plugins/`).
-3. Restart Claude Code.
+- **Marketplace:** re-sync the marketplace and reinstall.
+- **Upload:** uninstall and re-upload the latest `.plugin`.
+- **Team-wide, managed:** publish via **Organization plugins** (your Cowork org admin) for centrally-maintained updates.
 
-## Standards source
-The skills enforce Unity's internal standards (Flow Design Standards, the combined PRD/TDD template, SLDS 2 + Unity palette, comms tone). Each skill carries its own `references/` files as the source of truth.
+## Author
 
-## Versioning
-See `plugins/unity-bsa/.claude-plugin/plugin.json`. Current: **1.0.0**.
+Unity Business Systems team.
