@@ -34,11 +34,11 @@ Two skills sit close together, so each stays in its lane:
 ## Install
 
 - **Cowork:** Customize → Skills → Create plugin → **Upload plugin** → the `unity-bsa.plugin` file.
-- **CLI / marketplace:** `/plugin marketplace add Yakov-Asael/unity-bsa-plugin` → `/plugin install unity-bsa`.
+- **CLI / marketplace:** `/plugin marketplace add Yakov-Asael/unity-bsa-marketplace` → `/plugin install unity-bsa`.
 
 ## Versioning
 
-Current: **v1.4.0** (see `.claude-plugin/plugin.json`).
+Current: **v1.4.3** (see `.claude-plugin/plugin.json`).
 
 ## Author
 

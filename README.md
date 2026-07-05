@@ -19,16 +19,16 @@ The team runs in the Claude desktop/web app. Install the plugin file directly:
 1. **Customize → Skills → Create plugin → Upload plugin**
 2. Select `plugins/unity-bsa` packaged as a `.plugin` file (see the plugin README).
 
-### Claude Code CLI or Cowork "Add marketplace"
+### Claude Code CLI or Cowork "Add marketplace" (recommended — supports one-click updates)
 ```
-/plugin marketplace add Yakov-Asael/unity-bsa-plugin
+/plugin marketplace add Yakov-Asael/unity-bsa-marketplace
 /plugin install unity-bsa
 ```
-> **Note:** the marketplace path requires the repo to be **readable** by the client. While this repo is **private**, anonymous fetches fail — use the upload method above, or make the repo accessible.
+This repo is **public**, so the marketplace path works without any auth — and you get updates with a single **Sync** (no uninstall/re-upload).
 
 ## Updating
 
-- **Marketplace:** re-sync the marketplace and reinstall.
+- **Marketplace (recommended):** hit **Sync** on the marketplace, then reinstall/refresh — pulls the latest version automatically.
 - **Upload:** uninstall and re-upload the latest `.plugin`.
 - **Team-wide, managed:** publish via **Organization plugins** (your Cowork org admin) for centrally-maintained updates.
 
