@@ -5,7 +5,11 @@
     {
       "name": "unity-bsa",
       "source": "./plugins/unity-bsa",
-      "description": "Unity Salesforce BSA toolkit — flow review, TDD/PRD, SLDS mockups, comms."
+      "description": "Unity Salesforce BSA toolkit — 8 focused skills: Flow review (Health Check + score), PRD/TDD & user stories, SLDS 2 mockups & Unity email alerts, stakeholder comms, on-brand presentations, QA & debug (RCA + test planning), and project management. Each enforces Unity's real standards.",
+      "author": { "name": "Unity Business Systems" },
+      "homepage": "https://github.com/Yakov-Asael/unity-bsa-plugin",
+      "category": "productivity",
+      "keywords": ["salesforce", "bsa", "flow", "slds", "tdd", "qa", "presentations", "project-management"]
     }
   ]
 }

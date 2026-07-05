@@ -1,6 +1,9 @@
 {
   "name": "unity-bsa",
-  "version": "1.4.1",
-  "description": "Unity Business Systems team's Salesforce BSA toolkit: flow review, technical design, SLDS mockups, and stakeholder comms — each as a focused skill enforcing Unity standards.",
-  "author": { "name": "Unity Business Systems" }
+  "version": "1.4.2",
+  "description": "Unity Business Systems team's Salesforce BSA toolkit: 8 focused skills — Flow review, PRD/TDD & user stories, SLDS 2 mockups & email alerts, stakeholder comms, presentations, QA & debugging, and project management — each enforcing Unity standards.",
+  "author": { "name": "Unity Business Systems" },
+  "homepage": "https://github.com/Yakov-Asael/unity-bsa-plugin",
+  "repository": "https://github.com/Yakov-Asael/unity-bsa-plugin",
+  "keywords": ["salesforce", "bsa", "flow", "slds", "tdd", "qa", "presentations", "project-management"]
 }
