@@ -1,0 +1,8 @@
+{
+  "name": "unity-bsa-scripts",
+  "private": true,
+  "description": "Tooling for the Unity BSA marketplace (banner generator).",
+  "dependencies": {
+    "sharp": "^0.33.0"
+  }
+}
