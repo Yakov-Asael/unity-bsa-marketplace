@@ -1,0 +1,84 @@
+name: "New skill proposal"
+description: "Propose a new skill for the unity-bsa plugin. A detailed brief is required — this is the plan we design and review against."
+title: "[skill] <short name>"
+labels: ["new-skill"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Every skill starts from a **detailed brief**, never a one-line request.
+        Fill every field below — this becomes the design we build and review against.
+  - type: input
+    id: skill-name
+    attributes:
+      label: Proposed skill name (kebab-case, e.g. unity-data-model)
+      placeholder: unity-...
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem & why
+      description: What BSA pain does this solve? Why is it worth a dedicated skill?
+    validations:
+      required: true
+  - type: textarea
+    id: triggers
+    attributes:
+      label: Who uses it & when it should trigger
+      description: The role/context, and the phrases/inputs that should activate it.
+    validations:
+      required: true
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Inputs
+      description: What the user provides (e.g. Flow XML, a requirement, a debug log, a file).
+    validations:
+      required: true
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Outputs & modes
+      description: What it produces, and any modes (e.g. write vs review). Be specific about structure.
+    validations:
+      required: true
+  - type: textarea
+    id: standard
+    attributes:
+      label: Unity standard or source it enforces
+      description: The real template/doc/rules it must follow. Link it. (Don't invent standards.)
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: A concrete example
+      description: One realistic request and the expected result. This is how we'll test it.
+    validations:
+      required: true
+  - type: textarea
+    id: handoffs
+    attributes:
+      label: Handoffs & boundaries
+      description: Which other skills it hands off to, and what it must NOT do (to avoid overlap).
+    validations:
+      required: true
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of scope
+      description: What this skill explicitly will not cover.
+    validations:
+      required: true
+  - type: checkboxes
+    id: ack
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: I will build on a `feature/` branch off `develop` and open a PR into `develop`.
+          required: true
+        - label: I will add a README + banner and update the plugin README skills table.
+          required: true
+        - label: I will test on a real Unity example before requesting review.
+          required: true

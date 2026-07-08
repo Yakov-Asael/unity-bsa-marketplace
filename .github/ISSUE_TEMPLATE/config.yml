@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Skill & Plugin Creator Guide
+    url: https://github.com/Yakov-Asael/unity-bsa-marketplace/blob/main/docs/skill-creator-guide.md
+    about: Read this before proposing or building a skill.
