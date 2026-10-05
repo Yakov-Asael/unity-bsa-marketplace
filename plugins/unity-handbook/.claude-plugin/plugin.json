@@ -1,6 +1,6 @@
 {
   "name": "unity-handbook",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Unity BSA Process Handbook for Salesforce: answers questions about the twelve documented processes (Dispute, Handover, Connect 360, GDRC, Credit Check, Customer Community, Knowledge, CSAT, Deals, Pipeline Summary, GPS, Bills/Invoice Sync) strictly from the handbook, verifies it against the live org so it stays current, and reads deployed Apex and job schedules when the answer was never in the document, and answers Business Systems support cases from 24 issue clusters graded from real closed cases (read-only).",
   "author": {
     "name": "Unity Business Systems"
