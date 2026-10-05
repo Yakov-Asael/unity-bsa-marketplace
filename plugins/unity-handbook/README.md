@@ -4,7 +4,7 @@
 
 Unity's **BSA Process Handbook for Salesforce**. Twelve load-bearing processes were documented in detail at a handover in August 2026; this plugin turns that documentation into something the team can ask questions of — and keeps it honest against the live org instead of letting it decay into a stale snapshot.
 
-It is built to grow into the team's **knowledge centre for answering tickets**: a reported symptom routes to the process that owns it, the answer names the check to run and who is allowed to run it, and anything the handbook never recorded is read from the org rather than guessed.
+It is the team's **knowledge centre for answering tickets**: a reported symptom routes to the process that owns it, a support case is matched against 24 issue clusters graded from real closed cases, the answer names the check to run and who is allowed to run it, and anything the handbook never recorded is read from the org rather than guessed.
 
 ## How it works
 
@@ -23,6 +23,7 @@ It is built to grow into the team's **knowledge centre for answering tickets**: 
 | [`handbook-processes`](./skills/handbook-processes) | Answers questions about the twelve processes — how one works, why it broke, who approves what, who owns it now — and diagnoses tickets. Routes by topic, or by symptom for a problem report, to exactly one reference file; reproduces values verbatim; surfaces the tab's known gaps and live issues. |
 | [`handbook-refresh`](./skills/handbook-refresh) | Verifies handbook claims against the live Salesforce org (read-only) and produces a drift report with proposed reference-file edits. Tiers each claim by what is actually checkable, and refuses to declare drift from a single query. |
 | [`handbook-code-lookup`](./skills/handbook-code-lookup) | Answers questions whose answer lives in Apex rather than the handbook — batch run times and cron schedules, what a class does, hardcoded thresholds, why an automation didn't fire. Reads deployed source from the org (read-only) and cites it; optionally consults the `SFDC-IS` repo for git history and flow XML. |
+| [`handbook-cases`](./skills/handbook-cases) | Answers Business Systems support cases (`Saleforce` record type) from 24 issue clusters built from real closed cases and graded by the owner: new users, permissions, credit lines, Workday sync, approvers, reports, handovers, account structure and more. Returns a Summary, numbered steps for the teammate and a percentage confidence. Strictly read-only. |
 
 ## What it covers
 
@@ -35,12 +36,14 @@ Ask directly — questions in Hebrew trigger the skill too, and are answered in 
 - "How does a deal turn into disputes?"
 - "Who owns Connect 360 now?"
 
-Or hand it a ticket as it arrived, without naming a process:
+Or hand it a ticket as it arrived, without naming a process (`handbook-processes` answers the process side, `handbook-cases` matches it to the support-case clusters):
 
 - "User says they approved the dispute but there's no Attach button — what do I tell them?"
 - "She doesn't see the opportunity in pipeline review."
 - "Customer says their ticket isn't showing in the portal."
 - "Commission numbers are missing for a batch of accounts we handed over."
+- "New case: please give my new hire the same Salesforce access as a colleague."
+- "Approve RMG and connect these orgs to our credit line."
 
 ## Staying current
 
@@ -50,6 +53,8 @@ The handbook is a **snapshot from 9–10 August 2026**, and Salesforce configura
 2. **Scheduled verification** — a quarterly Tier 1 sweep alongside the SOX review cycle, and a semi-annual Tier 3 pass re-confirming thresholds and approver matrices with each process's business owner.
 
 The `handbook-refresh` skill runs the verification and drafts the edits; a human reviews and merges them through the normal repo flow. Precedence when sources disagree: **the org → the repo's reference files → the source Google Doc**. The repo is what ships, so a correction made only in the doc changes nothing for users.
+
+The case clusters in `handbook-cases` are kept current differently: they are produced and graded by the Case Resolver pipeline and copied in through a reviewed PR after each grading round.
 
 Full process, cadence table and definition of done: [`docs/handbook-maintenance.md`](../../docs/handbook-maintenance.md) and the skill's [`refresh-runbook.md`](./skills/handbook-refresh/references/refresh-runbook.md).
 

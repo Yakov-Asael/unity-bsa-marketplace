@@ -64,7 +64,7 @@ Three hard rules in ticket mode, because a ticket reply is read as a commitment:
 
 - **Never promise a date or a cycle from this handbook.** Batch schedules are org configuration and appear nowhere in these files. Hand timing questions to `handbook-code-lookup`, which reads the live cron, its timezone, and whether the job is running or paused. Never infer a schedule from the fact that a batch exists.
 - **Never paste an unverified threshold, approver name or permission grant into a customer- or stakeholder-facing reply.** Either verify it via `handbook-refresh` or label it as the documented August 2026 position.
-- **If the symptom is not in the handbook, say so and route to the owner.** A ticket is exactly the situation where a plausible guess does real damage.
+- **If the symptom is not in the handbook, say so and route to the owner.** A ticket is exactly the situation where a plausible guess does real damage. If it is a Business Systems support case outside the twelve processes (a new user, permissions, a report, credit lines, account linking), hand off to `handbook-cases`, which answers from the graded case clusters.
 
 **Triage mode.** Several tickets at once, or one that spans processes: identify which process owns each, using the symptom index and the cross-process table in it. Say which are ambiguous and what would disambiguate them, rather than assigning them all confidently.
 
