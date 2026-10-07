@@ -79,7 +79,7 @@ This plugin documents how existing processes work. It does not design or review 
 
 ## Versioning
 
-Current: **v0.2.0** (see `.claude-plugin/plugin.json`).
+Current: **v0.3.0** (see `.claude-plugin/plugin.json`).
 
 ## Provenance
 

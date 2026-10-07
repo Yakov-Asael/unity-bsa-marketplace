@@ -8,7 +8,7 @@ description: >
   who approves what, or who owns it now — and to diagnose and answer support tickets about them, routing a reported
   symptom to the process that owns it. Answers strictly from the handbook and names the owner to ask when it does not
   cover the question. Trigger on: handbook, process handbook, approver matrix, dispute, credit note, C360, GDRC, portal,
-  knowledge article, deal desk, incentive, invoice, bill, Workday sync, SOX evidence, who approves, who owns this,
+  automated credit request, credit limit increase, knowledge article, deal desk, incentive, invoice, bill, Workday sync, SOX evidence, who approves, who owns this,
   who took over, ticket, support ticket, escalation, user reported, is broken, not working, cannot submit, button missing,
   stuck in approval, error message, why did this happen, how do I answer this — and in Hebrew: דיספיוט, מי מאשר,
   מטריצת מאשרים, חשבונית, ביל, האנדאובר, מאמר, פורטל, דיל, פייפליין, איך עובד, למה זה נתקע, מי אחראי על זה עכשיו,
@@ -76,7 +76,7 @@ Three hard rules in ticket mode, because a ticket reply is read as a commitment:
 | Account handover, "HO", moving account ownership, quota and commission moves, the handover calendar, managed vs unmanaged accounts, the 20 legacy record types | `handover.md` | Neta Ronen |
 | Connect 360, "C360", tickets, performance help requests, drop investigations, benchmarks, QBRs, the Slack-created requests, the four Centro creation forms, routing matrix, task types | `connect-360.md` | Hagar Itzhak |
 | Game Design & Revenue Consultancy, "GDRC", the Game_Monetization Case record type, how its notification emails are assembled | `game-design-revenue-consultancy.md` | Hagar Itzhak |
-| Credit check, automatic approve / reject / manual review, the reduced-amount formula, the decision order, credit limits, the credit approval chain and its emails | `credit-check-auto-approval.md` | Yakov Asael |
+| Credit check, automatic approve / reject / manual review, the reduced-amount formula, the decision order, credit limits, the credit approval chain and its emails, the automated credit request (`SMB_Create_Automatic_Credit`) and why it didn't fire, self-served (SS TLV) accounts | `credit-check-auto-approval.md` | Yakov Asael |
 | The customer support portal, support-ads.unity.com, Grow External Community, Experience Cloud, the 18 LWCs and 7 Apex controllers, Unity ID auth, guest users, case visibility on the portal, how a form becomes a Case | `customer-community.md` | Neta Ronen (dev: Danill Rekov) |
 | Knowledge articles, KB, authoring and publishing articles, article approval and reviewers, article ratings, promoted articles, article visibility on the portal | `knowledge.md` | Neta Ronen |
 | CSAT, satisfaction ratings on cases, the rating link, FormTitan, who gets a CSAT email at closure, Version A vs B, misleading CSAT field names | `csat.md` | Neta Ronen |
@@ -95,7 +95,7 @@ Three hard rules in ticket mode, because a ticket reply is read as a commitment:
 
 ## Staying honest about the source
 
-The handbook is a **snapshot from 9–10 August 2026**, and configuration drifts. Add the caveat — "this is the August 2026 state, worth confirming in the org" — when your answer names a person, a number, a picklist value or a permission grant. Do not add it when the answer is only about mechanism: which flow fires, which object writes what, why a button is hidden. When an answer contains both, caveat only the named values.
+The handbook is a **snapshot from 9–10 August 2026**, and configuration drifts. One exception: the Credit Check tab's automated credit request section was added and verified on **7 October 2026**; caveat its values with that date instead. Add the caveat — "this is the August 2026 state, worth confirming in the org" — when your answer names a person, a number, a picklist value or a permission grant. Do not add it when the answer is only about mechanism: which flow fires, which object writes what, why a button is hidden. When an answer contains both, caveat only the named values.
 
 If the person needs the *current* state of a value rather than the documented one, hand off to the `handbook-refresh` skill, which verifies handbook claims against the live Salesforce org. If they need a mechanism the handbook does not carry — a batch schedule, what a class does, a hardcoded threshold — hand off to `handbook-code-lookup`, which reads the deployed Apex. Do not run org queries yourself from this skill.
 
