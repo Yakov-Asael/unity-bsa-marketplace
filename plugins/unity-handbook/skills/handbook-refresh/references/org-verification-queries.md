@@ -144,6 +144,18 @@ Spot-checks run while building this skill, recorded as the baseline for the next
 | `Dispute__c` record types | 5 active: `Demand_dispute`, `Fraud_dispute`, `SuperSonic`, `Supply_dispute`, `Video_Dispute` |
 | Named owners/successors still active | ✅ All active — several with duplicate User records, as described above |
 
+## Confirmed org state, 7 October 2026 (Credit Check: automated credit request)
+
+| Claim | Result |
+|---|---|
+| `SMB_Create_Automatic_Credit` active, after-save on Account | ✅ `IsActive = true`, `RecordAfterSave`, Account; active version v9 saved 2026-10-07 (v8 2026-09-17, v7 2026-02-23) |
+| `Credit_Check_Automatic_Approval_Reject_Manual_Review` active on Credit Check | ✅ `IsActive = true`, `RecordAfterSave` |
+| Entry-formula fields exist on Account | ✅ `Net_Overdue_Balance__c`, `Days_to_reach_credit_limit__c`, `Credit_Check_in_Process__c`, `Division_Picklist__c`, `Credit_Type__c`, `Credit_Amount__c`, `Department__c`, `Account_Manager__c` |
+| `Overall_Balance_Log__c` | ✅ Long Text Area **field on Account**, not an object (an `EntityDefinition` search returns nothing; check `FieldDefinition`) |
+| Automated credit checks | 796 with `Automated_Credit_Check__c = true` |
+| Self-served users (`SelfServed_User__c = true`) | SS TLV, SS China, SS GPS, SSA Integration active; SS SF inactive |
+| Entry condition `Net_Overdue_Balance__c <= 0` | ⚠️ NEEDS MANUAL CHECK: inside the flow, not queryable. Owner: Neta Ronen |
+
 **Known-correct exceptions — do not report these as findings.**
 
 | Person | State | Why it is expected |
