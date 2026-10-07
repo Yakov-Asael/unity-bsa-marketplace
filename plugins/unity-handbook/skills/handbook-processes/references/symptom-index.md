@@ -25,7 +25,7 @@ Worth knowing before you search a file, because the shape differs:
 | `deals.md` | "Troubleshooting" | **Bold quoted headings** |
 | `gps.md` | "Troubleshooting" | **Bold quoted headings** |
 | `csat.md` | "Troubleshooting" | **Bold quoted headings** |
-| `credit-check-auto-approval.md` | **No troubleshooting section.** Symptoms are answered from "The decision order", "When it is rejected automatically", "When it is approved automatically", "When it goes to manual review", "When it skips the automation entirely" | Prose + tables |
+| `credit-check-auto-approval.md` | One troubleshooting entry, "Automated credit request (SMB_Create_Automatic_Credit)" → *"The automated credit request was not created"*. Everything else is answered from "The decision order", "When it is rejected automatically", "When it is approved automatically", "When it goes to manual review", "When it skips the automation entirely" | Prose + tables |
 
 `bills-invoice-sync.md` also opens with "The five causes behind almost everything" — **check that first** for any invoice or bill incident, before working through the symptom sections.
 
@@ -142,7 +142,7 @@ Worth knowing before you search a file, because the shape differs:
 
 ### Credit check
 
-`credit-check-auto-approval.md` has no troubleshooting section — work from the decision logic instead.
+`credit-check-auto-approval.md` has one troubleshooting entry, for the automated credit request; for everything else, work from the decision logic.
 
 | The ticket says | Section |
 |---|---|
@@ -151,6 +151,8 @@ Worth knowing before you search a file, because the shape differs:
 | The automation didn't run at all | "When it skips the automation entirely" |
 | The approved amount is lower than requested | "How every parameter is calculated" — the reduced-amount formula |
 | Who approves it, and why did they get the email? | "The approval chain", then "The emails" |
+| The automatic / automated credit request wasn't created, or the credit line wasn't raised by itself | "Automated credit request (SMB_Create_Automatic_Credit)" → *"The automated credit request was not created"* |
+| Self-served account: nobody got the credit-check email | "Automated credit request (SMB_Create_Automatic_Credit)" — alerts go to the shared self-served user |
 
 ---
 

@@ -1,12 +1,14 @@
 # Credit Check Auto Approval
 
 > Source: BSA Process Handbook, tab "Credit Check Auto Approval". Verbatim.
+>
+> **Added 7 October 2026:** section 10, "Automated credit request (SMB_Create_Automatic_Credit)", from Neta Ronen's handbook update *Credit Check Automated Credit Request* (case 00937701), verified against the org on the same date. Everything above section 10 is the original August 2026 text.
 
 **Credit Check Auto Approval**
 
 **Process:** Credit Check — the automatic approve, reject and manual-review decision on a customer credit request · **Built on:** Credit_Check__c, two record-triggered flows and two approval processes · **Business owner:** Credit and Revenue Accounting · **Technical owner:** Dror Diamant (outgoing) → Yakov Asael
 
-*§1–2 what it is and the two flows · §3 how every parameter is calculated · §4 the decision order · §5–8 auto-reject, auto-approve, manual review and the approval route · §9 the approval chain · §10 the emails · §11 watch-outs · §12 who to ask.*
+*§1–2 what it is and the two flows · §3 how every parameter is calculated · §4 the decision order · §5–8 auto-reject, auto-approve, manual review and the approval route · §9 the approval chain · §10 the emails · §11 watch-outs · §12 who to ask · §10 (added October 2026) the automated credit request flow, its entry formula and troubleshooting.*
 
 # 1. What this process does
 
@@ -164,3 +166,67 @@ Every outcome sends exactly one email to the account manager, from the org-wide 
 | Manual review | Action Required: Credit Request + account name + Under Manual Review | The documentation checklist and the 50% prepayment warning described in §7. |
 
 **One condition applies to all five.** The email only sends if the account manager on the account is active, or the person who created the credit check is active. If both are inactive the decision still happens, the record is still updated — and nobody is told. There is no default branch on that decision.
+
+# 10. Automated credit request (SMB_Create_Automatic_Credit)
+
+> Source: *Credit Check Automated Credit Request: Handbook Update*, Neta Ronen, 7 October 2026 (https://docs.google.com/document/d/1g3pp1PGpGWzHGspfP_bANYceIVOFguA97z4D8xiX2-M/edit). Written after case 00937701.
+
+Everything above describes how a credit request is **decided**. This section covers a second way a request is **created**: no account manager involved. When a self-served advertiser account is close to running out of credit, a flow raises a Change credit check for it by itself.
+
+**What it is**
+
+`SMB_Create_Automatic_Credit` (label "SMB Create Automatic Credit") is an after-save record-triggered flow on **Account**. When the account's credit is close to running out, it creates a Change Credit Check with `Automated_Credit_Check__c = TRUE`. It had created 796 automated requests by 7 October 2026, about 70 of them between 1 September and 3 October 2026.
+
+| | |
+|---|---|
+| **What sets it off** | In practice, the integration's This Month Spend update on the account (made by Unity Integration Team). The new credit check appears within about 30 seconds of that update. |
+| **What happens next** | The new record goes through the normal decision flow, `Credit_Check_Automatic_Approval_Reject_Manual_Review`, exactly as a manual Change request does. Requests of 250,000 or less are decided automatically; larger ones go to Finance for manual approval. |
+| **Request size** | The records reviewed raised the limit in steps of 25,000 to 50,000. |
+| **Who gets the emails** | The account's Account Manager. On self-served accounts that is a shared self-served user (SS TLV, SS China, SS GPS), so **no person receives the alerts**, and the automated records show that shared user as their creator. |
+
+**250,000 is the ceiling for automatic decisions only.** The automation still creates requests above it; those skip the gates and go to Finance like any other request over the ceiling.
+
+**Entry formula: all conditions must be true**
+
+| Condition | Field |
+|---|---|
+| Account Manager is a self-served user | `Account_Manager__r.SelfServed_User__c = TRUE` |
+| Advertiser account | `Department__c = "Advertiser"` |
+| Credit type is Credit | `Credit_Type__c = "Credit"` |
+| Has a credit limit | `Credit_Amount__c > 0` |
+| No credit check already in progress | `Credit_Check_in_Process__c = 0` |
+| Division is MobileCore, Tapjoy or UnityAds | `Division_Picklist__c` |
+| Within 7 days of the credit limit | `Days_to_reach_credit_limit__c > 0` and `<= 7` |
+| No overdue balance (zero or credit balance) | `Net_Overdue_Balance__c <= 0` (was `= 0` until October 2026) |
+
+**None of these fields keep history on the Account.** To tell why an account was skipped on a past date, read the integration's balance log in the Account field `Overall_Balance_Log__c` (a long text field). It shows the current and prior values of Net Overdue Balance and Overall Balance.
+
+**The October 2026 fix.** Until October 2026 the last condition was `{!$Record.Net_Overdue_Balance__c} = 0`, so an account with a **credit balance** (a negative net overdue balance) was silently skipped. It was changed to `{!$Record.Net_Overdue_Balance__c} <= 0`. Accounts with a credit balance now qualify; accounts with an overdue balance are still excluded on purpose.
+
+> **Verified 7 October 2026:** `SMB_Create_Automatic_Credit` is active, after-save on Account; its active version is v9, saved 7 October 2026 (v8 was saved 17 September 2026). All eight entry fields exist on Account, and `Overall_Balance_Log__c` is a Long Text Area field on Account, not a separate object. 796 credit checks carry `Automated_Credit_Check__c = TRUE`. Active self-served users: SS TLV, SS China, SS GPS (SS SF is inactive). The formula text itself lives inside the flow and was not readable by query; confirm it in Flow Builder.
+
+**Troubleshooting: "The automated credit request was not created"**
+
+1. **Check each entry condition** against the account, starting with the two that move most: **Net Overdue Balance** (must be 0 or negative) and **Days to reach credit limit** (must be above 0 and at most 7).
+2. **For a past date, use `Overall_Balance_Log__c`**, since the Account fields carry no history.
+3. **Compare with an account that did get a request in the same integration update.** If that one qualified and yours did not, the difference is in the entry fields.
+4. **Expect no emails on self-served accounts.** The alerts go to the shared self-served user, so "nobody was told" is normal, not a separate fault.
+
+**Worked example: case 00937701 (29 September 2026)**
+
+Both accounts passed every condition except the overdue balance check, for different reasons.
+
+| Account | Net Overdue Balance during Sep 2026 | Result | Cause |
+|---|---|---|---|
+| Awem Games Limited (UA2490923) | -9,965 (credit balance) | Skipped | Formula gap: required exactly 0. Fixed in October 2026. |
+| Mamboo Entertainment ME FZ LLC (UA7971620803183) | 88,629 (overdue) | Skipped | Correct: overdue accounts are excluded on purpose. |
+
+- **Awem:** the last automated request was on 25 August (to 250,000). The limit was then raised by hand to 300,000 on 29 September (CC-34841, approved manually by Finance).
+- **Mamboo:** the overdue balance went 88,629 → 37,313 on 1 October → 0 on 5 October. It qualifies again once it is within 7 days of its 250,000 limit.
+- **No alerts:** both accounts have SS TLV as Account Manager, so the requester never received the credit-check emails.
+- **The comparison that cracked it:** on 28 September XSTUDIOS got CC-34816 (9 days to its limit, overdue = 0) in the same integration update, but Awem did not.
+
+**Open questions (not yet confirmed)**
+
+- On 8 and 29 September, Mamboo got an automated request about 8 seconds after a manual request on it was approved, even though its overdue balance was not 0. The flow may have a second branch that fires when the credit amount changes. Nobody has checked the full flow canvas yet; until someone does, do not state the entry formula above as the **only** path to an automated request.
+- What changed between v7 and v8 of the flow (v8 saved 17 September 2026) is not recorded.
