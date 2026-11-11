@@ -4,7 +4,7 @@
 
 **Grow External Community**
 
-**Process:** the customer-facing support portal at support-ads.unity.com · **Built on:** an Experience Cloud site, 18 custom Lightning web components, 7 Apex controllers, 7 custom metadata types, an Auth Provider into Unity ID and one scheduled batch · **Business owner:** Shani Kovalsky, Andrii Bosak and Aylin Lee (Grow Support) · **Technical owner:** Dror Diamant → Neta Ronen · **Developer:** Danill Rekov
+**Process:** the customer-facing support portal at support-ads.unity.com · **Built on:** an Experience Cloud site, 18 custom Lightning web components, 7 Apex controllers, 7 custom metadata types, an Auth Provider into Unity ID and one scheduled batch · **Business owner:** Shani Kovalsky, Andrii Bosak and Aylin Lee (Grow Support) · **Technical owner:** Neta Ronen · **Developer:** Danill Rekov
 
 **Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
 
@@ -308,7 +308,7 @@ Almost always the matching cascade in §6 fell through to the umbrella account. 
 | The product and the customer experience | Shani Kovalsky, Andrii Bosak and Aylin Lee. |
 | The code — LWC, Apex, Auth Provider, guest access | Danill Rekov, who built all of it. |
 | Account and contact matching, and why it works that way | Amir Weingrod and Yakov Asael designed it. |
-| Salesforce configuration, the site, the custom domain, Genesis | Dror Diamant (outgoing) → Yakov Asael. |
+| Salesforce configuration, the site, the custom domain, Genesis | Yakov Asael. |
 | Knowledge content and article categories | Shani Kovalsky, Andrii Bosak |
 
 **The documents worth reading, in order**

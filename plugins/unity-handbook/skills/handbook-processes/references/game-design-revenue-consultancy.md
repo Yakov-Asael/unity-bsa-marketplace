@@ -4,7 +4,7 @@
 
 **Game Design & Revenue Consultancy**
 
-**Process:** Game Design & Revenue Consultancy — the team says "GDRC", users say "ticket" · **Object:** Case, record type Game_Monetization_Consultancy only · **Date:** 10 August 2026 · **Business owner:** Franco Spina, with Nathan TenBoer · **Technical owner:** Dror Diamant → Hagar Itzhak
+**Process:** Game Design & Revenue Consultancy — the team says "GDRC", users say "ticket" · **Object:** Case, record type Game_Monetization_Consultancy only · **Date:** 10 August 2026 · **Business owner:** Franco Spina, with Nathan TenBoer · **Technical owner:** Hagar Itzhak
 
 **Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
 

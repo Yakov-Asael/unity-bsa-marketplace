@@ -178,4 +178,4 @@ Drift scan of `references/claims.json` (527 claims) against `SFDC-IS` `origin/Pr
 
 **Resolved 11 November 2026:** both of Dror Diamant's User records were still active, past his 10 September 2026 departure. That is a finding, raised with the SOX access-review owner; the row was removed from this list.
 
-**After 10 September 2026** this flips: if Dror Diamant's User records are still active, that *is* a finding — raise it with the SOX access-review owner, and expect every tab's `Technical owner: Dror Diamant → <successor>` line to need its outgoing half retired. Re-check this row on the first refresh after that date and update or remove it; a stale exception list is how a real exception gets waved through.
+**Ownership retired 11 November 2026:** the outgoing `Dror Diamant →` half was removed from every tab's `Technical owner` line, so the successor is the only owner named. He remains only where the org still points at him (the Dispute Approvers - Monitor subscription and three GPS campaigns); those are org facts, re-checked on each refresh.

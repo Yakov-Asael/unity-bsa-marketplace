@@ -4,7 +4,7 @@
 
 **CSAT**
 
-**Process:** CSAT — the customer satisfaction rating on support cases · **Built on:** Case, one record-triggered flow, two email alerts, four email templates, an external FormTitan form and one Lightning web component · **Business owner:** Shani Kovalsky · **Technical owner:** Dror Diamant → Neta Ronen
+**Process:** CSAT — the customer satisfaction rating on support cases · **Built on:** Case, one record-triggered flow, two email alerts, four email templates, an external FormTitan form and one Lightning web component · **Business owner:** Shani Kovalsky · **Technical owner:** Neta Ronen
 
 **Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
 

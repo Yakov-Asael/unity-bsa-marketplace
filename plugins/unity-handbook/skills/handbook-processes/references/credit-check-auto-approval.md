@@ -6,7 +6,7 @@
 
 **Credit Check Auto Approval**
 
-**Process:** Credit Check — the automatic approve, reject and manual-review decision on a customer credit request · **Built on:** Credit_Check__c, two record-triggered flows and two approval processes · **Business owner:** Credit and Revenue Accounting · **Technical owner:** Dror Diamant (outgoing) → Yakov Asael
+**Process:** Credit Check — the automatic approve, reject and manual-review decision on a customer credit request · **Built on:** Credit_Check__c, two record-triggered flows and two approval processes · **Business owner:** Credit and Revenue Accounting · **Technical owner:** Yakov Asael
 
 *§1–2 what it is and the two flows · §3 how every parameter is calculated · §4 the decision order · §5–8 auto-reject, auto-approve, manual review and the approval route · §9 the approval chain · §10 the emails · §11 watch-outs · §12 who to ask · §10 (added October 2026) the automated credit request flow, its entry formula and troubleshooting.*
 
