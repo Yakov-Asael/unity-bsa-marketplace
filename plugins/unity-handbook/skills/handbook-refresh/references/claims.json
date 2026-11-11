@@ -1088,7 +1088,7 @@
    "type": "user",
    "name": "Dror Diamant",
    "verified_on": "2026-11-11",
-   "claim": "Dror Diamant is a named owner/approver on the Dispute tab"
+   "claim": "Dror Diamant is the only subscriber of the Dispute Approvers - Monitor report"
   },
   {
    "id": "dispute-adi-erdan",
@@ -1290,14 +1290,6 @@
    "name": "Danill Rekov",
    "verified_on": "2026-11-11",
    "claim": "Danill Rekov is a named contact on the Bills/Invoice Sync tab"
-  },
-  {
-   "id": "bills-invoice-sync-dror-diamant",
-   "tab": "bills-invoice-sync",
-   "type": "user",
-   "name": "Dror Diamant",
-   "verified_on": "2026-11-11",
-   "claim": "Dror Diamant is a named contact on the Bills/Invoice Sync tab"
   },
   {
    "id": "bills-invoice-sync-tal-rahamim",
@@ -1963,14 +1955,6 @@
    "claim": "Neta Ronen is named on the Credit Check tab"
   },
   {
-   "id": "credit-check-auto-approval-dror-diamant",
-   "tab": "credit-check-auto-approval",
-   "type": "user",
-   "name": "Dror Diamant",
-   "verified_on": "2026-11-11",
-   "claim": "Dror Diamant is named on the Credit Check tab"
-  },
-  {
    "id": "credit-check-auto-approval-yakov-asael",
    "tab": "credit-check-auto-approval",
    "type": "user",
@@ -2273,14 +2257,6 @@
    "name": "Neta Ronen",
    "verified_on": "2026-11-11",
    "claim": "Neta Ronen is a named owner on the CSAT tab"
-  },
-  {
-   "id": "csat-dror-diamant",
-   "tab": "csat",
-   "type": "user",
-   "name": "Dror Diamant",
-   "verified_on": "2026-11-11",
-   "claim": "Dror Diamant is a named owner on the CSAT tab"
   },
   {
    "id": "customer-community-case-update-sharing-contact-pe",

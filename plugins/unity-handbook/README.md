@@ -52,7 +52,7 @@ The handbook is a **snapshot from 9–10 August 2026**, and Salesforce configura
 1. **The standing rule** — whoever changes one of these twelve processes updates its reference file **in the same PR as the change**.
 2. **Scheduled verification** — a quarterly Tier 1 sweep alongside the SOX review cycle, and a semi-annual Tier 3 pass re-confirming thresholds and approver matrices with each process's business owner.
 
-The `handbook-refresh` skill runs the verification repo-first: a script compares a manifest of 527 handbook claims with the `SFDC-IS` Production branch (synced nightly from the org) and returns only what changed since each claim was last verified, so the connector is needed only for live checks such as people and scheduled jobs. Last full sweep: **11 November 2026**. The skill drafts the edits; a human reviews and merges them through the normal repo flow. Precedence when sources disagree: **the org → the repo's reference files → the source Google Doc**. The repo is what ships, so a correction made only in the doc changes nothing for users.
+The `handbook-refresh` skill runs the verification repo-first: a script compares a manifest of 524 handbook claims with the `SFDC-IS` Production branch (synced nightly from the org) and returns only what changed since each claim was last verified, so the connector is needed only for live checks such as people and scheduled jobs. Last full sweep: **11 November 2026**. The skill drafts the edits; a human reviews and merges them through the normal repo flow. Precedence when sources disagree: **the org → the repo's reference files → the source Google Doc**. The repo is what ships, so a correction made only in the doc changes nothing for users.
 
 The case clusters in `handbook-cases` are kept current differently: they are produced and graded by the Case Resolver pipeline and copied in through a reviewed PR after each grading round.
 
@@ -79,11 +79,11 @@ This plugin documents how existing processes work. It does not design or review 
 
 ## Versioning
 
-Current: **v0.4.0** (see `.claude-plugin/plugin.json`).
+Current: **v0.4.1** (see `.claude-plugin/plugin.json`).
 
 ## Provenance
 
-The twelve reference files were written by **Dror Diamant** on 9–10 August 2026, ahead of his departure on 10 September 2026, and are preserved verbatim. Each file carries its own `> Source:` line and names the business and technical owner taking the process over. Corrections confirmed against the org are appended as `> **Verified <date>:**` notes rather than overwriting the original text. Maintained by the Unity Business Systems team.
+The twelve reference files were written on 9–10 August 2026 and are preserved verbatim, apart from owner lines updated as ownership changes. Each file carries its own `> Source:` line and names the process's business and technical owner. Corrections confirmed against the org are appended as `> **Verified <date>:**` notes rather than overwriting the original text. Maintained by the Unity Business Systems team.
 
 ## Author
 

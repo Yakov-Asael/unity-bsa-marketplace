@@ -4,7 +4,7 @@
 
 **Invoice and Bill**
 
-**What this is:** a list of the problems that actually happen with invoices and bills and what to do about each one, plus a full map of the Invoice Management and Bill Management screens · **Covers:** Invoice__c, Invoice_Line__c, Bill__c, Bill_Line__c, the two management screens and their integrations · **Author:** Dror Diamant (outgoing) → Yakov Asael
+**What this is:** a list of the problems that actually happen with invoices and bills and what to do about each one, plus a full map of the Invoice Management and Bill Management screens · **Covers:** Invoice__c, Invoice_Line__c, Bill__c, Bill_Line__c, the two management screens and their integrations · **Technical owner:** Yakov Asael
 
 **Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
 

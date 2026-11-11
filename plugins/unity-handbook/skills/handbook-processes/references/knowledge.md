@@ -4,7 +4,7 @@
 
 **Knowledge**
 
-**Process:** Salesforce Knowledge — the team says "KB article", "FAQ" or just "article" · **Object:** Knowledge__kav, record types External and Internal only · **Date:** 10 August 2026 · **Business owner:** Shani Kovalsky, with Michal Smithline (CSS external), Matthew Hunter (CSS internal) and Andrii Bosak (DSE) · **Technical owner:** Dror Diamant → Neta Ronen
+**Process:** Salesforce Knowledge — the team says "KB article", "FAQ" or just "article" · **Object:** Knowledge__kav, record types External and Internal only · **Date:** 10 August 2026 · **Business owner:** Shani Kovalsky, with Michal Smithline (CSS external), Matthew Hunter (CSS internal) and Andrii Bosak (DSE) · **Technical owner:** Neta Ronen
 
 **Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
 

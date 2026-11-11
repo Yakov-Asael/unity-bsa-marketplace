@@ -4,7 +4,7 @@
 
 **GPS**
 
-**Process:** GPS — Global Programmatic Solutions, the team selling exchange inventory to brands, agencies and DSPs · **Built on:** Account hierarchy, Lead, Contact, Campaign, Task, Opportunity and Opportunity Split, with eight flows and a page-layout-driven UI · **Business owner:** Sebastian Diaz Jaramillo, with Michael Marzitelli on account management and Gwen Sparks on the BDR side · **Technical owner:** Dror Diamant (outgoing) → Yakov Asael
+**Process:** GPS — Global Programmatic Solutions, the team selling exchange inventory to brands, agencies and DSPs · **Built on:** Account hierarchy, Lead, Contact, Campaign, Task, Opportunity and Opportunity Split, with eight flows and a page-layout-driven UI · **Business owner:** Sebastian Diaz Jaramillo, with Michael Marzitelli on account management and Gwen Sparks on the BDR side · **Technical owner:** Yakov Asael
 
 **Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
 
@@ -257,7 +257,7 @@ Specific to accounts managed by the GPS account management team: the approver se
 | Account hierarchy cleanup and the AOR consolidation | Adam Kadet. |
 | Sales leadership and the split requirements | Chris Feo, Chris Jerome, Drew Bassler, Melissa Jensen. |
 | Layouts, list views and enablement | Ryan Amante. |
-| The Salesforce build | Dror Diamant (outgoing) → Yakov Asael, with Amir Weingrod on the design. |
+| The Salesforce build | Yakov Asael, with Amir Weingrod on the design. |
 
 > **Verified 2026-11-11:** Chris Feo is inactive in Salesforce (every User record). Route to the current owner of this process instead. Melissa Jensen is inactive in Salesforce (every User record). Route to the current owner of this process instead.
 
