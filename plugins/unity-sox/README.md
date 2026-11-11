@@ -27,7 +27,7 @@ Unity's **SOX compliance toolkit for Salesforce**. It turns the team's quarterly
 
 ## Versioning
 
-Current: **v0.2.0** (see `.claude-plugin/plugin.json`).
+Current: **v0.3.0** (see `.claude-plugin/plugin.json`).
 
 ## Author
 
