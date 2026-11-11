@@ -4,7 +4,7 @@
 
 **Deal**
 
-**Process:** non-standard deals — the Ads Deal Desk opportunity, its incentives and the disputes that pay them out · **Built on:** Opportunity, incentive__c, Offer__c and Dispute__c, one screen-flow wizard, two approval processes and a family of approver-matrix records · **Business owner:** the Grow Deal Desk — Tal Rahamim, Bar Damti, Elad Zommer · **Technical owner:** Dror Diamant → Yakov Asael
+**Process:** non-standard deals — the Ads Deal Desk opportunity, its incentives and the disputes that pay them out · **Built on:** Opportunity, incentive__c, Offer__c and Dispute__c, one screen-flow wizard, two approval processes and a family of approver-matrix records · **Business owner:** the Grow Deal Desk — Tal Rahamim, Bar Damti, Elad Zommer · **Technical owner:** Yakov Asael
 
 **Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
 
@@ -279,7 +279,7 @@ Four conditions gate it, and all four must hold: stage is Closed Won, minimum co
 | The Supply side and the original wizard | Amir Tapiro, with David Amar for the business rules. |
 | Revenue Accounting on disputes and bills | Shirel Kaver and Maria Zakomorni. |
 | FP&A | Andrew Montelongo; Jeff Cha and Jacky Wang can both approve on behalf of FP&A. |
-| The Salesforce build | Dror Diamant (outgoing) → Yakov Asael, with Shiraz Koretz on the original solution. |
+| The Salesforce build | Yakov Asael, with Shiraz Koretz on the original solution. |
 
 **The documents worth reading, in order**
 

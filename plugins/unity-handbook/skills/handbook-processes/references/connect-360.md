@@ -4,7 +4,7 @@
 
 **Connect 360**
 
-**Process:** Connect 360 — users say "C360" or just "ticket" · **Object:** Performance_Manager_Request__c, labelled "Connect 360" · **Date:** 10 August 2026 · **Business owner:** Rotem Yosef, Morag Nadel · **Technical owner:** Dror Diamant → Hagar Itzhak
+**Process:** Connect 360 — users say "C360" or just "ticket" · **Object:** Performance_Manager_Request__c, labelled "Connect 360" · **Date:** 10 August 2026 · **Business owner:** Rotem Yosef, Morag Nadel · **Technical owner:** Hagar Itzhak
 
 **Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
 
