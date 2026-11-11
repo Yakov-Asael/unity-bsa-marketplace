@@ -28,4 +28,5 @@ count_90d: <n>
 - `status` lifecycle: `proposed` (clustered) → `confirmed` (owner kept the cluster) → `approved` (canonical answer graded Correct, at least 60% of sampled drafts Correct) or `needs-work`.
 - `Canonical answer` follows `../../references/answer-standard.md`.
 - `taxonomy.md` lists every cluster with counts and the census line for the run that produced it.
-- `../feedback/` holds the owner's grading rounds. They are a historical log of how the answers were corrected, not instructions to run anything.
+- A bullet tagged `(learned <date> from closed cases)` came from a learn pass over newly closed cases and was approved by the owner before merge.
+- `../feedback/` holds the owner's grading rounds and the learn-pass count logs. They are a historical log of how the answers were corrected, not instructions to run anything.

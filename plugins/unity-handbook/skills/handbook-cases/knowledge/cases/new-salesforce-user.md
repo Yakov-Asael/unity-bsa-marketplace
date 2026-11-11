@@ -21,6 +21,9 @@ A new or existing employee asks for a Salesforce login or a copy of a colleague'
 - Agent checklist: approval answered → user exists/activated → Okta group membership → permission sets mirrored from the named colleague → closure line 'activated, log in through Okta'.
 - Redirects: Sensor Tower and other tools → IT helpdesk catalog; AM change on an account → GTM case form; 'I have access but see nothing' → wrong Lightning app (9 dots → `Aura AM` / `Grow Ads Revenue`).
 - Owner procedure (owner feedback 2026-09-22): (1) if the user does not exist in SFDC, add them to the Okta group in Tirith: https://tirith.prd.it.unity3d.com/groups/okta-salesforceIS-1_0_Production-user-manual ; (2) wait until the user is created; if no manager is set, set one (yourself if needed) and submit for approval; (3) once approved, grant access mirroring the similar user the requester named.
+- New Client Partner users who open tickets and manage their clients opportunities get Finance_Project_ADV and Finance_Project_PUB. (learned 2026-10-14 from closed cases)
+- When mirroring a colleague for a new user, also copy the Team Report value on the user record. (learned 2026-10-15 from closed cases)
+- If the requester already has an active Salesforce user, change nothing: reply that access exists and ask them to log in through the Okta Salesforce tile. (learned 2026-10-15 from closed cases)
 
 ## What to ask the requester
 - Which role / team, and which colleague's access should be mirrored?
@@ -39,6 +42,7 @@ A new or existing employee asks for a Salesforce login or a copy of a colleague'
 7. If the profile grants admin or finance-approval rights, or the requester is not in Okta: escalate.
 
 ## Common mistakes
+- New-user steps named the Tirith Okta group okta-salesforceIS-1_0_Production-user-manual without a direct link to it; the teammate wants the link included. (learned 2026-11-08 from closed cases)
 
 ## Escalate when
 - The requester is external / not in Okta.

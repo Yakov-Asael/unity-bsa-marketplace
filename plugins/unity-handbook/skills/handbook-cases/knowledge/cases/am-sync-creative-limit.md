@@ -12,10 +12,12 @@ Account manager / partner manager set in SF is not reflected in the Unity dashbo
 - 'Sync AM'
 - 'dashboard not syncing'
 - Example subjects (paraphrased): Creative limit stays on although AM was synced · AM change in SF not reflected in the dashboard
+- An error on the Sync AM Team / RWR action for an account with a creative upload limit. (learned 2026-11-08 from closed cases)
 
 ## How we resolve it
 - Trigger `Sync AM` on the account again; confirm the partner manager appears in uDash. A known Kraken release incident caused stale syncs - follow the incident channel steps.
 - If already synced, ask what the requester expects to see and get a screenshot before changing anything.
+- Sync AM Team / RWR fails when Account_Manager__c is an inactive user; replace the account manager with an active user, then press the sync again. (learned 2026-11-08 from closed cases)
 
 ## What to ask the requester
 - Account link and uDash org link?

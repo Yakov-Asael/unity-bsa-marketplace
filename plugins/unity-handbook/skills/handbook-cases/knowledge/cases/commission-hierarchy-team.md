@@ -22,6 +22,7 @@ Missing people under a team leader's view, wrong team assignment, or commission 
 - Team membership for commission: add the user to the correct team record; teams and managers may differ from Workday - confirm.
 - Missing commission data after a mid-period handover: spend sits with one AM; the dashboard corrects on refresh.
 - Owner rule (owner feedback 2026-09-27): a TL (CM role) sees a team member in the commission tab **only when that member sits under the TL in the Salesforce hierarchy** (manager / role). Put the user under the TL; the `Commission_Line__c.Is_my_Team_Reports__c` formula then returns true.
+- Before moving a user under a team leader, compare with Workday: the manager recorded there decides the Salesforce hierarchy, so a mismatch is a Workday question first. (learned 2026-09-30 from closed cases)
 
 ## What to ask the requester
 - User and manager names, team, effective quarter?

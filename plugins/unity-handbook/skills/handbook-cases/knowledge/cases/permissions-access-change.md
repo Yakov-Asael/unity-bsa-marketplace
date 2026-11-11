@@ -15,12 +15,17 @@ An existing user needs a permission, profile/role change, object access, or a fe
 - 'role'/'profile'
 - Sub_Category User Permissions/Privileges
 - Example subjects (paraphrased): Grant access to invoice / bill management pages · Change a user's role or profile after a team move · Permission to edit a specific field or object
+- 'Unhandled fault' after submitting the Meeting Action button from a meeting follow-up report on `Event_Meeting__c` records. (learned 2026-10-18 from closed cases)
 
 ## How we resolve it
 - Owner ruling: name the **exact permission the user is missing**.
 - Bill Management page (publisher side) = permission set `Finance_Project_PUB` (Bill_Management_lwc, `Bill__c`, `Bill_Line__c`, FN_Bills pages) or `Invoices_Bills_Management`; Invoice Management (advertiser side) = `Finance_Project_ADV` (Invoice_Management_Lwc, `Invoice__c`, `Invoice_Line__c`). 'No access to Apex class BillManagement…' → the PUB set is missing.
 - 'No records found' with access present = scope: the user sees only records where they are the AM.
 - Role moves (CP → Sales): profile + permission sets + `belong to mobile sales` flag; the manager field syncs from Workday. Object-level asks (Modify All on Credit) → dedicated permission set, SOX-relevant.
+- Omni-Channel missing while access exists: first check which Lightning app the user opens; the Omni-Channel utility is only in the Service Console app. (learned 2026-10-14 from closed cases)
+- A field missing in one Lightning app after a layout or permission change: have the user log out and back in before investigating. (learned 2026-10-15 from closed cases)
+- 'Unhandled fault' on the Meeting Action screen flow when updating `Event_Meeting__c`: check the user's Marketing User checkbox (`UserPermissionsMarketingUser`). `Event_Meeting__c` is master-detail child of Campaign, so without it the user cannot edit; set it true and retry. (learned 2026-10-18 from closed cases)
+- Read access to invoices and bills: assign the Finance ADV and Finance PUB permission sets. (learned 2026-11-08 from closed cases)
 
 ## What to ask the requester
 - What exactly fails (screenshot / error text)?
@@ -38,6 +43,8 @@ An existing user needs a permission, profile/role change, object access, or a fe
 6. If Modify All (e.g. on Credit), admin-level or finance-approval rights: do not assign; escalate with the exact permission - SOX-relevant, needs a dedicated permission set.
 
 ## Common mistakes
+- Changing presence configurations or queues before checking the Lightning app the user works in. (learned 2026-10-14 from closed cases)
+- Assigning a permission without checking whether the user already has it. (learned 2026-10-14 from closed cases)
 
 ## Escalate when
 - Admin-level or finance-approval permissions.

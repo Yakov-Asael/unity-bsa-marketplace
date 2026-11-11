@@ -7,7 +7,7 @@
 ## How it works
 
 - **24 issue clusters, built from the queue.** 426 closed `Saleforce` cases from 90 days were clustered by common issue. Each cluster file holds the definition, detection signals, how the team resolves it, what to ask the requester, a canonical answer, common mistakes and when to escalate.
-- **Graded by the owner.** Four grading rounds (September to October 2026) corrected the answers; 15 clusters are approved, the rest are kept and answer with a capped confidence.
+- **Graded by the owner, then kept current by closed cases.** Four grading rounds (September to October 2026) corrected the answers; since then, learn passes read every newly closed case (resolution, team comments, emails, Chatter) and add facts tagged `(learned <date> from closed cases)`. 15 clusters are approved, the rest answer with a capped confidence.
 - **Two-section answer.** `Summary` (what is wrong and the mechanism) and `Suggested resolution` (3 to 8 numbered steps in Salesforce terms), under 250 words, then `Confidence: nn%` and the cluster slug.
 - **Strictly read-only.** It never creates, updates or deletes a Salesforce record and never contacts the requester. The teammate does the work in Salesforce.
 - **Optional live context.** With a read-only Grow PROD connector it can read the case, its emails, the account's finance fields and recent error logs, after an org identity gate. Without one it answers from the knowledge base and says so.
@@ -37,7 +37,7 @@ Index: [`knowledge/cases/taxonomy.md`](./knowledge/cases/taxonomy.md).
 
 ## Boundary
 
-Answers only. It does not mirror cases, write suggestions to a sandbox, run on a schedule, grade suggestions or edit its own knowledge; that is the Case Resolver pipeline, whose updates reach this folder through a reviewed PR. Outbound replies to the requester belong to `unity-comms`.
+Answers only. It does not write suggestions onto cases, run on a schedule, grade suggestions or edit its own knowledge; that is the Case Resolver pipeline, whose updates reach this folder through a reviewed PR. Outbound replies to the requester belong to `unity-comms`.
 
 ## Files
 
@@ -48,4 +48,4 @@ Answers only. It does not mirror cases, write suggestions to a sandbox, run on a
 
 ## Keeping it current
 
-The knowledge is a copy of the Case Resolver's `knowledge/` folder (snapshot 2026-10-04: 24 clusters, 15 approved). When the pipeline folds a new grading round, copy the updated files here in a PR. Never put case text, names or case numbers into these files.
+The knowledge is a copy of the Case Resolver's `knowledge/` folder (snapshot 2026-11-08: 24 clusters, 15 approved, five learn passes from closed cases since 2026-09-30). When the pipeline merges a new learn pass or grading round, copy only the changed files here in a PR. Never put case text, names or case numbers into these files.

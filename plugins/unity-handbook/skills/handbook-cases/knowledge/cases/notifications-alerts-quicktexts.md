@@ -16,6 +16,7 @@ Change who receives an alert, alert content/format, Slack/Centro alert fields, e
 - 'Quick Text'
 - Chatter group
 - Example subjects (paraphrased): Add or remove a recipient on an automated email · Change alert content or an email template · Quick texts missing for a team
+- An approver or AM did not receive the approved or rejected credit email. (learned 2026-10-14 from closed cases)
 
 ## How we resolve it
 - Recipient changes: edit the flow/email alert recipient list or the public group used by it.
@@ -24,10 +25,16 @@ Change who receives an alert, alert content/format, Slack/Centro alert fields, e
 - 'Credit approved' email not received (owner feedback 2026-09-22): flow `Credit_was_Approved_Email_Alert` (on Credit Check) sends the workflow email alerts `Credit_Check_Approved`, `Credit_Check_Approved_Aura_Israel`, `Credit_Check_Approved_Aura_SF` (template `Credit_Check_was_approved`); recipients are the **Credit Check creator** plus fixed users - a requester who did not create the Credit Check gets nothing. Fix = add them as recipient / have the AM create the check; also check the user's email deliverability.
 - Always open the metadata repo for alert questions (`workflows/<Object>.workflow-meta.xml` alerts, `flows/` emailAlert / emailSimple actions) and name the alert; search u-know for the alert's documentation when available.
 - New notification for a case origin (e.g. 'email me when a case is created with Origin = Slack, all divisions') (owner feedback 2026-09-27): clone the existing per-team case alert (flow or workflow email alert) with the Origin condition; confirm the recipient per division with the requester before activating.
+- Credit approval and rejection emails come from the Process Builder 'Credit was Approved/Rejected-Email Alert'. Fix it there, then have one credit approved to confirm the email arrives. (learned 2026-10-14 from closed cases)
+- Quick Text and email template folder access: share the folder with the user or the team public group. (learned 2026-10-14 from closed cases)
+- Daily dunning reminders came from the formula Send_alert_flag__c returning -1 when Max_overdue_days__c >= 30 and X7_days_reminder_date__c is set; the batch now resends only 7 days after X7_days_reminder_date__c. (learned 2026-10-15 from closed cases)
+- Broken case links in automated ticket emails come from the link merge field in the email template pointing at the EmailTemplateEditorUi path; correct the merge field in the template. (learned 2026-09-30 from closed cases)
 
 ## What to ask the requester
 - Which alert / template (name or example email)?
 - Who should receive it and for which record types?
+- A 'folder' access request is often a Quick Text or email template folder: ask for the folder name and a screenshot. (learned 2026-10-14 from closed cases)
+- Dunning reminder complaints (daily instead of weekly on accounts with several overdue invoices): that bug was fixed; ask whether it still happens before investigating. (learned 2026-10-14 from closed cases)
 
 ## Canonical answer
 **Summary:** An alert or automated email is missing, reaches the wrong people, needs new content, or a new rule is wanted. The template carries the content, the alert definition or a public group the recipients, and usually the requester is not in it. Name the alert; a generic 'check recipient logic' reply is the known mistake.
