@@ -4,7 +4,7 @@
 
 **Dispute**
 
-**Process:** Dispute · **Objects:** Dispute__c, Dispute_Line__c, Dispute_Freeze__c · **Date:** 9 August 2026 · **Business owner:** Bar Damti (Business Operations Manager), with Tal Rahamim · **Technical owner:** Dror Diamant → Noam Abutbul
+**Process:** Dispute · **Objects:** Dispute__c, Dispute_Line__c, Dispute_Freeze__c · **Date:** 9 August 2026 · **Business owner:** Bar Damti (Business Operations Manager), with Tal Rahamim · **Technical owner:** Noam Abutbul
 
 **Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
 

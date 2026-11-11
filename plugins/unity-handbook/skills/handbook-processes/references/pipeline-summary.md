@@ -4,7 +4,7 @@
 
 **Pipeline Summary**
 
-**Process:** Pipeline Summary — everyone calls it "pipeline review" · **Built on:** Opportunity, four screen flows and two CRM Analytics dashboards on two Lightning home pages · **Date:** 10 August 2026 · **Business owner:** Amir Tapiro (Grow Sales Ops), with David Amar for enforcement · **Technical owner:** Dror Diamant → Noam Abutbul
+**Process:** Pipeline Summary — everyone calls it "pipeline review" · **Built on:** Opportunity, four screen flows and two CRM Analytics dashboards on two Lightning home pages · **Date:** 10 August 2026 · **Business owner:** Amir Tapiro (Grow Sales Ops), with David Amar for enforcement · **Technical owner:** Noam Abutbul
 
 **Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
 

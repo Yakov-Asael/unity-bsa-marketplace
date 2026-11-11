@@ -4,7 +4,7 @@
 
 **Handover**
 
-**Process:** Account Handover — users call it an "HO" · **Objects:** Hand_Over__c, Handover_with_Contacts__c · **Date:** 9 August 2026 · **Business owner:** Bar Damti, with Tal Rahamim and Adi Norman Moskovich · **Technical owner:** Dror Diamant → Neta Ronen
+**Process:** Account Handover — users call it an "HO" · **Objects:** Hand_Over__c, Handover_with_Contacts__c · **Date:** 9 August 2026 · **Business owner:** Bar Damti, with Tal Rahamim and Adi Norman Moskovich · **Technical owner:** Neta Ronen
 
 **Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
 
