@@ -6,6 +6,8 @@
 
 **Process:** Salesforce Knowledge — the team says "KB article", "FAQ" or just "article" · **Object:** Knowledge__kav, record types External and Internal only · **Date:** 10 August 2026 · **Business owner:** Shani Kovalsky, with Michal Smithline (CSS external), Matthew Hunter (CSS internal) and Andrii Bosak (DSE) · **Technical owner:** Dror Diamant → Neta Ronen
 
+**Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
+
 *§1–3 how the process works · §4–9 how it is built · §10 troubleshooting · §11–12 where to look next.*
 
 # 1. What this process does
@@ -105,6 +107,8 @@ Ratings live on their own object, Knowledge_Rating__c — one record per person 
 
 Seven active flows and one inactive. Everything that matters runs on a daily schedule rather than in real time, so nothing in this process happens instantly — expect roughly a day between an action and its consequence.
 
+> **Verified 2026-11-11:** The count is now eight active flows, since Knowledge_Create_knowledge_review_3_months_from_last_publish_date is Active again (2026-08-11).
+
 | **Flow** | **Trigger** | **What it does** |
 |---|---|---|
 | **CREATION** | | |
@@ -118,6 +122,8 @@ Seven active flows and one inactive. Everything that matters runs on a daily sch
 | Knowledge_Send_Last_Week_Published_Knowledges ° · PE_Weekly_Published_Knowledge_Notification ° | Scheduled weekly, then a platform event | Together they post the weekly digest of newly published articles to Slack. The digest keys on publish date, not creation date, so a bulk re-publish makes old articles look new — that has been reported as a bug more than once and is working as designed. |
 | **SUPPORTING** | | |
 | Knowledge_Rating_Screen ° | Screen | The internal rating capture behind the like and dislike counts shown on the article record page. It reads its numbers from the KnowledgeRatingAction Apex action (§3). |
+
+> **Verified 2026-11-11:** The flow is Active in production (status changed from Obsolete to Active on 2026-08-11 and it still runs on a Daily schedule), so it is no longer "the original review engine" that was replaced. It still creates `Knowledge_Article_Review__c` records, closes or updates open reviews, and resolves reviewers from `Support_Knowledge_Reviewers__mdt`. The flow is now in the metadata repo and Active: a record-triggered after-save flow on `Knowledge__kav` (Create) that creates the `Knowledge__DataCategorySelection` assignment, looks up the reviewer (Get Reviewer, falling back to Get Default Reviewer from `Support_Knowledge_Reviewers__mdt`), assigns it and notifies the reviewer, logging failures to `ErrorObject__c`.
 
 *° Live in the org but absent from the metadata repo snapshot — description taken from the flow label, the org metadata and design documents; confirm in Flow Builder.*
 

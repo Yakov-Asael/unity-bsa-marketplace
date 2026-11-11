@@ -6,6 +6,8 @@
 
 **Process:** non-standard deals — the Ads Deal Desk opportunity, its incentives and the disputes that pay them out · **Built on:** Opportunity, incentive__c, Offer__c and Dispute__c, one screen-flow wizard, two approval processes and a family of approver-matrix records · **Business owner:** the Grow Deal Desk — Tal Rahamim, Bar Damti, Elad Zommer · **Technical owner:** Dror Diamant → Yakov Asael
 
+**Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
+
 *§1–2 what it is and where it lives · §3–5 creating the deal, its incentives and its tiers · §6 approval · §7–8 disputes · §9 the Supply/Demand summary · §10 troubleshooting · §11–12 watch-outs and who to ask.*
 
 **Read this first.** There is no Deal object. The deal is an Opportunity — record type labelled Ads Deal Desk, developer name Mobile_Growth. Every link, report and flow you will meet points at /lightning/r/Opportunity/. There is a custom object called Deal__c in this org and it is a different thing entirely; ignore it. What is called "the deal" everywhere in the business is the opportunity, its child incentives, and the disputes those incentives generate.
@@ -69,6 +71,8 @@ Everything starts in one screen flow. It takes a single input — the Id of what
 
 The wizard branches on a single variable, Department, which is either Publisher or Advertiser. Three of its decisions behave differently as a result:
 
+> **Verified 2026-11-11:** Create_Opportunity_Deal_Ads now also branches on `DivisionVar` = AppCloud for Publisher deals: a separate required Deal Type dropdown (`Deal_Type_Aura`) offers Minimum Guarantee, Integration Fee, Minimum Guarantee + Integration Fee, Performance Bonus, Revshare and Performance bonus + RevShare, and a required Levelplay PID input (`Publisher_Id`) is written to `Publisher_Id__c`. For AppCloud publisher deals the Deal Type formula returns the `Deal_Type_Aura` value instead of the Mediation/OW list; the Opportunity record type Mobile_Growth gained matching picklist values after August 2026.
+
   - > **Which department.** The top-level fork. Everything downstream — deal types offered, fields shown, approval process submitted to — follows from it.
 
   - > **Does it need an integration-fee incentive.** True only when Department = Publisher and an integration fee amount was entered. Integration fees are a Supply concept; the branch cannot fire on Demand at all.
@@ -109,6 +113,8 @@ On Supply there is no limit — the enablement doc says so explicitly and gives 
 | Demand_Account__c | Only relevant when the payment method is UA Credits. A Supply deal paying the publisher in advertising credit needs to know which Demand account receives them. |
 | Disputes_Created__c and of_Disputes_created__c | The flag and the count set when the payment schedule has been generated. These are what stop the Create Disputes button running twice. |
 
+> **Verified 2026-11-11:** `Payment_Frequency__c` now has 14 values: the ten above plus Half Yearly Rebate and Yearly Rebate (Advertiser), Integration Fee Only, and One Time Payment (Publisher, added October 2026). `Supply_Deal_Num_of_disputes__mdt` still has only the eight records listed in the handbook, none for One Time Payment.
+
 **The cross-side case.** When a Supply incentive is paid as UA Credits, the resulting dispute is not a Supply dispute. It is created against the nominated Demand account, on the Demand Dispute record type, with reason UA Bonus - Integration Incentive, and as a Deduction rather than a Positive Discrepancy. A Supply deal can therefore produce Demand disputes, which is unexpected the first time you see it.
 
 # 5. Tiers — a data model that will surprise you
@@ -142,6 +148,8 @@ Both processes are active, both have four steps, and they are not the same four.
 
 **The two differences in one line:** Supply starts with a Deal Desk gate that Demand does not have; Demand ends with a CFO gate that Supply does not have.
 
+> **Verified 2026-11-11:** In Demand_Deal_Approval_Process_V2 (Active, four steps) the Chief Financial Approval step now has entry criteria `Opportunity.Chief_Financial_Approver__c` not blank (added 2026-10-23), so the CFO gate applies only when that field is populated. The VP Approval step already had the same pattern on `SDROwner__c`, with ifCriteriaNotMet = GotoNextStep.
+
 **The approver fields are stamped at creation, not at submission.** The wizard reads Approver_Matrix__c once, using the deal type, division, department, upsell type and amount, and writes the result onto the opportunity. If the matrix is wrong, or if the person it names has since left, the deal carries a dead approver and gets stuck. That is the single most reported problem in this process — see §11.
 
 Older versions of both processes are still present in the org — Deal_Approval_Process_v2, v3 and the first Demand_Deal_Approval_Process. Check the version number before assuming which one you are looking at.
@@ -153,6 +161,8 @@ Once the deal is signed and closed won, the payment schedule is generated in one
 **What the button asks, and when it appears**
 
 The button is exposed only when the opportunity is Closed Won, the minimum contract term is filled in, the integration-fee-only flag is set one way or the other, and disputes have not already been generated. It then asks one question — have the minimum terms been met? Answer No and it refuses with an error. Answer Yes and it takes the go-live date and builds the schedule.
+
+> **Verified 2026-11-11:** Deal_Create_Supply_Deal_Dispute now builds the quarter, half-year and month-end schedule dates from its own required `Go_Live_Date` screen field (defaulted from the deal's `App_Go_Live_Date__c`) rather than reading the deal field directly. It also sets the dispute Channel through a new `Channel_Manual` formula: OW when the deal Division is Tapjoy, otherwise Video (changed September 2026).
 
 **How many disputes get created**
 
@@ -226,6 +236,8 @@ Everything above, collected. Where a row says the same thing twice, it genuinely
 | Approver lookup | By team only — no amount band. | By dispute type, division and department. |
 | Who updates each period | Client Partner, or Sales Manager for SMB. | Account Manager. |
 | If the tier was not reached | The CP or SM sets the status to Not Eligible for Payment. | The Deal Desk team closes the dispute. |
+
+> **Verified 2026-11-11:** Create_Opportunity_Deal_Ads (Active) no longer offers SDK Renting Fee as a Demand deal type; the Demand choices now include UA Bonus and GPS PAD but not `SDK_Renting_Fee` (removed after August 2026). The wizard's UA Bonus size band also changed from Up to 10K / Above 10K to Up to 50K / Above 50K (`UA_Bonus_Amount` < 50000).
 
 # 10. Troubleshooting
 

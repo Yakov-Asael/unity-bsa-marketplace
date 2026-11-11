@@ -6,6 +6,8 @@
 
 **Process:** CSAT — the customer satisfaction rating on support cases · **Built on:** Case, one record-triggered flow, two email alerts, four email templates, an external FormTitan form and one Lightning web component · **Business owner:** Shani Kovalsky · **Technical owner:** Dror Diamant → Neta Ronen
 
+**Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
+
 *§1–2 what it is and where it lives · §3–8 how it is built · §9 reporting · §10 troubleshooting · §11–12 watch-outs and who to ask.*
 
 **Read this first.** The emoji in the email are not a Salesforce component. They are five images, each wrapped in an ordinary hyperlink to an external page hosted by FormTitan. Salesforce does not know the customer clicked anything until FormTitan calls back into the org. So when a rating is missing, the question is almost never "which flow failed" — it is "did the link fire, and did the callback land". Debugging starts at the URL, and §3 is where that URL is taken apart.
@@ -44,6 +46,8 @@ Because everything lands on the Case record rather than in a separate survey too
 | The form | FormTitan project unity_csat | Hosted at ironsrc.formtitan.com. Edited at [formtitan.com/project/68b814f6c851fdffd4c3474d](https://formtitan.com/project/68b814f6c851fdffd4c3474d). Holds the three follow-up questions and both write-backs to Salesforce. |
 | Community widget | customerPortalCaseDetail (LWC) + CustomerPortalCaseDetailController.updateCsatFeedback | The rating strip on the case detail page in the customer portal. Does not use FormTitan at all — see §6. |
 | Case fields | Six of them | The whole result set. Listed in §4, with their misleading names called out in §8. |
+
+> **Verified 2026-11-11:** Since September 2026 the flow no longer picks A or B: the `Random_0_1__c` split and the Send_CSAT_B_Edition action were removed, and every eligible closure now sends CSAT_Closed_Case_mobile_A immediately. A new scheduled path (24 Hours after Closed, on `ClosedDate`) re-reads the case and, unless the account name contains "Internal Account" or the case is more than 14 days old, sends CSAT_Closed_Case_mobile_24_Hours_Later when the case is still Closed with an email and the usual exclusion flags are all false. Flow faults now write an `ErrorObject__c` record.
 
 # 3. The rating link, taken apart
 
@@ -112,6 +116,8 @@ One flow decides: Case - Send CSAT for closed cases (iAds,uAds,Tapjoy). It is an
 | In-thread email | Email | The standard DSE reply templates carry the same emoji row, so the customer can rate at any point in the conversation without waiting for closure. Nothing schedules this — it rides along on whatever the agent sends. This is the largest single source of ratings by some distance. |
 | Customer Community | Community | A rating strip on the case detail page in the portal. This one does not touch FormTitan: the component calls Apex directly and writes the Case in the same transaction. |
 
+> **Verified 2026-11-11:** Closed cases can now receive two emails: the immediate one (CSAT_Closed_Case_mobile_A) and a follow-up 24 hours after `ClosedDate` (CSAT_Closed_Case_mobile_24_Hours_Later, template New_CSAT_Closed_After_24_hours_1786447813583, sender growth-support@unity3d.com), added in August 2026.
+
 **The Community path is genuinely different**
 
 Worth spelling out, because it looks like the same feature and is not. The component customerPortalCaseDetail renders five emoji buttons and, on click, calls CustomerPortalCaseDetailController.updateCsatFeedback with the Case Id and the chosen label. That method sets exactly two fields — Feedback_Type__c and Purchase_Type__c = 'Community' — and nothing else. There is no form, no follow-up questions, no speed, no helpfulness, no comment, and no Submit stage. A Community rating can never have a Speed__c value.
@@ -143,6 +149,8 @@ Almost every field in this process is a repurposed one. The API name describes w
 | Customer_Suggestions__c | Customer Suggestions | The "Additional Comments" free text. The form wording and the field label are different words for the same box — searching the org for "comments" will not find it. |
 | Random_0_1__c | Random (0 / 1) | Not random. MOD(VALUE(CaseNumber), 2). |
 | Closed_Automaticlly__c | Closed Automatically | Spelled without the second "a" in the API name. Copy it, do not type it. |
+
+> **Verified 2026-11-11:** The flow no longer reads `Random_0_1__c` (the A/B branch was removed in August 2026), so the field no longer influences CSAT.
 
 **Practical consequence:** when you build a report filter, pick the field from the picker rather than trusting a name you remember. Two of these — Feedback_Type__c and Quality__c — will happily accept a value from the wrong generation and give you a silently empty result.
 

@@ -6,6 +6,8 @@
 
 **What this is:** a list of the problems that actually happen with invoices and bills and what to do about each one, plus a full map of the Invoice Management and Bill Management screens · **Covers:** Invoice__c, Invoice_Line__c, Bill__c, Bill_Line__c, the two management screens and their integrations · **Author:** Dror Diamant (outgoing) → Yakov Asael
 
+**Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
+
 *§1 the five causes behind most of it · §2–8 the problem list, by area · §9–13 the Invoice and Bill Management map · §14 what is still open · §15 tools · §16 who to ask.*
 
 **Read this first.** Almost none of these were bugs in the billing code. The overwhelming majority trace back to five things — a picklist value that does not exist, a person who has left, an account that was never synced, upstream BI data that is wrong, and a field on the Account quietly changing behaviour. Check those five before you debug a batch class. Green in the Status column means solved for good; red means it will happen again.
@@ -317,6 +319,8 @@ The equivalent hide-everything rule here is the freeze state: a bill that has a 
 | Revenue Accounting — approvals, credits, balances | Maria Zakomorni, Shirel Kaver and Eden Taragan. |
 | Bill creation and publisher payouts | Noam Ganzi and Meir Alali. |
 | The approver matrix as the business maintains it | Tal Rahamim. |
+
+> **Verified 2026-11-11:** Leehee Bar is inactive in Salesforce (every User record). Route to the current owner of this process instead.
 
 **Next Step**
 

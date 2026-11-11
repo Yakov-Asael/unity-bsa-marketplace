@@ -6,6 +6,8 @@
 
 **Process:** the customer-facing support portal at support-ads.unity.com · **Built on:** an Experience Cloud site, 18 custom Lightning web components, 7 Apex controllers, 7 custom metadata types, an Auth Provider into Unity ID and one scheduled batch · **Business owner:** Shani Kovalsky, Andrii Bosak and Aylin Lee (Grow Support) · **Technical owner:** Dror Diamant → Neta Ronen · **Developer:** Danill Rekov
 
+**Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
+
 *§1–3 what it is and how it is laid out · §4–6 users, access and ticket creation · §7–9 Knowledge, configuration and the public/private split · §10 troubleshooting · §11–12 watch-outs and who to ask.*
 
 **Read this first.** Almost nothing on this site uses standard Experience Cloud behaviour. There is one Lightning web component that renders every page by reading the URL, and all seven Apex controllers are declared without sharing — so record-level security is not enforced by Salesforce anywhere in the portal. It is enforced by a WHERE clause on the customer's email address, repeated by hand in each controller. The retrospective deck says why: "the existing account and contact structure made it difficult to implement standard Salesforce best practices, forcing us to build a fully customized site from scratch." Read §5 before you change any controller.
@@ -54,6 +56,8 @@ It was built in two phases. Phase one delivered cases: a home page, a submit-a-r
 | Sharing set | Cases | Read on Case where Case.Sharing_Contact__c matches the user's Contact, for the two Login User profiles. Let the user see all related attachments. |
 | Profiles | Customer Grow Community Login User (Customer Community Login licence)Grow External Community Profile (Guest User licence) | The logged-in customer and the anonymous visitor respectively. |
 | Scheduled batch | MatchContactBatch | Runs daily. Merges placeholder contacts from Unity Users umbrella account into real ones and repoints their cases. §5. |
+
+> **Verified 2026-11-11:** Only HelpCenterContactUsController remains functional; CustomerPortalContactUsController is a deprecated empty stub since 2026-10-08. CustomerPortalUnitySearchHandler was likewise emptied to a deprecated stub on 2026-10-08 (ISITBA-2893) and no longer contains search logic.
 
 # 3. The pages, and how routing actually works
 
@@ -108,6 +112,8 @@ A customer can perfectly well exist in Unity ID and have no Contact under a real
 
 MatchContactBatch is the corrective mechanism. It runs daily, in chunks of five, over every Contact sitting under Unity Users that has a userId__c. For each one it looks for a real contact with the same Genesis user Id, and where it finds one it merges the two — keeping the real contact, moving the account across, and repointing the placeholder contact's Cases onto the matched account. Contacts with no match are left alone and picked up again the next day. The batch writes a CSV summary of what it did.
 
+> **Verified 2026-11-11:** `MatchContactBatch` completed every night in the last 30 days at about 23:06 UTC (01:06 Asia/Jerusalem); there is no scheduled job under that exact name, so check `AsyncApexJob` for the class rather than `CronTrigger`.
+
 # 5. Who can see which case — the whole chain
 
 This is the part to understand before touching anything. There are two independent mechanisms and they do not agree with each other.
@@ -140,6 +146,8 @@ Salesforce Files and attachments do use the platform's own permission model, so 
 # 6. Submitting a request — how a form becomes a Case on the right account
 
 **First, a warning about which code is live.** There are two nearly identical Contact Us stacks. The shell renders hcContent, which calls HelpCenterContactUsController — that component set is inherited from the predecessor Help Center site and is around 918 lines. There is also customerPortalContactUs calling CustomerPortalContactUsController, about 830 lines, a clone made for this site and exposed to Experience Builder so it can be dropped onto a page directly. Both exist in production. Before you change anything on this form, open the page in Experience Builder and confirm which component is actually placed on it, because editing the wrong one produces no effect and no error.
+
+> **Verified 2026-11-11:** CustomerPortalContactUsController was emptied to a deprecated stub ("class not in use anymore") on 2026-10-08 (ISITBA-2893); its logic was not relocated, and HelpCenterContactUsController is the only live Contact Us controller. The customerPortalContactUs LWC still imports `helpCenterContactUsSubmit` and `getSelectOptions` from the stub, so do not place it on a page. HelpCenterContactUsController now also has a `Category__c` = "Migration to Kraken" branch that sets `Additional_Recipients__c` to a fixed list of two addresses and appends the migration-steps and Organization Owner answers to the case Description, and it writes `Org_Id__c` (previously `Organization_Core_ID__c`) from the form's `organizationCoreId` (changes from Aug to Oct 2026).
 
 **The matching cascade**
 

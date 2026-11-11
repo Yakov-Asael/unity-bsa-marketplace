@@ -6,6 +6,8 @@
 
 **Process:** GPS — Global Programmatic Solutions, the team selling exchange inventory to brands, agencies and DSPs · **Built on:** Account hierarchy, Lead, Contact, Campaign, Task, Opportunity and Opportunity Split, with eight flows and a page-layout-driven UI · **Business owner:** Sebastian Diaz Jaramillo, with Michael Marzitelli on account management and Gwen Sparks on the BDR side · **Technical owner:** Dror Diamant (outgoing) → Yakov Asael
 
+**Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
+
 *§1–3 what GPS is and how the business works · §4–5 accounts and record types · §6–8 the lead-list intake, account matching and routing · §9 Opportunity Split · §10 troubleshooting · §11 who to ask.*
 
 # 1. What GPS is
@@ -56,6 +58,8 @@ The two exchanges appear as divisions on the records, and the mapping is not obv
 | Task | Type__c, global action New_Task_GPS, layout GPS Layout | §5. |
 | Opportunity | Opportunity Split — two split types, Revenue and Overlay | §9. |
 | Lead routing | BDR Queue | §8. |
+
+> **Verified 2026-11-11:** Since 11 September 2026 the screen's stage choices include Open Pipeline / Proactive, Pitch / RFP, RFP and Negotiation (the Proactive, RFP Received and RFP Submitted choices were removed), and it shows an OppInfo banner. It now blocks submit when Opportunity Amount is not greater than 0 or End Date is before Start Date. Since 11 September 2026 the flow also triggers on any new Task with Subject "Message sent from Sales Navigator" and sets the related Lead (`WhoId`) Status to "Working"; the account fill still runs only for tasks of the GPS record type (012Qv000005P20XIAS) whose related contact has a `Long_Contact_ID__c`. `Account.BDR__c` no longer exists; it was deleted from production on 2026-05-04, so this reference was already stale in August. The BDR lookup to User is `Account.Global_Biz_Dev__c` (label "BDR"), and Lead_GPS_Leads_Trigger_Handler reads it as `Account.Global_Biz_Dev__r`. The same fix applies to the row "BDR is populated on agency accounts" in the troubleshooting table.
 
 # 4. The account hierarchy
 
@@ -175,6 +179,8 @@ The design document is short and specific. Under Lead automation:
 | The three read-only companions | Matched_Account_ID__c, Matched_Account_Name__c and Matched_Account_Owner__c are formula fields that reach through the lookup to the account's long Id, its name and its owner. They exist so that list views and reports can show the matched account without a join, and so a BDR can see straight away who already owns the relationship. |
 | Where a BDR sees it | Both GPS lead list views — All Open GPS Leads and Unassigned Open GPS Leads — carry Matched Account as a column, sitting next to Company. The unassigned view is filtered to the BDR Queue, so the matched account is the first signal a BDR gets when picking work up. |
 
+> **Verified 2026-11-11:** Since 11 September 2026 Lead_GPS_Leads_Trigger_Handler also stamps the matched account's `Parent_Account_lookup__c` and `Agency_of_Record__c` onto the lead (`Agency_Of_Record__c`), and writes the account's BDR (`Account.Global_Biz_Dev__r.Long_User_ID__c`) to `Lead.PM_Manager__c`; it maps territory APAC to China and INSEA to India. The flow contains no owner assignment.
+
 # 8. What happens to a lead after it lands
 
 New leads go to a queue rather than to a person. The rule as launched: every new lead is assigned to a queue called BDR Queue, and BDRs pull from it based on their capacity and territory. The intended second phase — routing by territory, falling back to the BDR lead where a territory has nobody assigned — is designed but not built.
@@ -252,6 +258,8 @@ Specific to accounts managed by the GPS account management team: the approver se
 | Sales leadership and the split requirements | Chris Feo, Chris Jerome, Drew Bassler, Melissa Jensen. |
 | Layouts, list views and enablement | Ryan Amante. |
 | The Salesforce build | Dror Diamant (outgoing) → Yakov Asael, with Amir Weingrod on the design. |
+
+> **Verified 2026-11-11:** Chris Feo is inactive in Salesforce (every User record). Route to the current owner of this process instead. Melissa Jensen is inactive in Salesforce (every User record). Route to the current owner of this process instead.
 
 **The documents worth reading, in order**
 
