@@ -156,11 +156,26 @@ Spot-checks run while building this skill, recorded as the baseline for the next
 | Self-served users (`SelfServed_User__c = true`) | SS TLV, SS China, SS GPS, SSA Integration active; SS SF inactive |
 | Entry condition `Net_Overdue_Balance__c <= 0` | ⚠️ NEEDS MANUAL CHECK: inside the flow, not queryable. Owner: Neta Ronen |
 
+## Confirmed org state, 11 November 2026 (repo-first sweep)
+
+Drift scan of `references/claims.json` (527 claims) against `SFDC-IS` `origin/Production` @ 2026-11-11 04:12 UTC, plus four read-only live queries. Every finding was triaged and written into the reference files as a `> **Verified 2026-11-11:**` note; every claim's `verified_on` was reset to 2026-11-11, so the next scan shows only later changes.
+
+| Check | Result |
+|---|---|
+| Named people (45 names, 69 User rows) | Inactive on every record: Chris Feo, Leehee Bar, Melissa Jensen. Dror Diamant still active (finding, see below). Others active on at least one record |
+| `Attach to next invoice` / `Attach to next bill` | ✅ `WAITING`, `0 0 20 2 */1 ?` / `0 0 20 4 */1 ?`, Asia/Jerusalem |
+| `MatchContactBatch` | ✅ completes nightly about 23:06 UTC; no `CronTrigger` under that name, check `AsyncApexJob` for the class |
+| `Dispute_Approval_Process` | ⚠️ six approval steps; the "four sequential steps" wording is wrong, "step 3 of 6" is right |
+| `Dispute_Send_Monthly_Open_Disputes_Notification`, `Dispute_PE_Send_Attach_Monthly_Notification` | ⚠️ `Draft` in Production |
+| `Knowledge_Create_knowledge_review_3_months_from_last_publish_date` | ⚠️ `Active` again since 2026-08-11 |
+| `Account.BDR__c` | ⚠️ deleted 2026-05-04; the BDR is `Account.Global_Biz_Dev__c` (label BDR) |
+
 **Known-correct exceptions — do not report these as findings.**
 
 | Person | State | Why it is expected |
 |---|---|---|
-| Dror Diamant | Two active User records | Confirmed by the handbook owner: **employed until 10 September 2026.** Active is correct until then. |
 | `Bill_Feedback Daily @02:00`, `Invoice feedback from NS Daily @02:00`, `FN Bill Generate statement Monthly 10:00`, `FN Generate Bill Statement Net30 2200` | `PAUSED`, last fired Nov–Dec 2025 | Confirmed by the handbook owner: paused deliberately at the **NetSuite → Workday** finance-integration cutover. Legacy NetSuite-side jobs; the 2025 fire times mark the migration, not an outage. |
+
+**Resolved 11 November 2026:** both of Dror Diamant's User records were still active, past his 10 September 2026 departure. That is a finding, raised with the SOX access-review owner; the row was removed from this list.
 
 **After 10 September 2026** this flips: if Dror Diamant's User records are still active, that *is* a finding — raise it with the SOX access-review owner, and expect every tab's `Technical owner: Dror Diamant → <successor>` line to need its outgoing half retired. Re-check this row on the first refresh after that date and update or remove it; a stale exception list is how a real exception gets waved through.

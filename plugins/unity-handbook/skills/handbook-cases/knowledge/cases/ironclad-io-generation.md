@@ -13,11 +13,14 @@ Generate Ads IO from the opportunity/account pulls empty entity/signer info or c
 - 'Generate Ads IO'
 - entity/legal name empty
 - Example subjects (paraphrased): Generate Ads IO shows empty entity / signer info · Cannot pull from Salesforce inside Ironclad
+- Ironclad IO shows an empty address although the Opportunity billing address is filled. (learned 2026-11-08 from closed cases)
 
 ## How we resolve it
 - Recurring integration bug: entity and signer fields empty when generating from the opportunity - fix applied centrally; ask the requester to retry.
 - Workaround: initiate the workflow from the account (legal entity change) instead of the opportunity.
 - Legal entity name changes follow the documented knowledge-hub process; do not edit ad hoc.
+- The Ironclad IO address comes from the Opportunity billing address; once the IO is sent to the client its properties cannot be edited, so recall or cancel the Ironclad workflow before editing. (learned 2026-11-08 from closed cases)
+- On a prepayment account already synced to the financial systems, a new credit check does not change the legal entity; change it only through the Change Entity Ironclad workflow. (learned 2026-11-08 from closed cases)
 
 ## What to ask the requester
 - Opportunity / account link and a screenshot of the empty step?
@@ -33,6 +36,7 @@ Generate Ads IO from the opportunity/account pulls empty entity/signer info or c
 6. Send the requester: known integration issue, fixed centrally - retry Generate Ads IO, or start from the account if fields stay empty.
 
 ## Common mistakes
+- Expecting credit approval to refresh the account legal entity name before Generate IO on a prepayment account. (learned 2026-11-08 from closed cases)
 
 ## Escalate when
 - Ironclad-side workflow errors - Legal Ops.

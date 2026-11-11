@@ -46,3 +46,4 @@ Duplicate accounts to merge, parent account change requests (PNR), or payment-te
 ## Escalate when
 - Merges across legal entities with live invoices.
 - Any payment-terms exception.
+- Revenue split across two accounts in Imply or BI while Salesforce shows one account for the partner id is a BI-side issue: confirm the id in Salesforce, then route to the BI team. (learned 2026-10-14 from closed cases)

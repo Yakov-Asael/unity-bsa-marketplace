@@ -6,6 +6,8 @@
 
 **Process:** Pipeline Summary — everyone calls it "pipeline review" · **Built on:** Opportunity, four screen flows and two CRM Analytics dashboards on two Lightning home pages · **Date:** 10 August 2026 · **Business owner:** Amir Tapiro (Grow Sales Ops), with David Amar for enforcement · **Technical owner:** Dror Diamant → Noam Abutbul
 
+**Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
+
 *§1–2 what it is and where it lives · §3–8 how it is built · §9 troubleshooting · §10–11 where to look next.*
 
 **Read this first.** There are two copies of this page. The Pipeline Management app and the Mobile Sales app both carry a home page with the same tabs and the same flows — but they point at two different CRM Analytics dashboards, Pipeline_Summary and New_Pipeline_Summary, and only the Mobile Sales copy has the Aura tab. Nothing in the org marks either as canonical. Establish which one the business actually uses before you change anything, because a fix applied to one will not appear on the other.
@@ -52,6 +54,8 @@ All four are the same component with different filters and different columns. Ea
 | Open Demand Opps | Pipeline_Home_Page_Demand_Opps_Per_SM | Open demand opportunities per sales manager, excluding renewals, retention and operational records. Columns: Account, Name, Division, Owner, Stage, Start Date, Age, Go Live Date (Sales), Daily Potential, Account's last 7-day revenue average, Non Gaming, Next Step, Last Modified. |
 | Open Aura Demand Opps ° | Pipeline_Home_Page_Aura_Demand_Data_Table_Screen (v13) | The Aura Advertiser book, added later and only on the Mobile Sales page. Scoped by the Aura Advertiser record type with no division or department filter. Not present in the metadata repo — read it in Flow Builder before changing it. |
 
+> **Verified 2026-11-11:** All_Open_Supply_Opps_LP_Data_Table_Screen (Active) now also returns `Go_Live_Date_Sales__c` (after Start Date) and `Account_s_Daily_Profit_avg__c` (after Network Daily Revenue); the other columns and the ADDMONTHS(TODAY(),-6)-1 window are unchanged. All_Open_Supply_OW_Data_Table_Screen (Active) now also returns `Account_s_Daily_Profit_avg__c`, placed between Age and OW Daily Revenue; the Offerwall daily revenue above 100 filter and the six-month window are unchanged (change deployed 2026-09-29). Pipeline_Home_Page_Aura_Demand_Data_Table_Screen is now in the metadata repo (Active). It returns AccountId, Name, Division, Owner, Stage, Type, Start Date, Age, `Go_Live_Date_Sales__c`, Daily Potential, Account's last 7-day revenue average, Non Gaming, Next Step, CreatedDate and LastModifiedDate, requires `Belong_to_mobile_sales__c` = true, CreatedDate on or after 2024-01-01, and has a separate Upsell Split branch; Type is now a column and filter input.
+
 # 4. What makes an opportunity appear
 
 This is the section to open when someone says their opportunity is missing. Every table applies a common set of conditions and then adds its own. None of it is visible outside Flow Builder.
@@ -80,6 +84,8 @@ This is the section to open when someone says their opportunity is missing. Ever
 | Operational opportunities cannot be edited or closed | Validation rules on Opportunity block operational records, and the flow simply fails. This is long-standing, was raised repeatedly and was never fixed. | The agreed workaround is to leave them alone and have them reassigned in bulk. Do not promise a fix without checking whether the validations can move. |
 | No rows at all | Usually genuine: no opportunity meets the filters for that user. It is not an error state. | Work down §4 with one of their opportunities in hand rather than assuming a permissions problem. |
 | The table is slow or looks truncated | The component is configured to display all rows with client-side pagination of ten. There is no query row limit set anywhere. | For a user with a very large book this is worth watching; nothing caps it today. |
+
+> **Verified 2026-11-11:** All four tab flows (LP, OW, Demand, Aura) now route a failed Get Opp query to an ErrorScreen that shows an error banner, instead of failing with the raw platform error (added after August 2026). An error banner means the query faulted; an empty table with no banner is still a genuine zero-match result.
 
 # 6. Who sees what — the three visibility tiers
 

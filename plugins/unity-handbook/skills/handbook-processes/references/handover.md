@@ -6,6 +6,8 @@
 
 **Process:** Account Handover — users call it an "HO" · **Objects:** Hand_Over__c, Handover_with_Contacts__c · **Date:** 9 August 2026 · **Business owner:** Bar Damti, with Tal Rahamim and Adi Norman Moskovich · **Technical owner:** Dror Diamant → Neta Ronen
 
+**Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
+
 **Scope:** this guide covers the Grow Ads record type — the live account-ownership handover. Hand_Over__c also carries 20 legacy record types from the original build (iC, dC, mC, Video, Search, Media, Extensions, Syndication, AppCloud, SuperSonic). Those record types and roughly 50 still-active Workflow Rules on the object continue to fire; they are flagged in §3 and §4 but not documented in detail.
 
 # 1. What this process does.
@@ -37,6 +39,8 @@ A Handover moves an account from one owner to another — a new account manager,
 | BLOCKED — going to SMB with a financial or support problem | The screen flow stops the request when the account is at 90% or more of its credit limit, or has an open case, and the destination is SMB. Users report this as "Unable to HO for 'there is open case' but there is no" — the case may be one they cannot see. |
 | BLOCKED — hardcoded account and user | Block_HO_Creation_for_accounts_by_id blocks one specific account ID and one specific new-owner user ID. Both are hardcoded in the rule formula, so the UI gives no clue why (§4). |
 
+> **Verified 2026-11-11:** In Grow_Ads_Account_Handover the open-case block is unchanged, but the 90% credit rule (`Credit_Percentage_Used__c` >= 90) now also requires `GetAccount.Department__c` = Advertiser, so a non-Advertiser account at 90% or more of its credit limit is no longer blocked on credit alone. The decision is now labelled "To SMB and 90% credit used or has open case" (changed after August 2026).
+
 **How the handover reaches the account**
 
   - > Approval alone changes nothing on the Account. The record only carries the intent.
@@ -67,6 +71,8 @@ Eleven active flows. Three carry the process: Grow_Ads_Account_Handover creates 
 | HandOver_Slack_Notifications | Hand Over, after save when Run_Notification_Flow__c = TRUE and a Slack ID exists | Sends the approver the Centro Slack card with Approve and Reject buttons, then clears the flag. Fails intermittently with UNABLE_TO_LOCK_ROW when the record is being written by something else at the same moment. |
 | Hand_Over_Send_Notification_to_Approver | Scheduled daily at 20:00 UTC — Grow Ads record type, Status__c = "On Review", Notification_Counter__c ≥ 2, Current_Approver_Email__c not blank | Emails the current approver the Hand Over Approval Notification alert and stamps Time_For_Notification__c. This is the chaser that goes out every two days while a request sits unapproved. |
 
+> **Verified 2026-11-11:** HandOver_Update_new_owner_on_transfer_date is Active and scheduled daily with startTime 11:00:00.000Z, which is 11:00 UTC (Daily frequency, startDate 2026-05-17); it was moved from 11:30 UTC on 2026-09-07. It still collects handovers whose `Actual_Transfer_Date__c` equals yesterday. Since August 2026, record updates in this flow and in HandOver_Calculate_Estimated_Quata_Amount, Handover_Run_Notification_Flow, HandOver_Slack_Notifications and Hand_Over_Send_Notification_to_Approver fail into a Create Error Object step that writes an `ErrorObject__c` row (`ClassName__c` = the flow API name, `Message__c` = `$Flow.FaultMessage`); when a handover is stuck or a notification did not go out, check `ErrorObject__c` for that flow name.
+
 **Two things to check before you change anything here.** Hand_Over_Unlock_for_FP_A_Team is inactive in the org, yet the Grow HO Process still sets Run_Unlock_Flow__c on final approval — verify whether anything unlocks approved records for FP&A today. And roughly 50 Workflow Rules on Hand_Over__c are still active from the original build, several of which write the Account owner directly; they fire only on the legacy record types, but they are a second, undocumented automation framework on the same object.
 
 # 4. Validation rules — what blocks users and why
@@ -89,6 +95,8 @@ Eleven active flows. Three carry the process: Grow_Ads_Account_Handover creates 
 # 6. The approver matrix
 
 Approvers are stamped onto the record when the screen flow creates it, not resolved live at approval time. That one fact explains most approval bugs: if the org chart changes, or an approver leaves, existing handovers keep the old approver and have to be repaired record by record. Current_Manager__c and New_Manager__c come from the two owners' manager fields on the User record. Senior_Manager__c is looked up from the Team_Report_Region_Mapping__c custom setting on Team_Name__c, which returns Ads_HO_region__c, Ads_HO_senior_Manager__c and Ads_HO_senior_Manager_Name__c — so changing a senior approver is a configuration change, not a code change. When no row matches the team, the flow falls back to a hardcoded user ID, which is why unexpected people appear as approvers. The org is authoritative; the HO Senior Manager Mapping sheet in Drive is the upload source for it, and the two have drifted apart.
+
+> **Verified 2026-11-11:** Grow_Ads_Account_Handover now stamps `Current_Manager__c` and `New_Manager__c` only when the manager User is active (`Manager.IsActive` = true); for an inactive manager the field is left blank, so the approval step is skipped instead of stamping a departed user (changed 2026-10-27). The flow also gained an ErrorScreen on fault paths and additional SS China and SS TLV account-manager conditions in its routing decisions.
 
 | **Step** | **Approver field** | **Runs when** |
 |---|---|---|

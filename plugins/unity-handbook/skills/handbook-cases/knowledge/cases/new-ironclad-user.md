@@ -34,3 +34,4 @@ Requester needs an Ironclad login (contracts / IO signing / release forms).
 
 ## Escalate when
 - Legal signatory rights.
+- Ironclad contract edit permission needs the contract owner approval; they prefer offline edits re-uploaded for approval, and it may need a different Ironclad licence. (learned 2026-10-14 from closed cases)

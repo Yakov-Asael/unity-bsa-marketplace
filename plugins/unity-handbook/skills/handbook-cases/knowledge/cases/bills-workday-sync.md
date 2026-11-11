@@ -24,6 +24,8 @@ Publisher bills or supplier accounts fail to sync SF→Workday (inactive account
 - Bill-level blockers: `Bill__c.Approved_Without_Issue__c` wrongly true (set false, re-sync); wrong subsidiary (LE130 vs LE202); stuck approval → recall the process and let the approver retry; old bills → **Approve without an issue** in bulk; bulk nullify → **Nullify Bills** button (template) on the finance home page.
 - **Always look up the record in the error objects first** (owner feedback 2026-09-27): `ErrorObject__c` (`RecordIds__c`, `Message__c`, `ClassName__c`) and `Error_Log__c` (`Request_Account_Ids__c`, `Error_Message__c`, `Integration_Name__c`) often hold the exact sync error and give the suggestion directly.
 - Sync filters to check on every unsynced bill (owner feedback 2026-09-27): `Bill__c.Approved_Without_Issue__c` = false, the bill's Workday/NetSuite id (`Netsuit_ID__c`) not null, bill approval status = Approved by Finance, and the payee account synced to Workday. A payee account without `Department__c` = Publisher does not sync - that was the cause in the graded case.
+- When every Salesforce sync field on the payee account is already correct, the failure can sit on the Workday side; confirm with the Workday or AP team before changing account fields. (learned 2026-09-30 from closed cases)
+- When BI returns no item for the month, create the Bill manually and set its activity start and end dates to the missing month. (learned 2026-11-08 from closed cases)
 
 ## What to ask the requester
 - Bill numbers and payee (P-number) affected?
@@ -43,6 +45,7 @@ Publisher bills or supplier accounts fail to sync SF→Workday (inactive account
 
 ## Common mistakes
 - Answering a 'fraud deduction breakdown by app' request from the bill lines; the split lives in BigQuery (see reports-and-list-views) (owner feedback 2026-10-04).
+- A manually created bill took the following month as its activity period; check the period dates before replying. (learned 2026-11-08 from closed cases)
 
 ## Escalate when
 - Workday reports the account inactive - Finance/AP must activate it first.
