@@ -6,6 +6,8 @@
 
 **Process:** Game Design & Revenue Consultancy — the team says "GDRC", users say "ticket" · **Object:** Case, record type Game_Monetization_Consultancy only · **Date:** 10 August 2026 · **Business owner:** Franco Spina, with Nathan TenBoer · **Technical owner:** Dror Diamant → Hagar Itzhak
 
+**Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
+
 *§1–2 how the process works · §3–9 how it is built · §10 troubleshooting · §11–12 where to look next.*
 
 # 1. What this process does
@@ -60,6 +62,8 @@ Five active flows, and ten inactive ones left in place. Every active flow filter
 | Case_Game_Monetization_Consultancy_Notifications | Case, after save on create, and whenever Status changes | The whole alerting engine. It reads the GameMonetizationConsultancyAlerts__c custom setting for the new status, works out who should be told, resolves their Slack IDs, and sends either an immediate message or a scheduled ageing reminder at 7, 10, 14 or 30 days in the same status. Writes an ErrorObject__c record when it fails. Version 17, and the most edited thing here. §9 explains how each part of each message is built. |
 | **SUPPORTING** | | |
 | Case_Game_Monetization_Consultancy_Similar_Cases | Screen — launched from the case | Shows other cases on the same account or game so a consultant can see what was done before. Read-only; it changes nothing. |
+
+> **Verified 2026-11-11:** Since 19 August 2026 Case_Create_new_case_for_Supply_Consultation has `runInMode` = SystemModeWithoutSharing, so the case is created with system permissions and ignores the running user's sharing and record access.
 
 # 4. Validations — everything that can block a user
 

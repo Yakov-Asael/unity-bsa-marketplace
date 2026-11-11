@@ -1,0 +1,4837 @@
+{
+ "generated": "2026-11-11",
+ "baseline": {
+  "ref": "origin/Production",
+  "commit": "a8076d2aa",
+  "date": "2026-11-11"
+ },
+ "claims": [
+  {
+   "id": "dispute-dispute-create-new-dispute-from-account",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Create_New_Dispute_From_Account",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Account Create Dispute quick actions launch the Dispute_Create_New_Dispute_From_Account screen flow"
+  },
+  {
+   "id": "dispute-deal-create-supply-deal-dispute",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Deal_Create_Supply_Deal_Dispute",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Deal_Create_Supply_Deal_Dispute is active (supply deal $0 disputes)"
+  },
+  {
+   "id": "dispute-demand-deal-auto-dispute-creation",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Demand_Deal_Auto_Dispute_creation",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Demand_Deal_Auto_Dispute_creation is active (demand incentive disputes)"
+  },
+  {
+   "id": "dispute-dispute-create-dispute-when-aura-invoice-50",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Create_Dispute_when_Aura_invoice_50",
+   "active": true,
+   "contains": [
+    "<numberValue>50(\\.0)?</numberValue>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Creates a dispute that zeroes an Aura invoice under $50"
+  },
+  {
+   "id": "dispute-dispute-pe-create-supersonic-disputes",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_PE_Create_SuperSonic_Disputes",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "SuperSonic_Disputes__e feeds Dispute_PE_Create_SuperSonic_Disputes"
+  },
+  {
+   "id": "dispute-dispute-duplicate-records",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Duplicate_records",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Dispute_Duplicate_records warns on duplicate disputes"
+  },
+  {
+   "id": "dispute-dispute-create-freeze-object",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Create_Freeze_Object",
+   "active": true,
+   "contains": [
+    "<numberValue>500(\\.0)?</numberValue>",
+    "<numberValue>1000(\\.0)?</numberValue>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Creates Dispute_Line__c and Dispute_Freeze__c, flags Unapproved_Dispute_Attached__c above $500 (AppCloud) / $1,000"
+  },
+  {
+   "id": "dispute-dispute-set-dispute-approvers",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Set_dispute_approvers",
+   "active": true,
+   "contains": [
+    "<numberValue>1000(\\.0)?</numberValue>",
+    "<numberValue>10000(\\.0)?</numberValue>",
+    "<numberValue>0\\.7</numberValue>",
+    "<numberValue>90(\\.0)?</numberValue>",
+    "<numberValue>0\\.2</numberValue>",
+    "Permission\\.AR_permissions",
+    "<stringValue>Approved by business</stringValue>",
+    "<stringValue>Pending Approval</stringValue>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Stamps approvers: >=70% of revenue and >90 days old, >20% of payout, under $1,000 deduction and under $10,000 positive discrepancy auto-approve"
+  },
+  {
+   "id": "dispute-dispute-set-approved-by-business-if-amount-less-than-1000",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Set_approved_by_business_if_amount_less_than_1000",
+   "active": true,
+   "contains": [
+    "<numberValue>1000(\\.0)?</numberValue>",
+    "svc-ba-integration@unity3d\\.com"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Auto-approves small automatic supply clawbacks under $1,000 created by svc-ba-integration"
+  },
+  {
+   "id": "dispute-dispute-block-submitting-ua-bonus-and-incentives-without-attachment",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Block_submitting_UA_Bonus_and_Incentives_without_attachment",
+   "active": true,
+   "contains": [
+    "<numberValue>10000(\\.0)?</numberValue>",
+    "<stringValue>UA Bonus</stringValue>",
+    "<stringValue>Adv Incentive Plan</stringValue>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Blocks UA Bonus, Adv Incentive Plan, Make Good or any reason at >=$10,000 without attachment"
+  },
+  {
+   "id": "dispute-dispute-mass-approve-fraud-disputes",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Mass_approve_fraud_disputes",
+   "active": true,
+   "contains": [
+    "Permission\\.Supply_Fraud_Dispute_Approver_"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Mass approve screen needs Supply_Fraud_Dispute_Approver_1 or _2 permission, 50 at a time"
+  },
+  {
+   "id": "dispute-dispute-pe-mass-approve-reject-submit",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_PE_Mass_Approve_Reject_Submit",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Platform event flow submits, approves or rejects disputes"
+  },
+  {
+   "id": "dispute-dispute-attach-invoice",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Attach_Invoice",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Attach Invoice / Attach Bill screen flow"
+  },
+  {
+   "id": "dispute-dispute-deduct-invoice-subflow",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Deduct_Invoice_Subflow",
+   "active": true,
+   "contains": [
+    "<numberValue>0\\.5</numberValue>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Deduct subflow moves invoice/bill amount; remainders under $0.50 dropped, delta dispute when more than $0.50 left"
+  },
+  {
+   "id": "dispute-dispute-remove-invoice-when-rejected-by-finance",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_remove_invoice_when_rejected_by_finance",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Post-approval flow clears invoice/bill on finance rejection and closes on finance approval"
+  },
+  {
+   "id": "dispute-dispute-update-bill-type-and-activity-period",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Update_Bill_Type_and_Activity_Period",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Screen lets finance set Bill_Type__c and bill activity period"
+  },
+  {
+   "id": "dispute-dispute-prepare-adjustments-for-disputes",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Prepare_Adjustments_for_disputes",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Scheduled flow prepares Commission_Adjustments__c rows"
+  },
+  {
+   "id": "dispute-dispute-update-run-notification-flow",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Update_run_notification_flow",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Sets Run_Notification_Flow__c when Approver_Slack_ID__c changes"
+  },
+  {
+   "id": "dispute-dispute-slack-notifications",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Slack_Notifications",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Slack-DMs the current approver when Run_Notification_Flow__c = TRUE"
+  },
+  {
+   "id": "dispute-dispute-send-slack-notification-when-dispute-50k-is-approved",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Send_Slack_Notification_when_dispute_50K_is_approved",
+   "active": true,
+   "contains": [
+    "<numberValue>50000(\\.0)?</numberValue>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Posts to Slack when approved by business and >=$50,000 or Prepayment"
+  },
+  {
+   "id": "dispute-dispute-send-waiting-for-approval-notification",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Send_waiting_for_approval_notification",
+   "active": true,
+   "contains": [
+    "<numberValue>1000(\\.0)?</numberValue>",
+    "<numberValue>2(\\.0)?</numberValue>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Scheduled daily reminder once Notification_Counter__c reaches 2 on disputes >=$1,000"
+  },
+  {
+   "id": "dispute-dispute-send-monthly-open-disputes-notification",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Send_Monthly_Open_Disputes_Notification",
+   "active": false,
+   "verified_on": "2026-11-11",
+   "claim": "Scheduled monthly list of approved disputes with nothing attached (listed as live); Draft in Production as of 2026-11-11"
+  },
+  {
+   "id": "dispute-dispute-pe-send-attach-monthly-notification",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_PE_Send_Attach_Monthly_Notification",
+   "active": false,
+   "verified_on": "2026-11-11",
+   "claim": "Unattached Disputes Notification platform event flow sends the monthly list (listed as live); Draft in Production as of 2026-11-11"
+  },
+  {
+   "id": "dispute-dispute-freeze-dispute",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Freeze_Dispute",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Freeze / Unfreeze screen toggles Dispute_Freeze__c.Freeze__c"
+  },
+  {
+   "id": "dispute-dispute-cancel-dispute",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Cancel_Dispute",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Cancel Dispute button sets Status__c = Canceled"
+  },
+  {
+   "id": "dispute-dispute-update-revenue-on-the-first",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Update_revenue_on_the_first",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Scheduled daily, acts only when Day_Today__c = 1"
+  },
+  {
+   "id": "dispute-dispute-enable-creation",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Dispute_Enable_creation",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Dispute - Enable creation screen flow reopens dispute creation after close"
+  },
+  {
+   "id": "dispute-send-integration-fee-bill-for-approval",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "Send_Integration_Fee_Bill_for_approval",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Send_Integration_Fee_Bill_for_approval finds the bill approver"
+  },
+  {
+   "id": "dispute-pe-deduct-add-dispute-to-invoice-or-bill",
+   "tab": "dispute",
+   "type": "flow",
+   "name": "PE_Deduct_Add_dispute_to_invoice_or_bill",
+   "active": false,
+   "verified_on": "2026-11-11",
+   "claim": "PE_Deduct_Add_dispute_to_invoice_or_bill is INACTIVE in the org (live issue)"
+  },
+  {
+   "id": "dispute-dispute-approval-process",
+   "tab": "dispute",
+   "type": "approvalProcess",
+   "name": "Dispute_Approval_Process",
+   "object": "Dispute__c",
+   "active": true,
+   "contains": [
+    "\\A(?:(?!<approvalStep>)[\\s\\S])*(?:<approvalStep>(?:(?!<approvalStep>)[\\s\\S])*){6}\\Z"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Dispute Approval Process on Dispute__c has six approval steps (Approved_by_approver_1 to _6)"
+  },
+  {
+   "id": "dispute-dispute-finance-approval",
+   "tab": "dispute",
+   "type": "approvalProcess",
+   "name": "Dispute_finance_approval",
+   "object": "Dispute__c",
+   "active": true,
+   "contains": [
+    "\\A(?:(?!<approvalStep>)[\\s\\S])*(?:<approvalStep>(?:(?!<approvalStep>)[\\s\\S])*){1}\\Z"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Dispute finance approval on Dispute__c is a single step"
+  },
+  {
+   "id": "dispute-supersonic-disputes-approval-process",
+   "tab": "dispute",
+   "type": "approvalProcess",
+   "name": "SuperSonic_Disputes_Approval_Process",
+   "object": "Dispute__c",
+   "active": true,
+   "contains": [
+    "\\A(?:(?!<approvalStep>)[\\s\\S])*(?:<approvalStep>(?:(?!<approvalStep>)[\\s\\S])*){1}\\Z"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "SuperSonic Disputes Approval Process is a single-step process on Dispute__c"
+  },
+  {
+   "id": "dispute-block-creation-not-from-screen",
+   "tab": "dispute",
+   "type": "validationRule",
+   "name": "Block_Creation_Not_From_Screen",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Block_Creation_Not_From_Screen is one of the 8 active validation rules on Dispute__c: blocks creating a dispute outside the screen flows"
+  },
+  {
+   "id": "dispute-validate-channel",
+   "tab": "dispute",
+   "type": "validationRule",
+   "name": "Validate_Channel",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Validate_Channel is one of the 8 active validation rules on Dispute__c: Channel must match the account Division"
+  },
+  {
+   "id": "dispute-cant-create-dispute-for-publishers",
+   "tab": "dispute",
+   "type": "validationRule",
+   "name": "Cant_Create_Dispute_for_Publishers",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Cant_Create_Dispute_for_Publishers is one of the 8 active validation rules on Dispute__c: blocks Demand Dispute record type on a publisher account"
+  },
+  {
+   "id": "dispute-cant-create-dispute-for-advertiser",
+   "tab": "dispute",
+   "type": "validationRule",
+   "name": "Cant_Create_Dispute_for_Advertiser",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Cant_Create_Dispute_for_Advertiser is one of the 8 active validation rules on Dispute__c: blocks Supply Dispute record type on an advertiser account"
+  },
+  {
+   "id": "dispute-amount-must-be-positive",
+   "tab": "dispute",
+   "type": "validationRule",
+   "name": "Amount_must_be_positive",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Amount_must_be_positive is one of the 8 active validation rules on Dispute__c: blocks a negative Deducted_Amount__c"
+  },
+  {
+   "id": "dispute-block-send-to-bi-if-month-bi-is-blank",
+   "tab": "dispute",
+   "type": "validationRule",
+   "name": "Block_Send_to_bi_if_month_BI_is_blank",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Block_Send_to_bi_if_month_BI_is_blank is one of the 8 active validation rules on Dispute__c: blocks Send to BI while Month_BI__c is empty"
+  },
+  {
+   "id": "dispute-cant-change-send-to-bi-when-supply-deal",
+   "tab": "dispute",
+   "type": "validationRule",
+   "name": "Cant_Change_Send_to_bi_when_supply_deal",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Cant_Change_Send_to_bi_when_supply_deal is one of the 8 active validation rules on Dispute__c: blocks Send to BI/Finance on Supply Deal Incentives disputes"
+  },
+  {
+   "id": "dispute-block-dispute-creation",
+   "tab": "dispute",
+   "type": "validationRule",
+   "name": "Block_Dispute_Creation",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Block_Dispute_Creation is one of the 8 active validation rules on Dispute__c: blocks dispute creation during the monthly financial close"
+  },
+  {
+   "id": "dispute-finance-can-approve-only-after-credit",
+   "tab": "dispute",
+   "type": "validationRule",
+   "name": "Finance_can_approve_only_after_credit",
+   "object": "Dispute__c",
+   "active": false,
+   "verified_on": "2026-11-11",
+   "claim": "Finance_can_approve_only_after_credit is inactive on Dispute__c (one of 26 inactive rules)"
+  },
+  {
+   "id": "dispute-finance-can-approve-only-afterbillcredit",
+   "tab": "dispute",
+   "type": "validationRule",
+   "name": "Finance_can_approve_only_afterbillcredit",
+   "object": "Dispute__c",
+   "active": false,
+   "verified_on": "2026-11-11",
+   "claim": "Finance_can_approve_only_afterbillcredit is inactive on Dispute__c (one of 26 inactive rules)"
+  },
+  {
+   "id": "dispute-demand-dispute",
+   "tab": "dispute",
+   "type": "recordType",
+   "name": "Demand_dispute",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c record type Demand_dispute is active"
+  },
+  {
+   "id": "dispute-fraud-dispute",
+   "tab": "dispute",
+   "type": "recordType",
+   "name": "Fraud_dispute",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c record type Fraud_dispute is active"
+  },
+  {
+   "id": "dispute-supersonic",
+   "tab": "dispute",
+   "type": "recordType",
+   "name": "SuperSonic",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c record type SuperSonic is active"
+  },
+  {
+   "id": "dispute-supply-dispute",
+   "tab": "dispute",
+   "type": "recordType",
+   "name": "Supply_dispute",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c record type Supply_dispute is active"
+  },
+  {
+   "id": "dispute-video-dispute",
+   "tab": "dispute",
+   "type": "recordType",
+   "name": "Video_Dispute",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c record type Video_Dispute is active"
+  },
+  {
+   "id": "dispute-dispute-c",
+   "tab": "dispute",
+   "type": "object",
+   "name": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-line-c",
+   "tab": "dispute",
+   "type": "object",
+   "name": "Dispute_Line__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute_Line__c exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-freeze-c",
+   "tab": "dispute",
+   "type": "object",
+   "name": "Dispute_Freeze__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute_Freeze__c exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-approver-matrix-c",
+   "tab": "dispute",
+   "type": "object",
+   "name": "Approver_Matrix__c",
+   "verified_on": "2026-11-11",
+   "claim": "Approver_Matrix__c exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-amount-level-mdt",
+   "tab": "dispute",
+   "type": "object",
+   "name": "Dispute_Amount_Level__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute_Amount_Level__mdt exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-disptue-finance-approver-for-credit-mdt",
+   "tab": "dispute",
+   "type": "object",
+   "name": "Disptue_Finance_Approver_For_Credit__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Disptue_Finance_Approver_For_Credit__mdt exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-reason-for-dispute-mapping-mdt",
+   "tab": "dispute",
+   "type": "object",
+   "name": "Reason_For_Dispute_Mapping__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Reason_For_Dispute_Mapping__mdt exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-supply-deal-num-of-disputes-mdt",
+   "tab": "dispute",
+   "type": "object",
+   "name": "Supply_Deal_Num_of_disputes__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Supply_Deal_Num_of_disputes__mdt exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-enable-dispute-creation-mdt",
+   "tab": "dispute",
+   "type": "object",
+   "name": "Enable_Dispute_Creation__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Enable_Dispute_Creation__mdt exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-supersonic-disputes-e",
+   "tab": "dispute",
+   "type": "object",
+   "name": "SuperSonic_Disputes__e",
+   "verified_on": "2026-11-11",
+   "claim": "SuperSonic_Disputes__e exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-unattached-disputes-notification-e",
+   "tab": "dispute",
+   "type": "object",
+   "name": "Unattached_Disputes_Notification__e",
+   "verified_on": "2026-11-11",
+   "claim": "Unattached_Disputes_Notification__e exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-approve-submit-reject-approval-process-e",
+   "tab": "dispute",
+   "type": "object",
+   "name": "Approve_Submit_Reject_Approval_Process__e",
+   "verified_on": "2026-11-11",
+   "claim": "Approve_Submit_Reject_Approval_Process__e exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-errorobject-c",
+   "tab": "dispute",
+   "type": "object",
+   "name": "ErrorObject__c",
+   "verified_on": "2026-11-11",
+   "claim": "ErrorObject__c exists as named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-approvalstatus-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "ApprovalStatus__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.ApprovalStatus__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-deducted-amount-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Deducted_Amount__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Deducted_Amount__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-waiting-for-finance-approval-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Waiting_for_finance_approval__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Waiting_for_finance_approval__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-freeze-c-freeze-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Freeze__c",
+   "object": "Dispute_Freeze__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute_Freeze__c.Freeze__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-financeapprover-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "FinanceApprover__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.FinanceApprover__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-run-notification-flow-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Run_Notification_Flow__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Run_Notification_Flow__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-demand-dispute-approver-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Demand_Dispute_Approver__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Demand_Dispute_Approver__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-dispute-approver-2-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Dispute_Approver_2__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Dispute_Approver_2__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-dispute-approver-3-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Dispute_Approver_3__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Dispute_Approver_3__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-dispute-approver-4-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Dispute_Approver_4__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Dispute_Approver_4__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-approver-slack-id-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Approver_Slack_ID__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Approver_Slack_ID__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-waiting-for-next-invoice-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Waiting_for_Next_Invoice__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Waiting_for_Next_Invoice__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-waiting-for-the-next-bill-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Waiting_For_The_Next_Bill__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Waiting_For_The_Next_Bill__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-created-from-the-new-process-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Created_from_the_new_process__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Created_from_the_new_process__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-duplicate-exist-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Duplicate_Exist__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Duplicate_Exist__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-duplicate-dispute-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Duplicate_Dispute__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Duplicate_Dispute__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-long-dispute-id-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Long_Dispute_ID__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Long_Dispute_ID__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-month-bi-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Month_BI__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Month_BI__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-send-to-bi-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Send_to_BI__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Send_to_BI__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-notification-counter-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Notification_Counter__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Notification_Counter__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-attach-invoice-notification-counter-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Attach_Invoice_Notification_Counter__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Attach_Invoice_Notification_Counter__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-approved-automatically-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Approved_Automatically__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Approved_Automatically__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-cancelled-timestamp-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Cancelled_Timestamp__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Cancelled_Timestamp__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-attach-timestamp-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Attach_Timestamp__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Attach_Timestamp__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-choosen-invoice-id-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Choosen_Invoice_ID__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Choosen_Invoice_ID__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-slack-approval-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Slack_Approval__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Slack_Approval__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-day-today-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Day_Today__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Day_Today__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-activity-period-revenue-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Activity_Period_Revenue__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Activity_Period_Revenue__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-activity-period-payout-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Activity_Period_Payout__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Activity_Period_Payout__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-type-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Type__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Type__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-status-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Status__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Status__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-account-type-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Account_Type__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Account_Type__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-bill-type-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Bill_Type__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Bill_Type__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-invoice-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Invoice__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Invoice__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-bill-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Bill__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Bill__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-c-deal-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Deal__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Deal__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-invoice-c-amount-for-invoice-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Amount_for_Invoice__c",
+   "object": "Invoice__c",
+   "verified_on": "2026-11-11",
+   "claim": "Invoice__c.Amount_for_Invoice__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-bill-c-amount-for-bill-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Amount_For_Bill__c",
+   "object": "Bill__c",
+   "verified_on": "2026-11-11",
+   "claim": "Bill__c.Amount_For_Bill__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-invoice-c-disputed-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Disputed__c",
+   "object": "Invoice__c",
+   "verified_on": "2026-11-11",
+   "claim": "Invoice__c.Disputed__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-invoice-c-reason-for-discrepancy-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Reason_for_Discrepancy__c",
+   "object": "Invoice__c",
+   "verified_on": "2026-11-11",
+   "claim": "Invoice__c.Reason_for_Discrepancy__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-invoice-c-unapproved-dispute-attached-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Unapproved_Dispute_Attached__c",
+   "object": "Invoice__c",
+   "verified_on": "2026-11-11",
+   "claim": "Invoice__c.Unapproved_Dispute_Attached__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-bill-c-unapproved-dispute-attached-c",
+   "tab": "dispute",
+   "type": "field",
+   "name": "Unapproved_Dispute_Attached__c",
+   "object": "Bill__c",
+   "verified_on": "2026-11-11",
+   "claim": "Bill__c.Unapproved_Dispute_Attached__c is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-dispute-was-rejected-by-business",
+   "tab": "dispute",
+   "type": "emailAlert",
+   "name": "dispute_was_rejected_by_business",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Rejection by business sends email alert dispute_was_rejected_by_business"
+  },
+  {
+   "id": "dispute-fraud-disputecreatebatch",
+   "tab": "dispute",
+   "type": "apexClass",
+   "name": "Fraud_DisputeCreateBatch",
+   "verified_on": "2026-11-11",
+   "claim": "Apex Fraud_DisputeCreateBatch is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-fraud-disputeinvoicejob",
+   "tab": "dispute",
+   "type": "apexClass",
+   "name": "Fraud_DisputeInvoiceJob",
+   "verified_on": "2026-11-11",
+   "claim": "Apex Fraud_DisputeInvoiceJob is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-fraud-disputebilljob",
+   "tab": "dispute",
+   "type": "apexClass",
+   "name": "Fraud_DisputeBillJob",
+   "verified_on": "2026-11-11",
+   "claim": "Apex Fraud_DisputeBillJob is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-resolveapprovalrequest",
+   "tab": "dispute",
+   "type": "apexClass",
+   "name": "ResolveApprovalRequest",
+   "verified_on": "2026-11-11",
+   "claim": "Apex ResolveApprovalRequest is named in the Dispute tab"
+  },
+  {
+   "id": "dispute-supply-fraud-dispute-approver-1",
+   "tab": "dispute",
+   "type": "customPermission",
+   "name": "Supply_Fraud_Dispute_Approver_1",
+   "verified_on": "2026-11-11",
+   "claim": "Supply_Fraud_Dispute_Approver_1 exists as a custom permission (not a permission set)"
+  },
+  {
+   "id": "dispute-supply-fraud-dispute-approver-2",
+   "tab": "dispute",
+   "type": "customPermission",
+   "name": "Supply_Fraud_Dispute_Approver_2",
+   "verified_on": "2026-11-11",
+   "claim": "Supply_Fraud_Dispute_Approver_2 exists as a custom permission (not a permission set)"
+  },
+  {
+   "id": "dispute-attach-to-next-invoice",
+   "tab": "dispute",
+   "type": "cronJob",
+   "name": "Attach to next invoice",
+   "verified_on": "2026-11-11",
+   "claim": "Scheduled Apex 'Attach to next invoice' runs 0 0 20 2 */1 ? (2nd of each month, 20:00)"
+  },
+  {
+   "id": "dispute-attach-to-next-bill",
+   "tab": "dispute",
+   "type": "cronJob",
+   "name": "Attach to next bill",
+   "verified_on": "2026-11-11",
+   "claim": "Scheduled Apex 'Attach to next bill' runs 0 0 20 4 */1 ? (4th of each month, 20:00)"
+  },
+  {
+   "id": "dispute-bar-damti",
+   "tab": "dispute",
+   "type": "user",
+   "name": "Bar Damti",
+   "verified_on": "2026-11-11",
+   "claim": "Bar Damti is a named owner/approver on the Dispute tab"
+  },
+  {
+   "id": "dispute-tal-rahamim",
+   "tab": "dispute",
+   "type": "user",
+   "name": "Tal Rahamim",
+   "verified_on": "2026-11-11",
+   "claim": "Tal Rahamim is a named owner/approver on the Dispute tab"
+  },
+  {
+   "id": "dispute-noam-abutbul",
+   "tab": "dispute",
+   "type": "user",
+   "name": "Noam Abutbul",
+   "verified_on": "2026-11-11",
+   "claim": "Noam Abutbul is a named owner/approver on the Dispute tab"
+  },
+  {
+   "id": "dispute-yakov-asael",
+   "tab": "dispute",
+   "type": "user",
+   "name": "Yakov Asael",
+   "verified_on": "2026-11-11",
+   "claim": "Yakov Asael is a named owner/approver on the Dispute tab"
+  },
+  {
+   "id": "dispute-dror-diamant",
+   "tab": "dispute",
+   "type": "user",
+   "name": "Dror Diamant",
+   "verified_on": "2026-11-11",
+   "claim": "Dror Diamant is a named owner/approver on the Dispute tab"
+  },
+  {
+   "id": "dispute-adi-erdan",
+   "tab": "dispute",
+   "type": "user",
+   "name": "Adi Erdan",
+   "verified_on": "2026-11-11",
+   "claim": "Adi Erdan is a named owner/approver on the Dispute tab"
+  },
+  {
+   "id": "bills-invoice-sync-invoicemanagementcontroller",
+   "tab": "bills-invoice-sync",
+   "type": "apexClass",
+   "name": "InvoiceManagementController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class InvoiceManagementController is named in the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-invoicemanagementretriever",
+   "tab": "bills-invoice-sync",
+   "type": "apexClass",
+   "name": "InvoiceManagementRetriever",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class InvoiceManagementRetriever is named in the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-billmanagementcontroller",
+   "tab": "bills-invoice-sync",
+   "type": "apexClass",
+   "name": "BillManagementController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class BillManagementController is named in the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-billmanagementretriever",
+   "tab": "bills-invoice-sync",
+   "type": "apexClass",
+   "name": "BillManagementRetriever",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class BillManagementRetriever is named in the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-billmanagementctrl",
+   "tab": "bills-invoice-sync",
+   "type": "apexClass",
+   "name": "BillManagementCtrl",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class BillManagementCtrl is named in the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-billcreationbatch",
+   "tab": "bills-invoice-sync",
+   "type": "apexClass",
+   "name": "BillCreationBatch",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class BillCreationBatch is named in the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-fn-role-c",
+   "tab": "bills-invoice-sync",
+   "type": "field",
+   "name": "FN_Role__c",
+   "object": "User",
+   "contains": [
+    "<fullName>Admin</fullName>",
+    "<fullName>Bookkeeper</fullName>",
+    "<fullName>Accountant</fullName>",
+    "<fullName>TL</fullName>",
+    "<fullName>AM</fullName>",
+    "<fullName>Not\\ Allowed</fullName>",
+    "<fullName>View\\ only</fullName>",
+    "<fullName>Finance</fullName>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "User.FN_Role__c (FN Role) gates both management screens"
+  },
+  {
+   "id": "bills-invoice-sync-delegate-user-c",
+   "tab": "bills-invoice-sync",
+   "type": "field",
+   "name": "Delegate_User__c",
+   "object": "User",
+   "verified_on": "2026-11-11",
+   "claim": "User.Delegate_User__c lets a delegate see the AM's records"
+  },
+  {
+   "id": "bills-invoice-sync-db-c",
+   "tab": "bills-invoice-sync",
+   "type": "field",
+   "name": "db__c",
+   "object": "Invoice_Line__c",
+   "verified_on": "2026-11-11",
+   "claim": "Invoice_Line__c.db__c is a restricted picklist of divisions"
+  },
+  {
+   "id": "bills-invoice-sync-reason-for-discrepancy-c",
+   "tab": "bills-invoice-sync",
+   "type": "field",
+   "name": "Reason_for_Discrepancy__c",
+   "object": "Invoice__c",
+   "verified_on": "2026-11-11",
+   "claim": "Invoice__c.Reason_for_Discrepancy__c is a restricted picklist fed by dispute reasons"
+  },
+  {
+   "id": "bills-invoice-sync-re-c",
+   "tab": "bills-invoice-sync",
+   "type": "field",
+   "name": "Re__c",
+   "object": "Bill__c",
+   "verified_on": "2026-11-11",
+   "claim": "Bill__c.Re__c is the bill-side restricted picklist for dispute reasons"
+  },
+  {
+   "id": "bills-invoice-sync-clienttier-c",
+   "tab": "bills-invoice-sync",
+   "type": "field",
+   "name": "ClientTier__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.ClientTier__c is a restricted picklist that has rejected values"
+  },
+  {
+   "id": "bills-invoice-sync-ar-permissions",
+   "tab": "bills-invoice-sync",
+   "type": "customPermission",
+   "name": "AR_permissions",
+   "verified_on": "2026-11-11",
+   "claim": "Custom permission AR_permissions exists but is not consulted by the management screens"
+  },
+  {
+   "id": "bills-invoice-sync-mass-credit",
+   "tab": "bills-invoice-sync",
+   "type": "customPermission",
+   "name": "Mass_Credit",
+   "verified_on": "2026-11-11",
+   "claim": "Custom permission Mass_Credit exists but is not consulted by the management screens"
+  },
+  {
+   "id": "bills-invoice-sync-finance-supply-deal-dispute",
+   "tab": "bills-invoice-sync",
+   "type": "customPermission",
+   "name": "Finance_Supply_Deal_Dispute",
+   "verified_on": "2026-11-11",
+   "claim": "Custom permission Finance_Supply_Deal_Dispute exists but is not consulted by the management screens"
+  },
+  {
+   "id": "bills-invoice-sync-update-subsidiary-by-billing-country",
+   "tab": "bills-invoice-sync",
+   "type": "flow",
+   "name": "Update_Subsidiary_by_Billing_Country",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Update Subsidiary by Billing Country flow sets the subsidiary"
+  },
+  {
+   "id": "bills-invoice-sync-invoice-c",
+   "tab": "bills-invoice-sync",
+   "type": "object",
+   "name": "Invoice__c",
+   "verified_on": "2026-11-11",
+   "claim": "Invoice__c is covered by the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-invoice-line-c",
+   "tab": "bills-invoice-sync",
+   "type": "object",
+   "name": "Invoice_Line__c",
+   "verified_on": "2026-11-11",
+   "claim": "Invoice_Line__c is covered by the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-bill-c",
+   "tab": "bills-invoice-sync",
+   "type": "object",
+   "name": "Bill__c",
+   "verified_on": "2026-11-11",
+   "claim": "Bill__c is covered by the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-bill-line-c",
+   "tab": "bills-invoice-sync",
+   "type": "object",
+   "name": "Bill_Line__c",
+   "verified_on": "2026-11-11",
+   "claim": "Bill_Line__c is covered by the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-yakov-asael",
+   "tab": "bills-invoice-sync",
+   "type": "user",
+   "name": "Yakov Asael",
+   "verified_on": "2026-11-11",
+   "claim": "Yakov Asael is a named contact on the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-danill-rekov",
+   "tab": "bills-invoice-sync",
+   "type": "user",
+   "name": "Danill Rekov",
+   "verified_on": "2026-11-11",
+   "claim": "Danill Rekov is a named contact on the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-dror-diamant",
+   "tab": "bills-invoice-sync",
+   "type": "user",
+   "name": "Dror Diamant",
+   "verified_on": "2026-11-11",
+   "claim": "Dror Diamant is a named contact on the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-tal-rahamim",
+   "tab": "bills-invoice-sync",
+   "type": "user",
+   "name": "Tal Rahamim",
+   "verified_on": "2026-11-11",
+   "claim": "Tal Rahamim is a named contact on the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-varun-bhatia",
+   "tab": "bills-invoice-sync",
+   "type": "user",
+   "name": "Varun Bhatia",
+   "verified_on": "2026-11-11",
+   "claim": "Varun Bhatia is a named contact on the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-leehee-bar",
+   "tab": "bills-invoice-sync",
+   "type": "user",
+   "name": "Leehee Bar",
+   "verified_on": "2026-11-11",
+   "claim": "Leehee Bar is a named contact on the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-maria-zakomorni",
+   "tab": "bills-invoice-sync",
+   "type": "user",
+   "name": "Maria Zakomorni",
+   "verified_on": "2026-11-11",
+   "claim": "Maria Zakomorni is a named contact on the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-shirel-kaver",
+   "tab": "bills-invoice-sync",
+   "type": "user",
+   "name": "Shirel Kaver",
+   "verified_on": "2026-11-11",
+   "claim": "Shirel Kaver is a named contact on the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-eden-taragan",
+   "tab": "bills-invoice-sync",
+   "type": "user",
+   "name": "Eden Taragan",
+   "verified_on": "2026-11-11",
+   "claim": "Eden Taragan is a named contact on the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-noam-ganzi",
+   "tab": "bills-invoice-sync",
+   "type": "user",
+   "name": "Noam Ganzi",
+   "verified_on": "2026-11-11",
+   "claim": "Noam Ganzi is a named contact on the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "bills-invoice-sync-meir-alali",
+   "tab": "bills-invoice-sync",
+   "type": "user",
+   "name": "Meir Alali",
+   "verified_on": "2026-11-11",
+   "claim": "Meir Alali is a named contact on the Bills/Invoice Sync tab"
+  },
+  {
+   "id": "connect-360-performance-manager-request-c",
+   "tab": "connect-360",
+   "type": "object",
+   "name": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Connect 360 object is Performance_Manager_Request__c"
+  },
+  {
+   "id": "connect-360-performancemanagerrequesttl-c",
+   "tab": "connect-360",
+   "type": "object",
+   "name": "PerformanceManagerRequestTL__c",
+   "verified_on": "2026-11-11",
+   "claim": "PerformanceManagerRequestTL__c list custom setting drives routing on Region plus Product"
+  },
+  {
+   "id": "connect-360-connect-360-follow-up-required-c",
+   "tab": "connect-360",
+   "type": "object",
+   "name": "Connect_360_Follow_up_required__c",
+   "verified_on": "2026-11-11",
+   "claim": "Connect_360_Follow_up_required__c custom setting decides follow-up per Product and Task Type"
+  },
+  {
+   "id": "connect-360-create-performance-manager-request",
+   "tab": "connect-360",
+   "type": "flow",
+   "name": "Create_Performance_Manager_Request",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Create Connect 360 Form global action screen flow is active"
+  },
+  {
+   "id": "connect-360-performance-manager-request-actions-on-creation",
+   "tab": "connect-360",
+   "type": "flow",
+   "name": "Performance_Manager_Request_Actions_on_creation",
+   "active": true,
+   "contains": [
+    "00GQv00000B7zWf"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Routing and notification engine is active; APAC branch hardcodes queue 00GQv00000B7zWf"
+  },
+  {
+   "id": "connect-360-performance-manager-request-run-flow",
+   "tab": "connect-360",
+   "type": "flow",
+   "name": "Performance_Manager_Request_Run_Flow",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Run Flow keeps status and timestamps and consolidates Task_Type__c"
+  },
+  {
+   "id": "connect-360-connect-360-check-run-flow-to-send-am-notifications",
+   "tab": "connect-360",
+   "type": "flow",
+   "name": "Connect_360_Check_run_flow_to_send_AM_notifications",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Scheduled flow sends AM chasers (not in repo snapshot per handbook)"
+  },
+  {
+   "id": "connect-360-connect-360-fill-follow-up-fields",
+   "tab": "connect-360",
+   "type": "flow",
+   "name": "Connect_360_Fill_Follow_Up_fields",
+   "active": false,
+   "verified_on": "2026-11-11",
+   "claim": "Flow behind the Follow Up button is inactive"
+  },
+  {
+   "id": "connect-360-performance-manager-request-follow-up",
+   "tab": "connect-360",
+   "type": "flow",
+   "name": "Performance_Manager_Request_Follow_Up",
+   "active": false,
+   "verified_on": "2026-11-11",
+   "claim": "Follow-up reminder sweep flow is inactive"
+  },
+  {
+   "id": "connect-360-cant-create-connect-360-from-new-button",
+   "tab": "connect-360",
+   "type": "validationRule",
+   "name": "Cant_create_connect_360_from_new_button",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Cant_create_connect_360_from_new_button forces creation through the global action"
+  },
+  {
+   "id": "connect-360-emea-team",
+   "tab": "connect-360",
+   "type": "recordType",
+   "name": "EMEA_Team",
+   "object": "Performance_Manager_Request__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Connect 360 has record type EMEA_Team"
+  },
+  {
+   "id": "connect-360-apac-team",
+   "tab": "connect-360",
+   "type": "recordType",
+   "name": "APAC_Team",
+   "object": "Performance_Manager_Request__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Connect 360 has record type APAC_Team"
+  },
+  {
+   "id": "connect-360-status-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Status__c",
+   "object": "Performance_Manager_Request__c",
+   "contains": [
+    "<fullName>Backlog</fullName>",
+    "<fullName>Assigned</fullName>",
+    "<fullName>In\\ Progress</fullName>",
+    "<fullName>Pending</fullName>",
+    "<fullName>Done</fullName>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Status__c is used by the process"
+  },
+  {
+   "id": "connect-360-task-type-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Task_Type__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Task_Type__c is used by the process"
+  },
+  {
+   "id": "connect-360-task-type-emea-ads-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Task_Type_EMEA_Ads__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Task_Type_EMEA_Ads__c is used by the process"
+  },
+  {
+   "id": "connect-360-task-type-emea-tj-demand-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Task_Type_EMEA_TJ_Demand__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Task_Type_EMEA_TJ_Demand__c is used by the process"
+  },
+  {
+   "id": "connect-360-task-type-emea-tj-supply-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Task_Type_EMEA_TJ_Supply__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Task_Type_EMEA_TJ_Supply__c is used by the process"
+  },
+  {
+   "id": "connect-360-task-type-apac-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Task_Type_APAC__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Task_Type_APAC__c is used by the process"
+  },
+  {
+   "id": "connect-360-request-source-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Request_Source__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Request_Source__c is used by the process"
+  },
+  {
+   "id": "connect-360-run-flow-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Run_Flow__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Run_Flow__c is used by the process"
+  },
+  {
+   "id": "connect-360-performance-manager-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Performance_Manager__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Performance_Manager__c is used by the process"
+  },
+  {
+   "id": "connect-360-follow-up-timestamp-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Follow_Up_Timestamp__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Follow_Up_Timestamp__c is used by the process"
+  },
+  {
+   "id": "connect-360-assigned-timestamp-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Assigned_Timestamp__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Assigned_Timestamp__c is used by the process"
+  },
+  {
+   "id": "connect-360-backlog-timestamp-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Backlog_Timestamp__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Backlog_Timestamp__c is used by the process"
+  },
+  {
+   "id": "connect-360-in-progress-timestamp-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "In_Progress_Timestamp__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.In_Progress_Timestamp__c is used by the process"
+  },
+  {
+   "id": "connect-360-moved-to-follow-up-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Moved_to_follow_up__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Moved_to_follow_up__c is used by the process"
+  },
+  {
+   "id": "connect-360-done-timestamp-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Done_Timestamp__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Done_Timestamp__c is used by the process"
+  },
+  {
+   "id": "connect-360-subject-kanban-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Subject_Kanban__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Subject_Kanban__c is used by the process"
+  },
+  {
+   "id": "connect-360-am-notification-counter-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "AM_Notification_Counter__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.AM_Notification_Counter__c is used by the process"
+  },
+  {
+   "id": "connect-360-status-no-follow-up-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Status_No_follow_up__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Status_No_follow_up__c is used by the process"
+  },
+  {
+   "id": "connect-360-product-c",
+   "tab": "connect-360",
+   "type": "field",
+   "name": "Product__c",
+   "object": "Performance_Manager_Request__c",
+   "verified_on": "2026-11-11",
+   "claim": "Performance_Manager_Request__c.Product__c is used by the process"
+  },
+  {
+   "id": "connect-360-rotem-yosef",
+   "tab": "connect-360",
+   "type": "user",
+   "name": "Rotem Yosef",
+   "verified_on": "2026-11-11",
+   "claim": "Rotem Yosef is a named owner/lead on the Connect 360 tab"
+  },
+  {
+   "id": "connect-360-morag-nadel",
+   "tab": "connect-360",
+   "type": "user",
+   "name": "Morag Nadel",
+   "verified_on": "2026-11-11",
+   "claim": "Morag Nadel is a named owner/lead on the Connect 360 tab"
+  },
+  {
+   "id": "connect-360-hagar-itzhak",
+   "tab": "connect-360",
+   "type": "user",
+   "name": "Hagar Itzhak",
+   "verified_on": "2026-11-11",
+   "claim": "Hagar Itzhak is a named owner/lead on the Connect 360 tab"
+  },
+  {
+   "id": "connect-360-edona-mulaku",
+   "tab": "connect-360",
+   "type": "user",
+   "name": "Edona Mulaku",
+   "verified_on": "2026-11-11",
+   "claim": "Edona Mulaku is a named owner/lead on the Connect 360 tab"
+  },
+  {
+   "id": "connect-360-tatiana-ventsova",
+   "tab": "connect-360",
+   "type": "user",
+   "name": "Tatiana Ventsova",
+   "verified_on": "2026-11-11",
+   "claim": "Tatiana Ventsova is a named owner/lead on the Connect 360 tab"
+  },
+  {
+   "id": "connect-360-ido-levy",
+   "tab": "connect-360",
+   "type": "user",
+   "name": "Ido Levy",
+   "verified_on": "2026-11-11",
+   "claim": "Ido Levy is a named owner/lead on the Connect 360 tab"
+  },
+  {
+   "id": "connect-360-yakov-asael",
+   "tab": "connect-360",
+   "type": "user",
+   "name": "Yakov Asael",
+   "verified_on": "2026-11-11",
+   "claim": "Yakov Asael is a named owner/lead on the Connect 360 tab"
+  },
+  {
+   "id": "credit-check-auto-approval-credit-check-c",
+   "tab": "credit-check-auto-approval",
+   "type": "object",
+   "name": "Credit_Check__c",
+   "verified_on": "2026-11-11",
+   "claim": "Credit_Check__c is the object the decision process runs on"
+  },
+  {
+   "id": "credit-check-auto-approval-credit-check-automatic-approval-reject-manual-review",
+   "tab": "credit-check-auto-approval",
+   "type": "flow",
+   "name": "Credit_Check_Automatic_Approval_Reject_Manual_Review",
+   "active": true,
+   "contains": [
+    "<numberValue>250000(\\.0)?</numberValue>",
+    "<numberValue>1000(\\.0)?</numberValue>",
+    "<numberValue>20(\\.0)?</numberValue>",
+    "<numberValue>100(\\.0)?</numberValue>",
+    "The account has overdue balance or collection stage is not allowed",
+    "The account has 3 open invoices for different periods\\.",
+    "The account has more than 20 days to reach its limit\\.",
+    "<stringValue>Amir Weingrod</stringValue>",
+    "<stringValue>Credit_Check_ApprovalV4</stringValue>",
+    "<stringValue>Credit_Check_Approval_Change</stringValue>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Decision flow active, after-save on Credit Check; auto-decides requests <=250,000, overdue >1,000, >20 days to limit, 1-30 bucket >100"
+  },
+  {
+   "id": "credit-check-auto-approval-smb-create-automatic-credit",
+   "tab": "credit-check-auto-approval",
+   "type": "flow",
+   "name": "SMB_Create_Automatic_Credit",
+   "active": true,
+   "contains": [
+    "Account_Manager__r\\.SelfServed_User__c\\}\\s*=\\s*TRUE",
+    "Credit_Amount__c\\}&gt;0",
+    "Credit_Check_in_Process__c\\}\\s*=\\s*0",
+    "Days_to_reach_credit_limit__c\\}\\s*&gt;\\s*0",
+    "Days_to_reach_credit_limit__c\\}\\s*&lt;=\\s*7",
+    "Net_Overdue_Balance__c\\}\\s*&lt;=\\s*0",
+    "<triggerType>RecordAfterSave</triggerType>",
+    "<object>Account</object>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "SMB_Create_Automatic_Credit is active, after-save on Account; entry: self-served AM, Advertiser, Credit, limit>0, no check in process, MobileCore/Tapjoy/UnityAds, 0<days<=7, Net_Overdue_Balance__c <= 0"
+  },
+  {
+   "id": "credit-check-auto-approval-credit-check-approvalv4",
+   "tab": "credit-check-auto-approval",
+   "type": "approvalProcess",
+   "name": "Credit_Check_ApprovalV4",
+   "object": "Credit_Check__c",
+   "active": true,
+   "contains": [
+    "\\A(?:(?!<approvalStep>)[\\s\\S])*(?:<approvalStep>(?:(?!<approvalStep>)[\\s\\S])*){4}\\Z"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Credit Check ApprovalV4 (New + Credit) has four steps"
+  },
+  {
+   "id": "credit-check-auto-approval-credit-check-approval-change",
+   "tab": "credit-check-auto-approval",
+   "type": "approvalProcess",
+   "name": "Credit_Check_Approval_Change",
+   "object": "Credit_Check__c",
+   "active": true,
+   "contains": [
+    "\\A(?:(?!<approvalStep>)[\\s\\S])*(?:<approvalStep>(?:(?!<approvalStep>)[\\s\\S])*){4}\\Z"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Credit Check Approval Change has four steps"
+  },
+  {
+   "id": "credit-check-auto-approval-new",
+   "tab": "credit-check-auto-approval",
+   "type": "recordType",
+   "name": "New",
+   "object": "Credit_Check__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Credit_Check__c record type New is used"
+  },
+  {
+   "id": "credit-check-auto-approval-change",
+   "tab": "credit-check-auto-approval",
+   "type": "recordType",
+   "name": "Change",
+   "object": "Credit_Check__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Credit_Check__c record type Change is used"
+  },
+  {
+   "id": "credit-check-auto-approval-net-overdue-balance-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Net_Overdue_Balance__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Net_Overdue_Balance__c exists (entry-formula field)"
+  },
+  {
+   "id": "credit-check-auto-approval-days-to-reach-credit-limit-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Days_to_reach_credit_limit__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Days_to_reach_credit_limit__c exists (entry-formula field)"
+  },
+  {
+   "id": "credit-check-auto-approval-credit-check-in-process-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Credit_Check_in_Process__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Credit_Check_in_Process__c exists (entry-formula field)"
+  },
+  {
+   "id": "credit-check-auto-approval-division-picklist-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Division_Picklist__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Division_Picklist__c exists (entry-formula field)"
+  },
+  {
+   "id": "credit-check-auto-approval-credit-type-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Credit_Type__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Credit_Type__c exists (entry-formula field)"
+  },
+  {
+   "id": "credit-check-auto-approval-credit-amount-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Credit_Amount__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Credit_Amount__c exists (entry-formula field)"
+  },
+  {
+   "id": "credit-check-auto-approval-department-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Department__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Department__c exists (entry-formula field)"
+  },
+  {
+   "id": "credit-check-auto-approval-account-manager-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Account_Manager__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Account_Manager__c exists (entry-formula field)"
+  },
+  {
+   "id": "credit-check-auto-approval-overall-balance-log-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Overall_Balance_Log__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Overall_Balance_Log__c is a Long Text Area field on Account, not an object"
+  },
+  {
+   "id": "credit-check-auto-approval-automated-credit-check-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Automated_Credit_Check__c",
+   "object": "Credit_Check__c",
+   "verified_on": "2026-11-11",
+   "claim": "Credit_Check__c.Automated_Credit_Check__c = TRUE marks automated requests"
+  },
+  {
+   "id": "credit-check-auto-approval-selfserved-user-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "SelfServed_User__c",
+   "object": "User",
+   "verified_on": "2026-11-11",
+   "claim": "User.SelfServed_User__c marks shared self-served users"
+  },
+  {
+   "id": "credit-check-auto-approval-revenue-daily-average-for-credit-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Revenue_Daily_Average_for_Credit__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account daily average (last 7 days) formula field drives the reduced amount"
+  },
+  {
+   "id": "credit-check-auto-approval-requested-credit-amount-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Requested_Credit_Amount__c",
+   "object": "Credit_Check__c",
+   "verified_on": "2026-11-11",
+   "claim": "Credit_Check__c.Requested_Credit_Amount__c is used by the decision flow"
+  },
+  {
+   "id": "credit-check-auto-approval-expected-daily-spend-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Expected_Daily_Spend__c",
+   "object": "Credit_Check__c",
+   "verified_on": "2026-11-11",
+   "claim": "Credit_Check__c.Expected_Daily_Spend__c is used by the decision flow"
+  },
+  {
+   "id": "credit-check-auto-approval-approved-credit-amount-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Approved_Credit_Amount__c",
+   "object": "Credit_Check__c",
+   "verified_on": "2026-11-11",
+   "claim": "Credit_Check__c.Approved_Credit_Amount__c is used by the decision flow"
+  },
+  {
+   "id": "credit-check-auto-approval-approval-status-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Approval_Status__c",
+   "object": "Credit_Check__c",
+   "verified_on": "2026-11-11",
+   "claim": "Credit_Check__c.Approval_Status__c is used by the decision flow"
+  },
+  {
+   "id": "credit-check-auto-approval-finance-approver-c",
+   "tab": "credit-check-auto-approval",
+   "type": "field",
+   "name": "Finance_Approver__c",
+   "object": "Credit_Check__c",
+   "verified_on": "2026-11-11",
+   "claim": "Credit_Check__c.Finance_Approver__c is used by the decision flow"
+  },
+  {
+   "id": "credit-check-auto-approval-neta-ronen",
+   "tab": "credit-check-auto-approval",
+   "type": "user",
+   "name": "Neta Ronen",
+   "verified_on": "2026-11-11",
+   "claim": "Neta Ronen is named on the Credit Check tab"
+  },
+  {
+   "id": "credit-check-auto-approval-dror-diamant",
+   "tab": "credit-check-auto-approval",
+   "type": "user",
+   "name": "Dror Diamant",
+   "verified_on": "2026-11-11",
+   "claim": "Dror Diamant is named on the Credit Check tab"
+  },
+  {
+   "id": "credit-check-auto-approval-yakov-asael",
+   "tab": "credit-check-auto-approval",
+   "type": "user",
+   "name": "Yakov Asael",
+   "verified_on": "2026-11-11",
+   "claim": "Yakov Asael is named on the Credit Check tab"
+  },
+  {
+   "id": "credit-check-auto-approval-amir-weingrod",
+   "tab": "credit-check-auto-approval",
+   "type": "user",
+   "name": "Amir Weingrod",
+   "verified_on": "2026-11-11",
+   "claim": "Amir Weingrod is named on the Credit Check tab"
+  },
+  {
+   "id": "credit-check-auto-approval-ss-tlv",
+   "tab": "credit-check-auto-approval",
+   "type": "user",
+   "name": "SS TLV",
+   "verified_on": "2026-11-11",
+   "claim": "SS TLV is named on the Credit Check tab"
+  },
+  {
+   "id": "credit-check-auto-approval-ss-china",
+   "tab": "credit-check-auto-approval",
+   "type": "user",
+   "name": "SS China",
+   "verified_on": "2026-11-11",
+   "claim": "SS China is named on the Credit Check tab"
+  },
+  {
+   "id": "credit-check-auto-approval-ss-gps",
+   "tab": "credit-check-auto-approval",
+   "type": "user",
+   "name": "SS GPS",
+   "verified_on": "2026-11-11",
+   "claim": "SS GPS is named on the Credit Check tab"
+  },
+  {
+   "id": "csat-case-send-csat-for-closed-cases-iads-uads-tapjoy",
+   "tab": "csat",
+   "type": "flow",
+   "name": "Case_Send_CSAT_for_closed_cases_iAds_uAds_Tapjoy",
+   "active": true,
+   "contains": [
+    "<numberValue>14(\\.0)?</numberValue>",
+    "<stringValue>Internal Account</stringValue>",
+    "<stringValue>Closed</stringValue>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Case - Send CSAT for closed cases flow is active; stops when case older than 14 days or account internal"
+  },
+  {
+   "id": "csat-csat-closed-case-mobile-a",
+   "tab": "csat",
+   "type": "emailAlert",
+   "name": "CSAT_Closed_Case_mobile_A",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Email alert CSAT_Closed_Case_mobile_A sends the CSAT email"
+  },
+  {
+   "id": "csat-csat-closed-case-mobile-b",
+   "tab": "csat",
+   "type": "emailAlert",
+   "name": "CSAT_Closed_Case_mobile_B",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Email alert CSAT_Closed_Case_mobile_B sends the CSAT email"
+  },
+  {
+   "id": "csat-customerportalcasedetailcontroller",
+   "tab": "csat",
+   "type": "apexClass",
+   "name": "CustomerPortalCaseDetailController",
+   "verified_on": "2026-11-11",
+   "claim": "updateCsatFeedback on CustomerPortalCaseDetailController writes the Community rating"
+  },
+  {
+   "id": "csat-unity-support",
+   "tab": "csat",
+   "type": "recordType",
+   "name": "Unity_Support",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case record type Unity_Support qualifies for CSAT"
+  },
+  {
+   "id": "csat-mobile-support",
+   "tab": "csat",
+   "type": "recordType",
+   "name": "Mobile_Support",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case record type Mobile_Support qualifies for CSAT"
+  },
+  {
+   "id": "csat-tapjoy-support",
+   "tab": "csat",
+   "type": "recordType",
+   "name": "Tapjoy_Support",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case record type Tapjoy_Support qualifies for CSAT"
+  },
+  {
+   "id": "csat-mobile-demand-support",
+   "tab": "csat",
+   "type": "recordType",
+   "name": "Mobile_Demand_Support",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case record type Mobile_Demand_Support qualifies for CSAT"
+  },
+  {
+   "id": "csat-feedback-type-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Feedback_Type__c",
+   "object": "Case",
+   "contains": [
+    "<fullName>Very\\ Good</fullName>",
+    "<fullName>Good</fullName>",
+    "<fullName>Neutral</fullName>",
+    "<fullName>Bad</fullName>",
+    "<fullName>Very\\ Bad</fullName>",
+    "<fullName>Positive</fullName>",
+    "<fullName>Negative</fullName>",
+    "<fullName>Promote</fullName>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Case.Feedback_Type__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-purchase-type-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Purchase_Type__c",
+   "object": "Case",
+   "contains": [
+    "<fullName>Version\\ A</fullName>",
+    "<fullName>Version\\ B</fullName>",
+    "<fullName>Email</fullName>",
+    "<fullName>Community</fullName>",
+    "<fullName>Software\\ Market</fullName>",
+    "<fullName>Hardware\\ Market</fullName>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Case.Purchase_Type__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-speed-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Speed__c",
+   "object": "Case",
+   "contains": [
+    "<fullName>Slow</fullName>",
+    "<fullName>Average</fullName>",
+    "<fullName>Fast</fullName>",
+    "<fullName>Excellent</fullName>",
+    "<fullName>Fair</fullName>",
+    "<fullName>Poor</fullName>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Case.Speed__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-quality-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Quality__c",
+   "object": "Case",
+   "contains": [
+    "<fullName>Yes</fullName>",
+    "<fullName>No</fullName>",
+    "<fullName>Excellent</fullName>",
+    "<fullName>Fair</fullName>",
+    "<fullName>Poor</fullName>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Case.Quality__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-customer-suggestions-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Customer_Suggestions__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Customer_Suggestions__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-security-q1-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Security_Q1__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Security_Q1__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-feedback-date-stamp-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Feedback_Date_Stamp__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Feedback_Date_Stamp__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-customer-s-email-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Customer_s_Email__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Customer_s_Email__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-internal-case-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Internal_Case__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Internal_Case__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-closed-automaticlly-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Closed_Automaticlly__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Closed_Automaticlly__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-do-not-notify-on-case-closure-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Do_not_notify_on_case_closure__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Do_not_notify_on_case_closure__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-feed-type-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Feed_Type__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Feed_Type__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-name-for-email-alert-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Name_for_email_alert__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Name_for_email_alert__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-random-0-1-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Random_0_1__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Random_0_1__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-additional-recipients-c",
+   "tab": "csat",
+   "type": "field",
+   "name": "Additional_Recipients__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Additional_Recipients__c is part of the CSAT process"
+  },
+  {
+   "id": "csat-shani-kovalsky",
+   "tab": "csat",
+   "type": "user",
+   "name": "Shani Kovalsky",
+   "verified_on": "2026-11-11",
+   "claim": "Shani Kovalsky is a named owner on the CSAT tab"
+  },
+  {
+   "id": "csat-neta-ronen",
+   "tab": "csat",
+   "type": "user",
+   "name": "Neta Ronen",
+   "verified_on": "2026-11-11",
+   "claim": "Neta Ronen is a named owner on the CSAT tab"
+  },
+  {
+   "id": "csat-dror-diamant",
+   "tab": "csat",
+   "type": "user",
+   "name": "Dror Diamant",
+   "verified_on": "2026-11-11",
+   "claim": "Dror Diamant is a named owner on the CSAT tab"
+  },
+  {
+   "id": "customer-community-case-update-sharing-contact-pe",
+   "tab": "customer-community",
+   "type": "flow",
+   "name": "Case_Update_Sharing_Contact_PE",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case - Update Sharing Contact - PE subscriber flow is active"
+  },
+  {
+   "id": "customer-community-customerportalcontroller",
+   "tab": "customer-community",
+   "type": "apexClass",
+   "name": "CustomerPortalController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class CustomerPortalController backs the community portal"
+  },
+  {
+   "id": "customer-community-customerportalcategorycontroller",
+   "tab": "customer-community",
+   "type": "apexClass",
+   "name": "CustomerPortalCategoryController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class CustomerPortalCategoryController backs the community portal"
+  },
+  {
+   "id": "customer-community-customerportalarticlecontroller",
+   "tab": "customer-community",
+   "type": "apexClass",
+   "name": "CustomerPortalArticleController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class CustomerPortalArticleController backs the community portal"
+  },
+  {
+   "id": "customer-community-customerportalcasescontroller",
+   "tab": "customer-community",
+   "type": "apexClass",
+   "name": "CustomerPortalCasesController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class CustomerPortalCasesController backs the community portal"
+  },
+  {
+   "id": "customer-community-customerportalcasedetailcontroller",
+   "tab": "customer-community",
+   "type": "apexClass",
+   "name": "CustomerPortalCaseDetailController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class CustomerPortalCaseDetailController backs the community portal"
+  },
+  {
+   "id": "customer-community-helpcentercontactuscontroller",
+   "tab": "customer-community",
+   "type": "apexClass",
+   "name": "HelpCenterContactUsController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class HelpCenterContactUsController backs the community portal"
+  },
+  {
+   "id": "customer-community-customerportalcontactuscontroller",
+   "tab": "customer-community",
+   "type": "apexClass",
+   "name": "CustomerPortalContactUsController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class CustomerPortalContactUsController backs the community portal"
+  },
+  {
+   "id": "customer-community-customerportalunitysearchhandler",
+   "tab": "customer-community",
+   "type": "apexClass",
+   "name": "CustomerPortalUnitySearchHandler",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class CustomerPortalUnitySearchHandler backs the community portal"
+  },
+  {
+   "id": "customer-community-growthexternalregistrationhandler",
+   "tab": "customer-community",
+   "type": "apexClass",
+   "name": "GrowthExternalRegistrationHandler",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class GrowthExternalRegistrationHandler backs the community portal"
+  },
+  {
+   "id": "customer-community-matchcontactbatch",
+   "tab": "customer-community",
+   "type": "apexClass",
+   "name": "MatchContactBatch",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class MatchContactBatch backs the community portal"
+  },
+  {
+   "id": "customer-community-new-community-user-e",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "New_Community_User__e",
+   "verified_on": "2026-11-11",
+   "claim": "New_Community_User__e exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-portal-content-type-mdt",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "Portal_Content_Type__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Portal_Content_Type__mdt exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-portal-product-mdt",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "Portal_Product__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Portal_Product__mdt exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-portal-ecosystem-link-mdt",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "Portal_Ecosystem_Link__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Portal_Ecosystem_Link__mdt exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-support-community-case-status-mdt",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "Support_Community_Case_Status__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Support_Community_Case_Status__mdt exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-helpcenter-category-mdt",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "HelpCenter_Category__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "HelpCenter_Category__mdt exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-helpcenter-subcategory-mdt",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "HelpCenter_SubCategory__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "HelpCenter_SubCategory__mdt exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-helpcenter-issuetype-mdt",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "HelpCenter_IssueType__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "HelpCenter_IssueType__mdt exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-promoted-articles-c",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "Promoted_Articles__c",
+   "verified_on": "2026-11-11",
+   "claim": "Promoted_Articles__c exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-knowledge-rating-c",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "Knowledge_Rating__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Rating__c exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-internal-app-c",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "Internal_App__c",
+   "verified_on": "2026-11-11",
+   "claim": "Internal_App__c exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-errorobject-c",
+   "tab": "customer-community",
+   "type": "object",
+   "name": "ErrorObject__c",
+   "verified_on": "2026-11-11",
+   "claim": "ErrorObject__c exists as named in the Customer Community tab"
+  },
+  {
+   "id": "customer-community-case-sharing-contact-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Sharing_Contact__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Sharing_Contact__c is used by the portal"
+  },
+  {
+   "id": "customer-community-case-customer-s-email-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Customer_s_Email__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Customer_s_Email__c is used by the portal"
+  },
+  {
+   "id": "customer-community-case-additional-recipients-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Additional_Recipients__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Additional_Recipients__c is used by the portal"
+  },
+  {
+   "id": "customer-community-case-internal-case-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Internal_Case__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Internal_Case__c is used by the portal"
+  },
+  {
+   "id": "customer-community-contact-userid-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "userId__c",
+   "object": "Contact",
+   "verified_on": "2026-11-11",
+   "claim": "Contact.userId__c is used by the portal"
+  },
+  {
+   "id": "customer-community-contact-email-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Email__c",
+   "object": "Contact",
+   "verified_on": "2026-11-11",
+   "claim": "Contact.Email__c is used by the portal"
+  },
+  {
+   "id": "customer-community-contact-department1-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Department1__c",
+   "object": "Contact",
+   "verified_on": "2026-11-11",
+   "claim": "Contact.Department1__c is used by the portal"
+  },
+  {
+   "id": "customer-community-contact-division-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Division__c",
+   "object": "Contact",
+   "verified_on": "2026-11-11",
+   "claim": "Contact.Division__c is used by the portal"
+  },
+  {
+   "id": "customer-community-opportunity-company-platform-hash-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Company_Platform_Hash__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.Company_Platform_Hash__c is used by the portal"
+  },
+  {
+   "id": "customer-community-opportunity-platform-hash-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Platform_Hash__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.Platform_Hash__c is used by the portal"
+  },
+  {
+   "id": "customer-community-internal-app-c-appkey-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Appkey__c",
+   "object": "Internal_App__c",
+   "verified_on": "2026-11-11",
+   "claim": "Internal_App__c.Appkey__c is used by the portal"
+  },
+  {
+   "id": "customer-community-promoted-articles-c-active-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Active__c",
+   "object": "Promoted_Articles__c",
+   "verified_on": "2026-11-11",
+   "claim": "Promoted_Articles__c.Active__c is used by the portal"
+  },
+  {
+   "id": "customer-community-promoted-articles-c-order-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Order__c",
+   "object": "Promoted_Articles__c",
+   "verified_on": "2026-11-11",
+   "claim": "Promoted_Articles__c.Order__c is used by the portal"
+  },
+  {
+   "id": "customer-community-knowledge-rating-c-like-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Like__c",
+   "object": "Knowledge_Rating__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Rating__c.Like__c is used by the portal"
+  },
+  {
+   "id": "customer-community-knowledge-rating-c-dislike-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Dislike__c",
+   "object": "Knowledge_Rating__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Rating__c.Dislike__c is used by the portal"
+  },
+  {
+   "id": "customer-community-portal-product-mdt-product-name-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Product_Name__c",
+   "object": "Portal_Product__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Portal_Product__mdt.Product_Name__c is used by the portal"
+  },
+  {
+   "id": "customer-community-portal-product-mdt-page-api-name-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Page_API_Name__c",
+   "object": "Portal_Product__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Portal_Product__mdt.Page_API_Name__c is used by the portal"
+  },
+  {
+   "id": "customer-community-portal-product-mdt-product-filter-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Product_Filter__c",
+   "object": "Portal_Product__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Portal_Product__mdt.Product_Filter__c is used by the portal"
+  },
+  {
+   "id": "customer-community-portal-product-mdt-department-filter-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Department_Filter__c",
+   "object": "Portal_Product__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Portal_Product__mdt.Department_Filter__c is used by the portal"
+  },
+  {
+   "id": "customer-community-portal-product-mdt-content-type-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Content_Type__c",
+   "object": "Portal_Product__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Portal_Product__mdt.Content_Type__c is used by the portal"
+  },
+  {
+   "id": "customer-community-portal-content-type-mdt-filter-value-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Filter_Value__c",
+   "object": "Portal_Content_Type__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Portal_Content_Type__mdt.Filter_Value__c is used by the portal"
+  },
+  {
+   "id": "customer-community-portal-content-type-mdt-is-active-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Is_Active__c",
+   "object": "Portal_Content_Type__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Portal_Content_Type__mdt.Is_Active__c is used by the portal"
+  },
+  {
+   "id": "customer-community-new-community-user-e-customer-email-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "Customer_Email__c",
+   "object": "New_Community_User__e",
+   "verified_on": "2026-11-11",
+   "claim": "New_Community_User__e.Customer_Email__c is used by the portal"
+  },
+  {
+   "id": "customer-community-new-community-user-e-contactid-c",
+   "tab": "customer-community",
+   "type": "field",
+   "name": "ContactID__c",
+   "object": "New_Community_User__e",
+   "verified_on": "2026-11-11",
+   "claim": "New_Community_User__e.ContactID__c is used by the portal"
+  },
+  {
+   "id": "customer-community-mobile-support",
+   "tab": "customer-community",
+   "type": "recordType",
+   "name": "Mobile_Support",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Portal exposes Case record type Mobile_Support"
+  },
+  {
+   "id": "customer-community-mobile-demand-support",
+   "tab": "customer-community",
+   "type": "recordType",
+   "name": "Mobile_Demand_Support",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Portal exposes Case record type Mobile_Demand_Support"
+  },
+  {
+   "id": "customer-community-tapjoy-support",
+   "tab": "customer-community",
+   "type": "recordType",
+   "name": "Tapjoy_Support",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Portal exposes Case record type Tapjoy_Support"
+  },
+  {
+   "id": "customer-community-finance-support",
+   "tab": "customer-community",
+   "type": "recordType",
+   "name": "Finance_Support",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Portal exposes Case record type Finance_Support"
+  },
+  {
+   "id": "customer-community-fraud-claim",
+   "tab": "customer-community",
+   "type": "recordType",
+   "name": "Fraud_Claim",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Portal exposes Case record type Fraud_Claim"
+  },
+  {
+   "id": "customer-community-unity-support",
+   "tab": "customer-community",
+   "type": "recordType",
+   "name": "Unity_Support",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Portal exposes Case record type Unity_Support"
+  },
+  {
+   "id": "customer-community-matchcontactbatch",
+   "tab": "customer-community",
+   "type": "apexClass",
+   "name": "MatchContactBatch",
+   "verified_on": "2026-11-11",
+   "claim": "MatchContactBatch runs nightly; live check is AsyncApexJob for the class, not CronTrigger"
+  },
+  {
+   "id": "customer-community-shani-kovalsky",
+   "tab": "customer-community",
+   "type": "user",
+   "name": "Shani Kovalsky",
+   "verified_on": "2026-11-11",
+   "claim": "Shani Kovalsky is a named owner/developer on the Customer Community tab"
+  },
+  {
+   "id": "customer-community-andrii-bosak",
+   "tab": "customer-community",
+   "type": "user",
+   "name": "Andrii Bosak",
+   "verified_on": "2026-11-11",
+   "claim": "Andrii Bosak is a named owner/developer on the Customer Community tab"
+  },
+  {
+   "id": "customer-community-aylin-lee",
+   "tab": "customer-community",
+   "type": "user",
+   "name": "Aylin Lee",
+   "verified_on": "2026-11-11",
+   "claim": "Aylin Lee is a named owner/developer on the Customer Community tab"
+  },
+  {
+   "id": "customer-community-danill-rekov",
+   "tab": "customer-community",
+   "type": "user",
+   "name": "Danill Rekov",
+   "verified_on": "2026-11-11",
+   "claim": "Danill Rekov is a named owner/developer on the Customer Community tab"
+  },
+  {
+   "id": "customer-community-neta-ronen",
+   "tab": "customer-community",
+   "type": "user",
+   "name": "Neta Ronen",
+   "verified_on": "2026-11-11",
+   "claim": "Neta Ronen is a named owner/developer on the Customer Community tab"
+  },
+  {
+   "id": "deals-create-opportunity-deal-ads",
+   "tab": "deals",
+   "type": "flow",
+   "name": "Create_Opportunity_Deal_Ads",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Create Opportunity Deal Ads screen flow is active (deal wizard)"
+  },
+  {
+   "id": "deals-deal-create-supply-deal-dispute",
+   "tab": "deals",
+   "type": "flow",
+   "name": "Deal_Create_Supply_Deal_Dispute",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Deal - Create Supply Deal Dispute screen flow is active (Create Disputes button)"
+  },
+  {
+   "id": "deals-dispute-set-dispute-approvers",
+   "tab": "deals",
+   "type": "flow",
+   "name": "Dispute_Set_dispute_approvers",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Dispute - Set dispute approvers is active and decides dispute approvers"
+  },
+  {
+   "id": "deals-deal-approval-process-v4",
+   "tab": "deals",
+   "type": "approvalProcess",
+   "name": "Deal_Approval_Process_v4",
+   "object": "Opportunity",
+   "active": true,
+   "contains": [
+    "\\A(?:(?!<approvalStep>)[\\s\\S])*(?:<approvalStep>(?:(?!<approvalStep>)[\\s\\S])*){4}\\Z"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Supply approval Deal_Approval_Process_v4 is active with four steps"
+  },
+  {
+   "id": "deals-demand-deal-approval-process-v2",
+   "tab": "deals",
+   "type": "approvalProcess",
+   "name": "Demand_Deal_Approval_Process_V2",
+   "object": "Opportunity",
+   "active": true,
+   "contains": [
+    "\\A(?:(?!<approvalStep>)[\\s\\S])*(?:<approvalStep>(?:(?!<approvalStep>)[\\s\\S])*){4}\\Z"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Demand approval Demand_Deal_Approval_Process_V2 is active with four steps"
+  },
+  {
+   "id": "deals-deal-approval-process-v2",
+   "tab": "deals",
+   "type": "approvalProcess",
+   "name": "Deal_Approval_Process_v2",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Older approval process Deal_Approval_Process_v2 is still present in the org"
+  },
+  {
+   "id": "deals-deal-approval-process-v3",
+   "tab": "deals",
+   "type": "approvalProcess",
+   "name": "Deal_Approval_Process_v3",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Older approval process Deal_Approval_Process_v3 is still present in the org"
+  },
+  {
+   "id": "deals-demand-deal-approval-process",
+   "tab": "deals",
+   "type": "approvalProcess",
+   "name": "Demand_Deal_Approval_Process",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Older approval process Demand_Deal_Approval_Process is still present in the org"
+  },
+  {
+   "id": "deals-mobile-growth",
+   "tab": "deals",
+   "type": "recordType",
+   "name": "Mobile_Growth",
+   "object": "Opportunity",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity record type Mobile_Growth (Ads Deal Desk) is the deal"
+  },
+  {
+   "id": "deals-supply-dispute",
+   "tab": "deals",
+   "type": "recordType",
+   "name": "Supply_dispute",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c record type Supply_dispute is used for deal disputes"
+  },
+  {
+   "id": "deals-demand-dispute",
+   "tab": "deals",
+   "type": "recordType",
+   "name": "Demand_dispute",
+   "object": "Dispute__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c record type Demand_dispute is used for deal disputes"
+  },
+  {
+   "id": "deals-incentive-c",
+   "tab": "deals",
+   "type": "object",
+   "name": "incentive__c",
+   "verified_on": "2026-11-11",
+   "claim": "incentive__c exists as named in the Deals tab"
+  },
+  {
+   "id": "deals-offer-c",
+   "tab": "deals",
+   "type": "object",
+   "name": "Offer__c",
+   "verified_on": "2026-11-11",
+   "claim": "Offer__c exists as named in the Deals tab"
+  },
+  {
+   "id": "deals-deal-c",
+   "tab": "deals",
+   "type": "object",
+   "name": "Deal__c",
+   "verified_on": "2026-11-11",
+   "claim": "Deal__c exists as named in the Deals tab"
+  },
+  {
+   "id": "deals-deal-accounts-c",
+   "tab": "deals",
+   "type": "object",
+   "name": "Deal_Accounts__c",
+   "verified_on": "2026-11-11",
+   "claim": "Deal_Accounts__c exists as named in the Deals tab"
+  },
+  {
+   "id": "deals-approver-matrix-c",
+   "tab": "deals",
+   "type": "object",
+   "name": "Approver_Matrix__c",
+   "verified_on": "2026-11-11",
+   "claim": "Approver_Matrix__c exists as named in the Deals tab"
+  },
+  {
+   "id": "deals-dispute-amount-level-mdt",
+   "tab": "deals",
+   "type": "object",
+   "name": "Dispute_Amount_Level__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute_Amount_Level__mdt exists as named in the Deals tab"
+  },
+  {
+   "id": "deals-supply-deal-num-of-disputes-mdt",
+   "tab": "deals",
+   "type": "object",
+   "name": "Supply_Deal_Num_of_disputes__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Supply_Deal_Num_of_disputes__mdt exists as named in the Deals tab"
+  },
+  {
+   "id": "deals-incentive-c-payment-frequency-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Payment_Frequency__c",
+   "object": "incentive__c",
+   "contains": [
+    "<fullName>Monthly\\ Bonus</fullName>",
+    "<fullName>Quarterly\\ Bonus</fullName>",
+    "<fullName>Half\\ Yearly\\ Bonus</fullName>",
+    "<fullName>Yearly\\ Bonus</fullName>",
+    "<fullName>One\\ Time\\ Integration\\ Fee</fullName>",
+    "<fullName>One\\ Time\\ Payment\\ Yearly</fullName>",
+    "<fullName>One\\ Time\\ Payment\\ Quarterly</fullName>",
+    "<fullName>Performance\\ Bonus\\ Prepayment</fullName>",
+    "<fullName>Monthly\\ Rebate</fullName>",
+    "<fullName>Quarterly\\ Rebate</fullName>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "incentive__c.Payment_Frequency__c is used by the deal process"
+  },
+  {
+   "id": "deals-incentive-c-incentive-basis-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Incentive_Basis__c",
+   "object": "incentive__c",
+   "verified_on": "2026-11-11",
+   "claim": "incentive__c.Incentive_Basis__c is used by the deal process"
+  },
+  {
+   "id": "deals-incentive-c-payment-method-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Payment_Method__c",
+   "object": "incentive__c",
+   "verified_on": "2026-11-11",
+   "claim": "incentive__c.Payment_Method__c is used by the deal process"
+  },
+  {
+   "id": "deals-incentive-c-payment-structure-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Payment_Structure__c",
+   "object": "incentive__c",
+   "verified_on": "2026-11-11",
+   "claim": "incentive__c.Payment_Structure__c is used by the deal process"
+  },
+  {
+   "id": "deals-incentive-c-demand-account-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Demand_Account__c",
+   "object": "incentive__c",
+   "verified_on": "2026-11-11",
+   "claim": "incentive__c.Demand_Account__c is used by the deal process"
+  },
+  {
+   "id": "deals-incentive-c-disputes-created-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Disputes_Created__c",
+   "object": "incentive__c",
+   "verified_on": "2026-11-11",
+   "claim": "incentive__c.Disputes_Created__c is used by the deal process"
+  },
+  {
+   "id": "deals-incentive-c-of-disputes-created-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "of_Disputes_created__c",
+   "object": "incentive__c",
+   "verified_on": "2026-11-11",
+   "claim": "incentive__c.of_Disputes_created__c is used by the deal process"
+  },
+  {
+   "id": "deals-offer-c-x1st-range-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "X1st_Range__c",
+   "object": "Offer__c",
+   "verified_on": "2026-11-11",
+   "claim": "Offer__c.X1st_Range__c is used by the deal process"
+  },
+  {
+   "id": "deals-offer-c-x4th-range-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "X4th_Range__c",
+   "object": "Offer__c",
+   "verified_on": "2026-11-11",
+   "claim": "Offer__c.X4th_Range__c is used by the deal process"
+  },
+  {
+   "id": "deals-offer-c-x7th-range-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "X7th_Range__c",
+   "object": "Offer__c",
+   "verified_on": "2026-11-11",
+   "claim": "Offer__c.X7th_Range__c is used by the deal process"
+  },
+  {
+   "id": "deals-opportunity-sdrowner-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "SDROwner__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.SDROwner__c is used by the deal process"
+  },
+  {
+   "id": "deals-opportunity-global-biz-dev-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Global_Biz_Dev__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.Global_Biz_Dev__c is used by the deal process"
+  },
+  {
+   "id": "deals-opportunity-finance-approver-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Finance_Approver__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.Finance_Approver__c is used by the deal process"
+  },
+  {
+   "id": "deals-opportunity-chief-financial-approver-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Chief_Financial_Approver__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.Chief_Financial_Approver__c is used by the deal process"
+  },
+  {
+   "id": "deals-approver-matrix-c-approver-1-long-id-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Approver_1_Long_ID__c",
+   "object": "Approver_Matrix__c",
+   "verified_on": "2026-11-11",
+   "claim": "Approver_Matrix__c.Approver_1_Long_ID__c is used by the deal process"
+  },
+  {
+   "id": "deals-approver-matrix-c-approver-4-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Approver_4__c",
+   "object": "Approver_Matrix__c",
+   "verified_on": "2026-11-11",
+   "claim": "Approver_Matrix__c.Approver_4__c is used by the deal process"
+  },
+  {
+   "id": "deals-dispute-c-automatic-deal-dispute-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Automatic_Deal_Dispute__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Automatic_Deal_Dispute__c is used by the deal process"
+  },
+  {
+   "id": "deals-dispute-c-deal-c",
+   "tab": "deals",
+   "type": "field",
+   "name": "Deal__c",
+   "object": "Dispute__c",
+   "verified_on": "2026-11-11",
+   "claim": "Dispute__c.Deal__c is used by the deal process"
+  },
+  {
+   "id": "deals-ar-permissions",
+   "tab": "deals",
+   "type": "customPermission",
+   "name": "AR_permissions",
+   "verified_on": "2026-11-11",
+   "claim": "Revenue Accounting permission (AR_permissions) makes Dispute_Set_dispute_approvers skip re-run"
+  },
+  {
+   "id": "deals-tal-rahamim",
+   "tab": "deals",
+   "type": "user",
+   "name": "Tal Rahamim",
+   "verified_on": "2026-11-11",
+   "claim": "Tal Rahamim is a named owner/contact on the Deals tab"
+  },
+  {
+   "id": "deals-bar-damti",
+   "tab": "deals",
+   "type": "user",
+   "name": "Bar Damti",
+   "verified_on": "2026-11-11",
+   "claim": "Bar Damti is a named owner/contact on the Deals tab"
+  },
+  {
+   "id": "deals-elad-zommer",
+   "tab": "deals",
+   "type": "user",
+   "name": "Elad Zommer",
+   "verified_on": "2026-11-11",
+   "claim": "Elad Zommer is a named owner/contact on the Deals tab"
+  },
+  {
+   "id": "deals-amir-tapiro",
+   "tab": "deals",
+   "type": "user",
+   "name": "Amir Tapiro",
+   "verified_on": "2026-11-11",
+   "claim": "Amir Tapiro is a named owner/contact on the Deals tab"
+  },
+  {
+   "id": "deals-david-amar",
+   "tab": "deals",
+   "type": "user",
+   "name": "David Amar",
+   "verified_on": "2026-11-11",
+   "claim": "David Amar is a named owner/contact on the Deals tab"
+  },
+  {
+   "id": "deals-yakov-asael",
+   "tab": "deals",
+   "type": "user",
+   "name": "Yakov Asael",
+   "verified_on": "2026-11-11",
+   "claim": "Yakov Asael is a named owner/contact on the Deals tab"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-create-new-case-for-supply-consultation",
+   "tab": "game-design-revenue-consultancy",
+   "type": "flow",
+   "name": "Case_Create_new_case_for_Supply_Consultation",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case_Create_new_case_for_Supply_Consultation is active: creation screen flow behind the global action"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-game-monetization-consultancy-before-record-save-actions",
+   "tab": "game-design-revenue-consultancy",
+   "type": "flow",
+   "name": "Case_Game_Monetization_Consultancy_Before_Record_Save_Actions",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case_Game_Monetization_Consultancy_Before_Record_Save_Actions is active: before-save flow stamps status timestamp"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-game-monetization-consultancy-triggers",
+   "tab": "game-design-revenue-consultancy",
+   "type": "flow",
+   "name": "Case_Game_Monetization_Consultancy_Triggers",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case_Game_Monetization_Consultancy_Triggers is active: validation flow enforcing six stage gates"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-game-monetization-consultancy-notifications",
+   "tab": "game-design-revenue-consultancy",
+   "type": "flow",
+   "name": "Case_Game_Monetization_Consultancy_Notifications",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case_Game_Monetization_Consultancy_Notifications is active: alerting engine flow"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-game-monetization-consultancy-similar-cases",
+   "tab": "game-design-revenue-consultancy",
+   "type": "flow",
+   "name": "Case_Game_Monetization_Consultancy_Similar_Cases",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case_Game_Monetization_Consultancy_Similar_Cases is active: read-only similar cases screen flow"
+  },
+  {
+   "id": "game-design-revenue-consultancy-gdrc-can-be-created-only-from-screen",
+   "tab": "game-design-revenue-consultancy",
+   "type": "validationRule",
+   "name": "GDRC_can_be_created_only_from_screen",
+   "object": "Case",
+   "active": true,
+   "contains": [
+    "Game Design (&amp;|&) Revenue Consultancy"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "GDRC_can_be_created_only_from_screen is the one validation rule definitely active on this record type"
+  },
+  {
+   "id": "game-design-revenue-consultancy-cant-change-status-before-approval",
+   "tab": "game-design-revenue-consultancy",
+   "type": "validationRule",
+   "name": "Cant_change_status_before_approval",
+   "object": "Case",
+   "active": false,
+   "verified_on": "2026-11-11",
+   "claim": "Cant_change_status_before_approval reads as inactive"
+  },
+  {
+   "id": "game-design-revenue-consultancy-game-monetization-consultancy",
+   "tab": "game-design-revenue-consultancy",
+   "type": "recordType",
+   "name": "Game_Monetization_Consultancy",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case record type Game_Monetization_Consultancy is the only one the process uses"
+  },
+  {
+   "id": "game-design-revenue-consultancy-game-monetization-consultancy-submit-permission",
+   "tab": "game-design-revenue-consultancy",
+   "type": "customPermission",
+   "name": "Game_Monetization_Consultancy_Submit_Permission",
+   "verified_on": "2026-11-11",
+   "claim": "Game_Monetization_Consultancy_Submit_Permission exempts holders from the old approval gate"
+  },
+  {
+   "id": "game-design-revenue-consultancy-gamemonetizationconsultancyalerts-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "object",
+   "name": "GameMonetizationConsultancyAlerts__c",
+   "verified_on": "2026-11-11",
+   "claim": "GameMonetizationConsultancyAlerts__c holds one alert row per status"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-agreed-kpi-success-metric-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "Agreed_KPI_Success_Metric__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Agreed_KPI_Success_Metric__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-suspended-reason-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "Suspended_Reason__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Suspended_Reason__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-next-steps-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "Next_Steps__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Next_Steps__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-network-rejection-reason-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "Network_Rejection_reason__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Network_Rejection_reason__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-cp-attended-pre-delivery-alignment-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "CP_Attended_Pre_Delivery_Alignment__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.CP_Attended_Pre_Delivery_Alignment__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-legal-q5-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "Legal_Q5__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Legal_Q5__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-new-status-date-time-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "New_Status_Date_Time__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.New_Status_Date_Time__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-playdev-owner-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "PlayDev_Owner__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.PlayDev_Owner__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-case-publisher-timezone-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "Publisher_Timezone__c",
+   "object": "Case",
+   "verified_on": "2026-11-11",
+   "claim": "Case.Publisher_Timezone__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-gamemonetizationconsultancyalerts-c-scheduled-num-of-days-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "Scheduled_Num_Of_Days__c",
+   "object": "GameMonetizationConsultancyAlerts__c",
+   "verified_on": "2026-11-11",
+   "claim": "GameMonetizationConsultancyAlerts__c.Scheduled_Num_Of_Days__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-gamemonetizationconsultancyalerts-c-alert-description-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "Alert_Description__c",
+   "object": "GameMonetizationConsultancyAlerts__c",
+   "verified_on": "2026-11-11",
+   "claim": "GameMonetizationConsultancyAlerts__c.Alert_Description__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-gamemonetizationconsultancyalerts-c-subject-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "Subject__c",
+   "object": "GameMonetizationConsultancyAlerts__c",
+   "verified_on": "2026-11-11",
+   "claim": "GameMonetizationConsultancyAlerts__c.Subject__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-gamemonetizationconsultancyalerts-c-emails-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "Emails__c",
+   "object": "GameMonetizationConsultancyAlerts__c",
+   "verified_on": "2026-11-11",
+   "claim": "GameMonetizationConsultancyAlerts__c.Emails__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-gamemonetizationconsultancyalerts-c-userslackid-channel-id-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "UserSlackID_Channel_ID__c",
+   "object": "GameMonetizationConsultancyAlerts__c",
+   "verified_on": "2026-11-11",
+   "claim": "GameMonetizationConsultancyAlerts__c.UserSlackID_Channel_ID__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-gamemonetizationconsultancyalerts-c-status-c",
+   "tab": "game-design-revenue-consultancy",
+   "type": "field",
+   "name": "Status__c",
+   "object": "GameMonetizationConsultancyAlerts__c",
+   "verified_on": "2026-11-11",
+   "claim": "GameMonetizationConsultancyAlerts__c.Status__c is used by the GDRC process"
+  },
+  {
+   "id": "game-design-revenue-consultancy-franco-spina",
+   "tab": "game-design-revenue-consultancy",
+   "type": "user",
+   "name": "Franco Spina",
+   "verified_on": "2026-11-11",
+   "claim": "Franco Spina is a named owner on the GDRC tab"
+  },
+  {
+   "id": "game-design-revenue-consultancy-nathan-tenboer",
+   "tab": "game-design-revenue-consultancy",
+   "type": "user",
+   "name": "Nathan TenBoer",
+   "verified_on": "2026-11-11",
+   "claim": "Nathan TenBoer is a named owner on the GDRC tab"
+  },
+  {
+   "id": "game-design-revenue-consultancy-hagar-itzhak",
+   "tab": "game-design-revenue-consultancy",
+   "type": "user",
+   "name": "Hagar Itzhak",
+   "verified_on": "2026-11-11",
+   "claim": "Hagar Itzhak is a named owner on the GDRC tab"
+  },
+  {
+   "id": "game-design-revenue-consultancy-yakov-asael",
+   "tab": "game-design-revenue-consultancy",
+   "type": "user",
+   "name": "Yakov Asael",
+   "verified_on": "2026-11-11",
+   "claim": "Yakov Asael is a named owner on the GDRC tab"
+  },
+  {
+   "id": "gps-gps-create-new-opportunity",
+   "tab": "gps",
+   "type": "flow",
+   "name": "GPS_Create_new_opportunity",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "GPS_Create_new_opportunity is active: GPS - Create new opportunity screen flow (v7)"
+  },
+  {
+   "id": "gps-gps-update-account-when-deal-is-created",
+   "tab": "gps",
+   "type": "flow",
+   "name": "GPS_Update_account_when_deal_is_created",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "GPS_Update_account_when_deal_is_created is active: stamps the account when a deal appears"
+  },
+  {
+   "id": "gps-lead-gps-leads-trigger-handler",
+   "tab": "gps",
+   "type": "flow",
+   "name": "Lead_GPS_Leads_Trigger_Handler",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Lead_GPS_Leads_Trigger_Handler is active: Lead - GSP Leads Trigger Handler performs account matching (v6)"
+  },
+  {
+   "id": "gps-contact-update-status-change-ts-for-gsp-contacts",
+   "tab": "gps",
+   "type": "flow",
+   "name": "Contact_Update_Status_Change_TS_for_GSP_Contacts",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Contact_Update_Status_Change_TS_for_GSP_Contacts is active: Contact - Update Status GSP Contact maintains status timestamp"
+  },
+  {
+   "id": "gps-task-update-account-from-related-contact-lead",
+   "tab": "gps",
+   "type": "flow",
+   "name": "Task_Update_Account_from_related_contact_lead",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Task_Update_Account_from_related_contact_lead is active: populates Account on a task"
+  },
+  {
+   "id": "gps-case-email-message-update-gps-case",
+   "tab": "gps",
+   "type": "flow",
+   "name": "Case_Email_Message_update_GPS_case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case_Email_Message_update_GPS_case is active: Case - Email Message update GPS case"
+  },
+  {
+   "id": "gps-update-case-for-gps-support",
+   "tab": "gps",
+   "type": "flow",
+   "name": "Update_Case_for_GPS_Support",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Update_Case_for_GPS_Support is active: Update Case for GPS Support"
+  },
+  {
+   "id": "gps-task-gps",
+   "tab": "gps",
+   "type": "recordType",
+   "name": "GPS",
+   "object": "Task",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Task record type GPS is active"
+  },
+  {
+   "id": "gps-campaign-gps",
+   "tab": "gps",
+   "type": "recordType",
+   "name": "GPS",
+   "object": "Campaign",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Campaign record type GPS is active"
+  },
+  {
+   "id": "gps-case-gps-support",
+   "tab": "gps",
+   "type": "recordType",
+   "name": "GPS_Support",
+   "object": "Case",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Case record type GPS Support is active"
+  },
+  {
+   "id": "gps-event-meeting-c-gps",
+   "tab": "gps",
+   "type": "recordType",
+   "name": "GPS",
+   "object": "Event_Meeting__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Event_Meeting__c record type GPS is active"
+  },
+  {
+   "id": "gps-deal-c-gps",
+   "tab": "gps",
+   "type": "recordType",
+   "name": "GPS",
+   "object": "Deal__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Deal__c record type GPS is active"
+  },
+  {
+   "id": "gps-contact-status-gsp-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Status_GSP__c",
+   "object": "Contact",
+   "contains": [
+    "<fullName>New</fullName>",
+    "<fullName>MQL</fullName>",
+    "<fullName>Redistributed\\ MQL</fullName>",
+    "<fullName>Working</fullName>",
+    "<fullName>Nurture</fullName>",
+    "<fullName>Qualified</fullName>",
+    "<fullName>Unqualified</fullName>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Contact.Status_GSP__c is used by GPS"
+  },
+  {
+   "id": "gps-contact-unqualified-reason-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Unqualified_Reason__c",
+   "object": "Contact",
+   "contains": [
+    "<fullName>Bad\\ Fit</fullName>",
+    "(?i)<fullName>Bad\\ Info</fullName>",
+    "(?i)<fullName>No\\ Longer\\ with\\ Company</fullName>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Contact.Unqualified_Reason__c is used by GPS"
+  },
+  {
+   "id": "gps-contact-status-changed-timestamp-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Status_Changed_Timestamp__c",
+   "object": "Contact",
+   "verified_on": "2026-11-11",
+   "claim": "Contact.Status_Changed_Timestamp__c is used by GPS"
+  },
+  {
+   "id": "gps-contact-number-of-days-in-current-status-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Number_Of_Days_In_Current_Status__c",
+   "object": "Contact",
+   "verified_on": "2026-11-11",
+   "claim": "Contact.Number_Of_Days_In_Current_Status__c is used by GPS"
+  },
+  {
+   "id": "gps-contact-gps-agency-id-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "GPS_Agency_Id__c",
+   "object": "Contact",
+   "verified_on": "2026-11-11",
+   "claim": "Contact.GPS_Agency_Id__c is used by GPS"
+  },
+  {
+   "id": "gps-contact-account-type-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Account_Type__c",
+   "object": "Contact",
+   "verified_on": "2026-11-11",
+   "claim": "Contact.Account_Type__c is used by GPS"
+  },
+  {
+   "id": "gps-contact-account-name-formula-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Account_Name_Formula__c",
+   "object": "Contact",
+   "verified_on": "2026-11-11",
+   "claim": "Contact.Account_Name_Formula__c is used by GPS"
+  },
+  {
+   "id": "gps-contact-email-domain-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Email_Domain__c",
+   "object": "Contact",
+   "verified_on": "2026-11-11",
+   "claim": "Contact.Email_Domain__c is used by GPS"
+  },
+  {
+   "id": "gps-account-agency-of-record-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Agency_of_Record__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Agency_of_Record__c is used by GPS"
+  },
+  {
+   "id": "gps-account-division-picklist-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Division_Picklist__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Division_Picklist__c is used by GPS"
+  },
+  {
+   "id": "gps-account-global-biz-dev-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Global_Biz_Dev__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "The BDR on an Account is Account.Global_Biz_Dev__c (label BDR); Account.BDR__c was deleted 2026-05-04"
+  },
+  {
+   "id": "gps-lead-matched-account-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Matched_Account__c",
+   "object": "Lead",
+   "verified_on": "2026-11-11",
+   "claim": "Lead.Matched_Account__c is used by GPS"
+  },
+  {
+   "id": "gps-lead-matched-account-id-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Matched_Account_ID__c",
+   "object": "Lead",
+   "verified_on": "2026-11-11",
+   "claim": "Lead.Matched_Account_ID__c is used by GPS"
+  },
+  {
+   "id": "gps-lead-matched-account-name-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Matched_Account_Name__c",
+   "object": "Lead",
+   "verified_on": "2026-11-11",
+   "claim": "Lead.Matched_Account_Name__c is used by GPS"
+  },
+  {
+   "id": "gps-lead-matched-account-owner-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Matched_Account_Owner__c",
+   "object": "Lead",
+   "verified_on": "2026-11-11",
+   "claim": "Lead.Matched_Account_Owner__c is used by GPS"
+  },
+  {
+   "id": "gps-lead-division-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Division__c",
+   "object": "Lead",
+   "verified_on": "2026-11-11",
+   "claim": "Lead.Division__c is used by GPS"
+  },
+  {
+   "id": "gps-lead-department-picklist-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Department_Picklist__c",
+   "object": "Lead",
+   "verified_on": "2026-11-11",
+   "claim": "Lead.Department_Picklist__c is used by GPS"
+  },
+  {
+   "id": "gps-lead-app-url-from-form-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "App_URL_from_form__c",
+   "object": "Lead",
+   "verified_on": "2026-11-11",
+   "claim": "Lead.App_URL_from_form__c is used by GPS"
+  },
+  {
+   "id": "gps-activity-type-c",
+   "tab": "gps",
+   "type": "field",
+   "name": "Type__c",
+   "object": "Activity",
+   "verified_on": "2026-11-11",
+   "claim": "Activity.Type__c is used by GPS (Task fields live under Activity)"
+  },
+  {
+   "id": "gps-sebastian-diaz-jaramillo",
+   "tab": "gps",
+   "type": "user",
+   "name": "Sebastian Diaz Jaramillo",
+   "verified_on": "2026-11-11",
+   "claim": "Sebastian Diaz Jaramillo is a named contact on the GPS tab"
+  },
+  {
+   "id": "gps-michael-marzitelli",
+   "tab": "gps",
+   "type": "user",
+   "name": "Michael Marzitelli",
+   "verified_on": "2026-11-11",
+   "claim": "Michael Marzitelli is a named contact on the GPS tab"
+  },
+  {
+   "id": "gps-gwen-sparks",
+   "tab": "gps",
+   "type": "user",
+   "name": "Gwen Sparks",
+   "verified_on": "2026-11-11",
+   "claim": "Gwen Sparks is a named contact on the GPS tab"
+  },
+  {
+   "id": "gps-adam-kadet",
+   "tab": "gps",
+   "type": "user",
+   "name": "Adam Kadet",
+   "verified_on": "2026-11-11",
+   "claim": "Adam Kadet is a named contact on the GPS tab"
+  },
+  {
+   "id": "gps-ryan-amante",
+   "tab": "gps",
+   "type": "user",
+   "name": "Ryan Amante",
+   "verified_on": "2026-11-11",
+   "claim": "Ryan Amante is a named contact on the GPS tab"
+  },
+  {
+   "id": "gps-chris-feo",
+   "tab": "gps",
+   "type": "user",
+   "name": "Chris Feo",
+   "verified_on": "2026-11-11",
+   "claim": "Chris Feo is a named contact on the GPS tab"
+  },
+  {
+   "id": "gps-chris-jerome",
+   "tab": "gps",
+   "type": "user",
+   "name": "Chris Jerome",
+   "verified_on": "2026-11-11",
+   "claim": "Chris Jerome is a named contact on the GPS tab"
+  },
+  {
+   "id": "gps-drew-bassler",
+   "tab": "gps",
+   "type": "user",
+   "name": "Drew Bassler",
+   "verified_on": "2026-11-11",
+   "claim": "Drew Bassler is a named contact on the GPS tab"
+  },
+  {
+   "id": "gps-melissa-jensen",
+   "tab": "gps",
+   "type": "user",
+   "name": "Melissa Jensen",
+   "verified_on": "2026-11-11",
+   "claim": "Melissa Jensen is a named contact on the GPS tab"
+  },
+  {
+   "id": "gps-amir-weingrod",
+   "tab": "gps",
+   "type": "user",
+   "name": "Amir Weingrod",
+   "verified_on": "2026-11-11",
+   "claim": "Amir Weingrod is a named contact on the GPS tab"
+  },
+  {
+   "id": "gps-yakov-asael",
+   "tab": "gps",
+   "type": "user",
+   "name": "Yakov Asael",
+   "verified_on": "2026-11-11",
+   "claim": "Yakov Asael is a named contact on the GPS tab"
+  },
+  {
+   "id": "handover-grow-ads-account-handover",
+   "tab": "handover",
+   "type": "flow",
+   "name": "Grow_Ads_Account_Handover",
+   "active": true,
+   "contains": [
+    "<numberValue>90(\\.0)?</numberValue>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Grow_Ads_Account_Handover is active: screen flow creates Hand_Over__c; blocks SMB moves at >=90% credit used"
+  },
+  {
+   "id": "handover-handover-calculate-estimated-quata-amount",
+   "tab": "handover",
+   "type": "flow",
+   "name": "HandOver_Calculate_Estimated_Quata_Amount",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "HandOver_Calculate_Estimated_Quata_Amount is active: recalculates quota to move"
+  },
+  {
+   "id": "handover-handover-reject-automatically-after-open-for-30-days",
+   "tab": "handover",
+   "type": "flow",
+   "name": "Handover_Reject_Automatically_after_open_for_30_days",
+   "active": true,
+   "contains": [
+    "<startTime>03:30"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Handover_Reject_Automatically_after_open_for_30_days is active: scheduled daily at 03:30 UTC"
+  },
+  {
+   "id": "handover-handover-update-new-owner-on-transfer-date",
+   "tab": "handover",
+   "type": "flow",
+   "name": "HandOver_Update_new_owner_on_transfer_date",
+   "active": true,
+   "contains": [
+    "<startTime>11:00"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "HandOver_Update_new_owner_on_transfer_date is active, scheduled daily at 11:00 UTC; the only thing that moves the account"
+  },
+  {
+   "id": "handover-handover-run-notification-flow",
+   "tab": "handover",
+   "type": "flow",
+   "name": "Handover_Run_Notification_Flow",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Handover_Run_Notification_Flow is active: sets Run_Notification_Flow__c"
+  },
+  {
+   "id": "handover-handover-slack-notifications",
+   "tab": "handover",
+   "type": "flow",
+   "name": "HandOver_Slack_Notifications",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "HandOver_Slack_Notifications is active: sends Centro Slack card"
+  },
+  {
+   "id": "handover-hand-over-send-notification-to-approver",
+   "tab": "handover",
+   "type": "flow",
+   "name": "Hand_Over_Send_Notification_to_Approver",
+   "active": true,
+   "contains": [
+    "<startTime>20:00"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over_Send_Notification_to_Approver is active: scheduled daily at 20:00 UTC approver chaser"
+  },
+  {
+   "id": "handover-hand-over-unlock-for-fp-a-team",
+   "tab": "handover",
+   "type": "flow",
+   "name": "Hand_Over_Unlock_for_FP_A_Team",
+   "active": false,
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over_Unlock_for_FP_A_Team is inactive in the org"
+  },
+  {
+   "id": "handover-grow-ho-process",
+   "tab": "handover",
+   "type": "approvalProcess",
+   "name": "Grow_HO_Process",
+   "object": "Hand_Over__c",
+   "active": true,
+   "contains": [
+    "\\A(?:(?!<approvalStep>)[\\s\\S])*(?:<approvalStep>(?:(?!<approvalStep>)[\\s\\S])*){3}\\Z"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Grow HO Process on Hand_Over__c routes up to three steps"
+  },
+  {
+   "id": "handover-block-ho-creation-for-accounts-by-id",
+   "tab": "handover",
+   "type": "validationRule",
+   "name": "Block_HO_Creation_for_accounts_by_id",
+   "object": "Hand_Over__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Block_HO_Creation_for_accounts_by_id is active on Hand_Over__c"
+  },
+  {
+   "id": "handover-cant-modify-account-finance-fields",
+   "tab": "handover",
+   "type": "validationRule",
+   "name": "Cant_Modify_Account_Finance_fields",
+   "object": "Hand_Over__c",
+   "active": false,
+   "verified_on": "2026-11-11",
+   "claim": "Cant_Modify_Account_Finance_fields is inactive on Hand_Over__c"
+  },
+  {
+   "id": "handover-grow-ads",
+   "tab": "handover",
+   "type": "recordType",
+   "name": "Grow_Ads",
+   "object": "Hand_Over__c",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c record type Grow Ads is the live handover"
+  },
+  {
+   "id": "handover-hand-over-approval-notification",
+   "tab": "handover",
+   "type": "emailAlert",
+   "name": "Hand_Over_Approval_Notification",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c email alert Hand_Over_Approval_Notification is used"
+  },
+  {
+   "id": "handover-finalalertowner",
+   "tab": "handover",
+   "type": "emailAlert",
+   "name": "FinalAlertOwner",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c email alert FinalAlertOwner is used"
+  },
+  {
+   "id": "handover-hand-over-c",
+   "tab": "handover",
+   "type": "object",
+   "name": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c exists as named in the Handover tab"
+  },
+  {
+   "id": "handover-handover-with-contacts-c",
+   "tab": "handover",
+   "type": "object",
+   "name": "Handover_with_Contacts__c",
+   "verified_on": "2026-11-11",
+   "claim": "Handover_with_Contacts__c exists as named in the Handover tab"
+  },
+  {
+   "id": "handover-team-report-region-mapping-c",
+   "tab": "handover",
+   "type": "object",
+   "name": "Team_Report_Region_Mapping__c",
+   "verified_on": "2026-11-11",
+   "claim": "Team_Report_Region_Mapping__c exists as named in the Handover tab"
+  },
+  {
+   "id": "handover-errorobject-c",
+   "tab": "handover",
+   "type": "object",
+   "name": "ErrorObject__c",
+   "verified_on": "2026-11-11",
+   "claim": "ErrorObject__c exists as named in the Handover tab"
+  },
+  {
+   "id": "handover-status-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Status__c",
+   "object": "Hand_Over__c",
+   "contains": [
+    "<fullName>On\\ Review</fullName>",
+    "<fullName>Approved</fullName>",
+    "<fullName>HO\\ Completed</fullName>",
+    "<fullName>Rejected</fullName>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Status__c is used by the process"
+  },
+  {
+   "id": "handover-quota-shift-needed-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Quota_Shift_Needed__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Quota_Shift_Needed__c is used by the process"
+  },
+  {
+   "id": "handover-current-manager-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Current_Manager__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Current_Manager__c is used by the process"
+  },
+  {
+   "id": "handover-new-manager-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "New_Manager__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.New_Manager__c is used by the process"
+  },
+  {
+   "id": "handover-senior-manager-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Senior_Manager__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Senior_Manager__c is used by the process"
+  },
+  {
+   "id": "handover-transfer-date-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Transfer_Date__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Transfer_Date__c is used by the process"
+  },
+  {
+   "id": "handover-suggested-amount-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Suggested_Amount__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Suggested_Amount__c is used by the process"
+  },
+  {
+   "id": "handover-run-notification-flow-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Run_Notification_Flow__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Run_Notification_Flow__c is used by the process"
+  },
+  {
+   "id": "handover-reject-automatically-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Reject_Automatically__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Reject_Automatically__c is used by the process"
+  },
+  {
+   "id": "handover-handover-type-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "HandOver_Type__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.HandOver_Type__c is used by the process"
+  },
+  {
+   "id": "handover-approval-date-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Approval_Date__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Approval_Date__c is used by the process"
+  },
+  {
+   "id": "handover-notification-counter-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Notification_Counter__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Notification_Counter__c is used by the process"
+  },
+  {
+   "id": "handover-approver-slack-id-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Approver_Slack_ID__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Approver_Slack_ID__c is used by the process"
+  },
+  {
+   "id": "handover-time-for-notification-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Time_For_Notification__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Time_For_Notification__c is used by the process"
+  },
+  {
+   "id": "handover-run-unlock-flow-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Run_Unlock_Flow__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Run_Unlock_Flow__c is used by the process"
+  },
+  {
+   "id": "handover-current-approver-email-c",
+   "tab": "handover",
+   "type": "field",
+   "name": "Current_Approver_Email__c",
+   "object": "Hand_Over__c",
+   "verified_on": "2026-11-11",
+   "claim": "Hand_Over__c.Current_Approver_Email__c is used by the process"
+  },
+  {
+   "id": "handover-bar-damti",
+   "tab": "handover",
+   "type": "user",
+   "name": "Bar Damti",
+   "verified_on": "2026-11-11",
+   "claim": "Bar Damti is a named owner on the Handover tab"
+  },
+  {
+   "id": "handover-tal-rahamim",
+   "tab": "handover",
+   "type": "user",
+   "name": "Tal Rahamim",
+   "verified_on": "2026-11-11",
+   "claim": "Tal Rahamim is a named owner on the Handover tab"
+  },
+  {
+   "id": "handover-adi-norman-moskovich",
+   "tab": "handover",
+   "type": "user",
+   "name": "Adi Norman Moskovich",
+   "verified_on": "2026-11-11",
+   "claim": "Adi Norman Moskovich is a named owner on the Handover tab"
+  },
+  {
+   "id": "handover-neta-ronen",
+   "tab": "handover",
+   "type": "user",
+   "name": "Neta Ronen",
+   "verified_on": "2026-11-11",
+   "claim": "Neta Ronen is a named owner on the Handover tab"
+  },
+  {
+   "id": "handover-yakov-asael",
+   "tab": "handover",
+   "type": "user",
+   "name": "Yakov Asael",
+   "verified_on": "2026-11-11",
+   "claim": "Yakov Asael is a named owner on the Handover tab"
+  },
+  {
+   "id": "knowledge-knowledge-kav",
+   "tab": "knowledge",
+   "type": "object",
+   "name": "Knowledge__kav",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge__kav is the article object"
+  },
+  {
+   "id": "knowledge-external",
+   "tab": "knowledge",
+   "type": "recordType",
+   "name": "External",
+   "object": "Knowledge__kav",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge__kav record type External is used by the flows"
+  },
+  {
+   "id": "knowledge-internal",
+   "tab": "knowledge",
+   "type": "recordType",
+   "name": "Internal",
+   "object": "Knowledge__kav",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge__kav record type Internal is used by the flows"
+  },
+  {
+   "id": "knowledge-knowledge-create-a-new-template",
+   "tab": "knowledge",
+   "type": "flow",
+   "name": "Knowledge_Create_a_new_template",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Create_a_new_template is active: Create new article screen flow"
+  },
+  {
+   "id": "knowledge-knowledge-after-creation-trigger",
+   "tab": "knowledge",
+   "type": "flow",
+   "name": "Knowledge_After_Creation_Trigger",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_After_Creation_Trigger is active: after-save flow, newest in the set"
+  },
+  {
+   "id": "knowledge-knowledge-article-review-an-article-button",
+   "tab": "knowledge",
+   "type": "flow",
+   "name": "Knowledge_Article_Review_an_article_button",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Article_Review_an_article_button is active: Reviewed button flow"
+  },
+  {
+   "id": "knowledge-knowledge-quarterly-review-notification",
+   "tab": "knowledge",
+   "type": "flow",
+   "name": "Knowledge_Quarterly_review_notification",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Quarterly_review_notification is active: scheduled review reminder"
+  },
+  {
+   "id": "knowledge-knowledge-send-last-week-published-knowledges",
+   "tab": "knowledge",
+   "type": "flow",
+   "name": "Knowledge_Send_Last_Week_Published_Knowledges",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Send_Last_Week_Published_Knowledges is active: weekly digest"
+  },
+  {
+   "id": "knowledge-pe-weekly-published-knowledge-notification",
+   "tab": "knowledge",
+   "type": "flow",
+   "name": "PE_Weekly_Published_Knowledge_Notification",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "PE_Weekly_Published_Knowledge_Notification is active: weekly digest platform event flow"
+  },
+  {
+   "id": "knowledge-knowledge-rating-screen",
+   "tab": "knowledge",
+   "type": "flow",
+   "name": "Knowledge_Rating_Screen",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Rating_Screen is active: internal rating capture screen"
+  },
+  {
+   "id": "knowledge-knowledge-create-knowledge-review-3-months-from-last-publish-date",
+   "tab": "knowledge",
+   "type": "flow",
+   "name": "Knowledge_Create_knowledge_review_3_months_from_last_publish_date",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Create_knowledge_review_3_months_from_last_publish_date is Active again since 2026-08-11"
+  },
+  {
+   "id": "knowledge-knowledgeratingaction",
+   "tab": "knowledge",
+   "type": "apexClass",
+   "name": "KnowledgeRatingAction",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class KnowledgeRatingAction is named in the Knowledge tab"
+  },
+  {
+   "id": "knowledge-customerportalcontroller",
+   "tab": "knowledge",
+   "type": "apexClass",
+   "name": "CustomerPortalController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class CustomerPortalController is named in the Knowledge tab"
+  },
+  {
+   "id": "knowledge-customerportalarticlecontroller",
+   "tab": "knowledge",
+   "type": "apexClass",
+   "name": "CustomerPortalArticleController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class CustomerPortalArticleController is named in the Knowledge tab"
+  },
+  {
+   "id": "knowledge-customerportalcategorycontroller",
+   "tab": "knowledge",
+   "type": "apexClass",
+   "name": "CustomerPortalCategoryController",
+   "verified_on": "2026-11-11",
+   "claim": "Apex class CustomerPortalCategoryController is named in the Knowledge tab"
+  },
+  {
+   "id": "knowledge-knowledge-rating-c",
+   "tab": "knowledge",
+   "type": "object",
+   "name": "Knowledge_Rating__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Rating__c exists as named in the Knowledge tab"
+  },
+  {
+   "id": "knowledge-promoted-articles-c",
+   "tab": "knowledge",
+   "type": "object",
+   "name": "Promoted_Articles__c",
+   "verified_on": "2026-11-11",
+   "claim": "Promoted_Articles__c exists as named in the Knowledge tab"
+  },
+  {
+   "id": "knowledge-support-knowledge-reviewers-mdt",
+   "tab": "knowledge",
+   "type": "object",
+   "name": "Support_Knowledge_Reviewers__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Support_Knowledge_Reviewers__mdt exists as named in the Knowledge tab"
+  },
+  {
+   "id": "knowledge-portal-product-mdt",
+   "tab": "knowledge",
+   "type": "object",
+   "name": "Portal_Product__mdt",
+   "verified_on": "2026-11-11",
+   "claim": "Portal_Product__mdt exists as named in the Knowledge tab"
+  },
+  {
+   "id": "knowledge-knowledge-article-review-c",
+   "tab": "knowledge",
+   "type": "object",
+   "name": "Knowledge_Article_Review__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Article_Review__c exists as named in the Knowledge tab"
+  },
+  {
+   "id": "knowledge-knowledge-kav-answer-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Answer__c",
+   "object": "Knowledge__kav",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge__kav.Answer__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-kav-need-review-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Need_Review__c",
+   "object": "Knowledge__kav",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge__kav.Need_Review__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-kav-x3-month-from-publish-date-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "X3_Month_from_Publish_Date__c",
+   "object": "Knowledge__kav",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge__kav.X3_Month_from_Publish_Date__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-kav-creator-role-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Creator_Role__c",
+   "object": "Knowledge__kav",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge__kav.Creator_Role__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-kav-category-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Category__c",
+   "object": "Knowledge__kav",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge__kav.Category__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-kav-product-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Product__c",
+   "object": "Knowledge__kav",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge__kav.Product__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-kav-department-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Department__c",
+   "object": "Knowledge__kav",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge__kav.Department__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-rating-c-like-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Like__c",
+   "object": "Knowledge_Rating__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Rating__c.Like__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-rating-c-dislike-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Dislike__c",
+   "object": "Knowledge_Rating__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Rating__c.Dislike__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-rating-c-dislike-reason-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Dislike_Reason__c",
+   "object": "Knowledge_Rating__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Rating__c.Dislike_Reason__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-rating-c-knowledge-article-id-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Knowledge_Article_Id__c",
+   "object": "Knowledge_Rating__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Rating__c.Knowledge_Article_Id__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-rating-c-knowledge-version-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Knowledge_Version__c",
+   "object": "Knowledge_Rating__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Rating__c.Knowledge_Version__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-promoted-articles-c-knowledge-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Knowledge__c",
+   "object": "Promoted_Articles__c",
+   "verified_on": "2026-11-11",
+   "claim": "Promoted_Articles__c.Knowledge__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-promoted-articles-c-order-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Order__c",
+   "object": "Promoted_Articles__c",
+   "verified_on": "2026-11-11",
+   "claim": "Promoted_Articles__c.Order__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-promoted-articles-c-active-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Active__c",
+   "object": "Promoted_Articles__c",
+   "verified_on": "2026-11-11",
+   "claim": "Promoted_Articles__c.Active__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-article-review-c-send-notification-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Send_Notification__c",
+   "object": "Knowledge_Article_Review__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Article_Review__c.Send_Notification__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-article-review-c-show-review-button-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Show_Review_Button__c",
+   "object": "Knowledge_Article_Review__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Article_Review__c.Show_Review_Button__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-knowledge-article-review-c-knowledge-status-c",
+   "tab": "knowledge",
+   "type": "field",
+   "name": "Knowledge_Status__c",
+   "object": "Knowledge_Article_Review__c",
+   "verified_on": "2026-11-11",
+   "claim": "Knowledge_Article_Review__c.Knowledge_Status__c is used by the Knowledge process"
+  },
+  {
+   "id": "knowledge-shani-kovalsky",
+   "tab": "knowledge",
+   "type": "user",
+   "name": "Shani Kovalsky",
+   "verified_on": "2026-11-11",
+   "claim": "Shani Kovalsky is a named owner/reviewer on the Knowledge tab"
+  },
+  {
+   "id": "knowledge-michal-smithline",
+   "tab": "knowledge",
+   "type": "user",
+   "name": "Michal Smithline",
+   "verified_on": "2026-11-11",
+   "claim": "Michal Smithline is a named owner/reviewer on the Knowledge tab"
+  },
+  {
+   "id": "knowledge-matthew-hunter",
+   "tab": "knowledge",
+   "type": "user",
+   "name": "Matthew Hunter",
+   "verified_on": "2026-11-11",
+   "claim": "Matthew Hunter is a named owner/reviewer on the Knowledge tab"
+  },
+  {
+   "id": "knowledge-andrii-bosak",
+   "tab": "knowledge",
+   "type": "user",
+   "name": "Andrii Bosak",
+   "verified_on": "2026-11-11",
+   "claim": "Andrii Bosak is a named owner/reviewer on the Knowledge tab"
+  },
+  {
+   "id": "knowledge-neta-ronen",
+   "tab": "knowledge",
+   "type": "user",
+   "name": "Neta Ronen",
+   "verified_on": "2026-11-11",
+   "claim": "Neta Ronen is a named owner/reviewer on the Knowledge tab"
+  },
+  {
+   "id": "knowledge-yakov-asael",
+   "tab": "knowledge",
+   "type": "user",
+   "name": "Yakov Asael",
+   "verified_on": "2026-11-11",
+   "claim": "Yakov Asael is a named owner/reviewer on the Knowledge tab"
+  },
+  {
+   "id": "pipeline-summary-all-open-supply-opps-lp-data-table-screen",
+   "tab": "pipeline-summary",
+   "type": "flow",
+   "name": "All_Open_Supply_Opps_LP_Data_Table_Screen",
+   "active": true,
+   "contains": [
+    "ADDMONTHS\\(TODAY\\(\\),-6\\)-1"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Open Supply Opps - LP tab flow (v33); Start Date window ADDMONTHS(TODAY(),-6)-1"
+  },
+  {
+   "id": "pipeline-summary-all-open-supply-ow-data-table-screen",
+   "tab": "pipeline-summary",
+   "type": "flow",
+   "name": "All_Open_Supply_OW_Data_Table_Screen",
+   "active": true,
+   "contains": [
+    "ADDMONTHS\\(TODAY\\(\\),-6\\)-1",
+    "<numberValue>100(\\.0)?</numberValue>"
+   ],
+   "verified_on": "2026-11-11",
+   "claim": "Open Supply Opps - OW tab flow (v25); Offerwall daily revenue above $100"
+  },
+  {
+   "id": "pipeline-summary-pipeline-home-page-demand-opps-per-sm",
+   "tab": "pipeline-summary",
+   "type": "flow",
+   "name": "Pipeline_Home_Page_Demand_Opps_Per_SM",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Open Demand Opps tab flow"
+  },
+  {
+   "id": "pipeline-summary-pipeline-home-page-aura-demand-data-table-screen",
+   "tab": "pipeline-summary",
+   "type": "flow",
+   "name": "Pipeline_Home_Page_Aura_Demand_Data_Table_Screen",
+   "active": true,
+   "verified_on": "2026-11-11",
+   "claim": "Open Aura Demand Opps tab flow (v13), not in the repo per handbook"
+  },
+  {
+   "id": "pipeline-summary-pipeline-owners",
+   "tab": "pipeline-summary",
+   "type": "customPermission",
+   "name": "Pipeline_Owners",
+   "verified_on": "2026-11-11",
+   "claim": "$Permission.Pipeline_Owners drives the visibility tier in the flows"
+  },
+  {
+   "id": "pipeline-summary-pipeline-owners-permissionset",
+   "tab": "pipeline-summary",
+   "type": "permissionSet",
+   "name": "Pipeline_Owners",
+   "verified_on": "2026-11-11",
+   "claim": "The Pipeline_Owners permission set grants the custom permission"
+  },
+  {
+   "id": "pipeline-summary-pipeline-tls",
+   "tab": "pipeline-summary",
+   "type": "customPermission",
+   "name": "Pipeline_TLs",
+   "verified_on": "2026-11-11",
+   "claim": "$Permission.Pipeline_TLs drives the visibility tier in the flows"
+  },
+  {
+   "id": "pipeline-summary-pipeline-tls-permissionset",
+   "tab": "pipeline-summary",
+   "type": "permissionSet",
+   "name": "Pipeline_TLs",
+   "verified_on": "2026-11-11",
+   "claim": "The Pipeline_TLs permission set grants the custom permission"
+  },
+  {
+   "id": "pipeline-summary-user-sales-crma-admin-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Sales_CRMA_Admin__c",
+   "object": "User",
+   "verified_on": "2026-11-11",
+   "claim": "User.Sales_CRMA_Admin__c is used by Pipeline Summary (User field, not a permission set)"
+  },
+  {
+   "id": "pipeline-summary-user-belong-to-mobile-sales-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Belong_to_Mobile_Sales__c",
+   "object": "User",
+   "verified_on": "2026-11-11",
+   "claim": "User.Belong_to_Mobile_Sales__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-user-team-reports-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Team_Reports__c",
+   "object": "User",
+   "verified_on": "2026-11-11",
+   "claim": "User.Team_Reports__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-opportunity-belong-to-mobile-sales-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Belong_to_mobile_sales__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.Belong_to_mobile_sales__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-opportunity-am-i-the-opp-owner-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Am_I_the_Opp_Owner__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.Am_I_the_Opp_Owner__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-opportunity-deal-team-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Deal_Team__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.Deal_Team__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-opportunity-app-go-live-date-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "App_Go_Live_Date__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.App_Go_Live_Date__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-opportunity-ow-daily-revenue-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "OW_Daily_Revenue__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.OW_Daily_Revenue__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-opportunity-weighted-tmr-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Weighted_TMR__c",
+   "object": "Opportunity",
+   "verified_on": "2026-11-11",
+   "claim": "Opportunity.Weighted_TMR__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-account-last-7-days-net-revenue-avg-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Last_7_days_net_revenue_avg__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Last_7_days_net_revenue_avg__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-account-last-7-days-revenue-avg-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Last_7_days_revenue_avg__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Last_7_days_revenue_avg__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-account-account-s-start-date-by-sm-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Account_s_start_date_by_SM__c",
+   "object": "Account",
+   "verified_on": "2026-11-11",
+   "claim": "Account.Account_s_start_date_by_SM__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-monthly-revenue-c-profit-180-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Profit_180__c",
+   "object": "Monthly_Revenue__c",
+   "verified_on": "2026-11-11",
+   "claim": "Monthly_Revenue__c.Profit_180__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-monthly-revenue-c-revenue-180-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Revenue_180__c",
+   "object": "Monthly_Revenue__c",
+   "verified_on": "2026-11-11",
+   "claim": "Monthly_Revenue__c.Revenue_180__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-forecasted-budget-c-forecast-weighted-amount-c",
+   "tab": "pipeline-summary",
+   "type": "field",
+   "name": "Forecast_Weighted_Amount__c",
+   "object": "Forecasted_Budget__c",
+   "verified_on": "2026-11-11",
+   "claim": "Forecasted_Budget__c.Forecast_Weighted_Amount__c is used by Pipeline Summary"
+  },
+  {
+   "id": "pipeline-summary-monthly-revenue-c",
+   "tab": "pipeline-summary",
+   "type": "object",
+   "name": "Monthly_Revenue__c",
+   "verified_on": "2026-11-11",
+   "claim": "Monthly_Revenue__c is read by the recipe"
+  },
+  {
+   "id": "pipeline-summary-forecasted-budget-c",
+   "tab": "pipeline-summary",
+   "type": "object",
+   "name": "Forecasted_Budget__c",
+   "verified_on": "2026-11-11",
+   "claim": "Forecasted_Budget__c is read by the recipe"
+  },
+  {
+   "id": "pipeline-summary-amir-tapiro",
+   "tab": "pipeline-summary",
+   "type": "user",
+   "name": "Amir Tapiro",
+   "verified_on": "2026-11-11",
+   "claim": "Amir Tapiro is a named owner on the Pipeline Summary tab"
+  },
+  {
+   "id": "pipeline-summary-david-amar",
+   "tab": "pipeline-summary",
+   "type": "user",
+   "name": "David Amar",
+   "verified_on": "2026-11-11",
+   "claim": "David Amar is a named owner on the Pipeline Summary tab"
+  },
+  {
+   "id": "pipeline-summary-yakov-asael",
+   "tab": "pipeline-summary",
+   "type": "user",
+   "name": "Yakov Asael",
+   "verified_on": "2026-11-11",
+   "claim": "Yakov Asael is a named owner on the Pipeline Summary tab"
+  }
+ ]
+}

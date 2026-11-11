@@ -6,6 +6,8 @@
 
 **Process:** Dispute · **Objects:** Dispute__c, Dispute_Line__c, Dispute_Freeze__c · **Date:** 9 August 2026 · **Business owner:** Bar Damti (Business Operations Manager), with Tal Rahamim · **Technical owner:** Dror Diamant → Noam Abutbul
 
+**Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
+
 # 1. What this process does
 
 A Dispute is the only supported way to change the amount on an invoice (advertiser) or a bill (publisher) after it has been created. An account manager raises one when a client is over-billed, when fraud is confirmed, when a rebate or incentive is owed, or when Unity has to claw revenue back from a publisher. It carries an amount, an activity period and a reason; it is approved through a tiered chain that reflects how much money is moving; and only then is it applied to a real invoice or bill. Everything finance reconciles at month end — the BI dispute lines, the credit notes, the SOX approval evidence — comes out of this process.
@@ -17,6 +19,8 @@ A Dispute is the only supported way to change the amount on an invoice (advertis
 **2.** Dispute_Set_dispute_approvers stamps the approver fields from the Approver Matrix and sets ApprovalStatus__c = "Pending Approval". Small amounts skip straight to "Approved by business".
 
 **3.** The Dispute Approval Process runs up to four sequential steps. Each step is skipped when its approver field is blank, so most disputes clear in two or three.
+
+> **Verified 2026-11-11:** Dispute_Approval_Process on `Dispute__c` has six approval steps (Approved_by_approver_1 to _6, reading `Demand_Dispute_Approver__c` and `Dispute_Approver_2__c` to `Dispute_Approver_6__c`), not four; steps 2-6 are skipped when their field is blank. The "step 3 of 6" wording in the approval email is correct. Dispute_Set_dispute_approvers stamps only approvers 2-4, so check approvers 5 and 6 on the record when a dispute stalls.
 
 **4.** On final approval ApprovalStatus__c becomes "Approved by business" and the Attach Invoice / Attach Bill button appears on the record.
 
@@ -88,6 +92,8 @@ Twenty-eight active flows. Three do most of the work and cause most of the incid
 | Dispute_Cancel_Dispute | Screen — Cancel Dispute button | Sets Status__c = "Canceled" and stamps Cancelled_Timestamp__c. This is the preferred end state for an approved dispute that is no longer needed — do not attach it to an invoice just to close it. |
 | Dispute_Update_revenue_on_the_first | Scheduled daily, acts only when Day_Today__c = 1 and the dispute was created last month | Recalculates last month's disputes into Activity_Period_Revenue__c and Activity_Period_Payout__c and the Banner / IS / OW splits, so the monthly revenue figure reflects late disputes. |
 
+> **Verified 2026-11-11:** In the Production metadata repo Dispute_Send_Monthly_Open_Disputes_Notification is status Draft (inactive) with a Daily schedule (start 2025-09-17), and it is no longer absent from the repo as the footnote says. Treat the monthly list as not running unless Flow Builder shows an active version. Dispute_PE_Send_Attach_Monthly_Notification is likewise Draft (inactive) in the repo. Dispute_PE_Send_Attach_Monthly_Notification is status Draft (inactive) in the Production metadata repo, consistent with the scheduled flow above being Draft. Since the 2026-09-11 deploy the flow also runs a Which_Channel decision on `Get_Account.Division_Picklist__c`: for Tapjoy accounts the channel must be OW, otherwise an error screen blocks creation. It also requires an incident_ID (`Incident_ID__c`) for Incident Relevant Rebate and offers 2027 as an activity year. Since 2026-09-11 the flow also publishes `Approve_Submit_Reject_Approval_Process__e` (Type "Submit For Approval") for the new dispute when it is not already Pending Approval, so SuperSonic disputes are submitted automatically. Renamed "Dispute - Auto Approve Async - Create" and, since August 2026, when a dispute is new and `Approved_Automatically__c` is true it also sets `Unapproved_Dispute_Attached__c` = false on the related `Bill__c` or `Invoice__c`. Dispute_Attach_Invoice was reworked in August 2026 (ISITBA-2946): it branches on SuperSonic vs other disputes, offers "Existing invoice / Next invoice / New Invoice" for positive Aura disputes, and assigns the bill type itself. The trigger is now CreateAndUpdate (was Update only) and the flow also creates the supply deal bill (Create_Bill_Supply_Deal), taking `Bill_approver__c` and `Finance_approver__c` from `Approver_Matrix__c` via Get_Bill_Approvers.
+
 *° Live in the org but absent from the metadata repo snapshot — description taken from the flow label and from build documents; confirm in Flow Builder.*
 
 **Live issue:** PE_Deduct_Add_dispute_to_invoice_or_bill — the flow that applies disputes flagged "waiting for next invoice/bill" — is INACTIVE in the org. Confirm this is intentional before promising anyone their dispute will attach next cycle.
@@ -118,6 +124,8 @@ Twenty-eight active flows. Three do most of the work and cause most of the incid
 | Fraud amount must match the fraud case | Attaching a fraud dispute whose amount differs from the case's approved amount | A pop-up on the Attach Invoice screen — users report it firing when the amounts do match | Stops disputes crediting more than the fraud investigation approved. It is not one of the eight active validation rules — verify where it is enforced before changing anything. |
 | Freeze blocks attachment | Attaching an invoice to a frozen dispute | "This dispute is under 'Freeze mode'. You cannot attach an invoice until we receive more information about this dispute. For more information, please contact Business Operations team." | Lets Business Operations hold a disputed amount while it is investigated. |
 
+> **Verified 2026-11-11:** Updated under ISITBA-3003 on 2026-11-02: Cant_Change_Send_to_bi_when_supply_deal now fires only when `Send_to_Finance__c` changes to true on a Supply Deal Incentives dispute, with the message "...cannot be sent to Finance." `Send_to_BI__c` is no longer blocked by this rule (it was, until November 2026).
+
 *26 of the 34 validation rules on Dispute__c are inactive, including Finance_can_approve_only_after_credit and Finance_can_approve_only_afterbillcredit, which the build documents describe as live controls. Treat those documents as out of date on this point — the org is authoritative.*
 
 # 5. Approval processes — what exists and what triggers each
@@ -127,6 +135,8 @@ Twenty-eight active flows. Three do most of the work and cause most of the incid
 | Dispute Approval Process | Dispute__c — every record type except SuperSonic | ApprovalStatus__c = "Pending Approval", set by Dispute_Set_dispute_approvers | 4 sequential steps reading user fields: Demand_Dispute_Approver__c → Dispute_Approver_2__c (skipped if blank or the same person as approver 1) → Dispute_Approver_3__c, where Adi Erdan, Bar Damti and Tal Rahamim can also approve → _4. Every step after the first is skipped when its field is blank. | Approve: ApprovalStatus__c = "Approved by business", approver ID cleared, approval timestamp set, attach and Slack notifications armed. Reject: status set to rejected, dispute closed, "dispute was rejected by business" email sent. |
 | Dispute finance approval | Dispute__c — any record type | Waiting_for_finance_approval__c = TRUE, set when the dispute is attached to an already-approved invoice or bill | One step: FinanceApprover__c, resolved from Disptue_Finance_Approver_For_Credit__mdt by Division + Department (§7). | Approve: dispute closed and finance status updated. Reject: status set back to rejected and the post-approval flow clears the invoice or bill from the dispute. |
 | SuperSonic Disputes Approval Process | Dispute__c — SuperSonic record type only | RecordType = SuperSonic AND ApprovalStatus__c = "Pending Approval" | One step: Demand_Dispute_Approver__c. | Approve: approval timestamp set and status moved to approved by dispute approver. Reject: closed and rejected. |
+
+> **Verified 2026-11-11:** The process continues past _4 with `Dispute_Approver_5__c` (step 5) and `Dispute_Approver_6__c` (step 6), each skipped when blank; check approvers 5 and 6 on the record when a dispute stalls.
 
 **Mutually exclusive:** the main process explicitly excludes RecordType = SuperSonic and the SuperSonic process explicitly requires it. Editing either entry criterion silently pushes SuperSonic disputes into the six-step chain, or leaves them with no process at all.
 

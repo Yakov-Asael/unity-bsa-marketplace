@@ -95,7 +95,7 @@ Three hard rules in ticket mode, because a ticket reply is read as a commitment:
 
 ## Staying honest about the source
 
-The handbook is a **snapshot from 9–10 August 2026**, and configuration drifts. One exception: the Credit Check tab's automated credit request section was added and verified on **7 October 2026**; caveat its values with that date instead. Add the caveat — "this is the August 2026 state, worth confirming in the org" — when your answer names a person, a number, a picklist value or a permission grant. Do not add it when the answer is only about mechanism: which flow fires, which object writes what, why a button is hidden. When an answer contains both, caveat only the named values.
+The handbook is a **snapshot from 9–10 August 2026**, verified against the org on **11 November 2026**: every place where the org had moved carries a `> **Verified 2026-11-11:**` note, and text without a note was found unchanged. Caveat named values as "verified November 2026, worth confirming in the org". Add the caveat when your answer names a person, a number, a picklist value or a permission grant. Do not add it when the answer is only about mechanism: which flow fires, which object writes what, why a button is hidden. When an answer contains both, caveat only the named values.
 
 If the person needs the *current* state of a value rather than the documented one, hand off to the `handbook-refresh` skill, which verifies handbook claims against the live Salesforce org. If they need a mechanism the handbook does not carry — a batch schedule, what a class does, a hardcoded threshold — hand off to `handbook-code-lookup`, which reads the deployed Apex. Do not run org queries yourself from this skill.
 

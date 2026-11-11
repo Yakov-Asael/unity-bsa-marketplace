@@ -21,6 +21,8 @@ Changes or bugs in how support cases behave: milestones, auto-close, assignment 
 - Record-type field gaps: add the field to the page layout and picklist values for that record type.
 - Division freezes/switches (e.g. subsidiary migration): validation rules blocking edits for a date window, then bulk update.
 - Status jumps after a post/comment (e.g. to 'On DSE' while Pending Customer) (owner feedback 2026-09-22): **open the metadata repo before answering** - `flows/Case_Update_Status_when_case_comment_is_created` (comment → Pending Customer / other status by author type), feed-item and email-message flows on Case, assignment rules and Omni/queue routing; read the case's Status history for the automation user that made the change. In the 2026-09 metadata copy no active Case flow sets 'On DSE' - so check queue routing and any Slack/Centro handler next.
+- Change a Knowledge article reviewer on the article itself: Edit as Draft, update Reviewer in the Information section, Save, then Publish (archives the old version). (learned 2026-10-14 from closed cases)
+- Locking Case.Priority for the Saleforce record type was implemented by making the field read-only on the page layout; a validation rule is the stricter option when flows or API updates must be blocked too. (learned 2026-09-30 from closed cases)
 
 ## What to ask the requester
 - Example ticket numbers showing the problem?

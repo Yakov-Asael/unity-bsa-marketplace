@@ -16,6 +16,7 @@ After a handover, last month's invoices/monthly revenue still point at the old A
 ## How we resolve it
 - Re-tag the monthly revenue / invoice AM field for the listed accounts to the new rep; report any account without an invoice for that month.
 - Ask whether the invoice and finance approvers should also change.
+- To remove an AM from Q3 crediting, clear the AM on the Monthly_Revenue__c records and on the invoices; tagging an invoice to another AM may still not show in the Net Rev dashboard. (learned 2026-11-08 from closed cases)
 
 ## What to ask the requester
 - Account links, month, and the new AM?

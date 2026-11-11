@@ -22,10 +22,15 @@ An invoice, bill, dispute, credit check, payment-terms or handover approver is m
 - Departed approver: replace in every matrix row and reassign records already routed to them.
 - Invoices cannot be submitted before the 3rd of the month - a date rule, not an approver problem; tell the requester to retry after the 3rd.
 - Delegated approvals: set the requester as delegated approver for the absent approver.
+- Cross-approval between credit analysts is not supported: each credit request routes to one named approver. Short term, reassign the pending requests to one covering analyst; long term, route credit approval to a queue. (learned 2026-10-14 from closed cases)
+- Credit request analyst assignment is a mapping by region and team: update the mapping rows, reassign the open credit requests and share the list of updated records. (learned 2026-10-14 from closed cases)
 
 ## What to ask the requester
 - Which object (invoice, bill, dispute, credit check, payment terms, handover) and which account/division?
 - Who should the new approver be, and has that person's manager agreed?
+- Dispute approver changes: confirm approver 1 and the finance approver against the team dispute matrix row before editing it. (learned 2026-10-14 from closed cases)
+- Confirm the exact regions in scope before reassigning credit requests. (learned 2026-10-14 from closed cases)
+- Confirm the region scope (for example AMER, not AMEA) and whether other teams move with the approver before reassigning credit request approvers. (learned 2026-11-08 from closed cases)
 
 ## Canonical answer
 **Summary:** 'No approver defined' means the approver matrix did not catch the record: **Bill Approver** / **Finance Approver** is blank on the account, the mapped user is inactive, or no matrix row exists for that payment approver (invoices / bills) or that team + manager + type (disputes).
@@ -39,7 +44,9 @@ An invoice, bill, dispute, credit check, payment-terms or handover approver is m
 7. Resubmit one record; it should route. Keep the sheet as SOX evidence (Credit, Invoice, Dispute, Bills matrices); refuse making anyone their own approver.
 
 ## Common mistakes
+- The Finance Collector is set by a trigger that runs only when an account changes, so a corrected mapping does not update existing accounts until they are touched. (learned 2026-11-08 from closed cases)
 
 ## Escalate when
 - Changes to SOX-relevant matrices (Credit, Invoice, Dispute, Bills) - keep the evidence trail for the quarterly control.
 - Requests to make someone their own approver.
+- Cross-approval or credit page edit rights are SOX-relevant: get the team leader approval before changing access. (learned 2026-10-14 from closed cases)

@@ -6,6 +6,8 @@
 
 **Process:** Connect 360 — users say "C360" or just "ticket" · **Object:** Performance_Manager_Request__c, labelled "Connect 360" · **Date:** 10 August 2026 · **Business owner:** Rotem Yosef, Morag Nadel · **Technical owner:** Dror Diamant → Hagar Itzhak
 
+**Verified against the org:** 2026-11-11 (drift scan of the SFDC-IS Production branch plus live checks).
+
 *§1–3 how the process works · §4–8 how it is built · §9 troubleshooting · §10–11 where to look next.*
 
 # 1. What this process does
@@ -17,6 +19,8 @@ A Connect 360 is a request for performance help on one advertiser or publisher a
 **1.** A request is raised: an AM reacts to a message in a Slack channel with the emoji, one of the Centro actions, or anyone uses the Create Connect 360 Form global action in Salesforce.
 
 **2.** Connect 360 - Actions on creation routes it. External Slack requests go straight to the Performance Manager named on the form. Salesforce and internal requests go to the Team Leader looked up from PerformanceManagerRequestTL__c on Region plus Product. Status__c = "Backlog" and the Team Leader becomes the owner.
+
+> **Verified 2026-11-11:** `Request_Source__c` now has four values: External Slack Channel, Internal Slack Channel, Salesforce and the new "Slack" (added 11 November 2026). Performance_Manager_Request_Run_Flow tests for "Slack" on new records, while Actions on creation still contains an "External Slack Channel" test.
 
 **3.** The Team Leader assigns a Performance Manager, from the Assign button in the Slack notification or in Salesforce. Status__c = "Assigned", ownership moves to the PfM, and Assigned_Timestamp__c is stamped.
 
@@ -61,6 +65,8 @@ Connect 360 has two record types, EMEA Team and APAC Team, and they are not two 
 | Network | iAds · uAds · iAds and uAds · TJ · TJ Demand | TJ · TJ Demand only. |
 | Task Type — the reporting field | 15 values | 6 values. Only Benchmarks & Best Practice and QBR appear on both, which is a fair summary of how differently the two teams work. |
 
+> **Verified 2026-11-11:** `Task_Type__c` on the EMEA Team record type now has 16 values and on APAC Team 7; "Benchmarks & Best Practice" was replaced by "Benchmarks" and "Campaign Sanity Check" was added to both, so Benchmarks, Campaign Sanity Check and QBR now appear on both. EMEA Team's `Task_Type_EMEA_Ads__c` list is now Benchmarks, Campaign Sanity Check, Creatives analysis, Drop Investigation; APAC Team keeps all seven EMEA Ads values. Both record types gained the `Sanity_Check_Type__c` and `Which_Metrics_Drop__c` picklists and the `Request_Source__c` value "Slack" (changes of 29 October and 11 November 2026).
+
 **Worth knowing before you change anything:** Connect 360 - Actions on creation branches on hardcoded 18-character record type IDs rather than on the record type name, and the APAC branch also carries a hardcoded queue ID. Cloning this process for a third region means editing the flow, not adding configuration.
 
 **The four Centro creation forms**
@@ -73,6 +79,8 @@ Centro does not present one form. EMEA has three, chosen by the account's divisi
 | EMEA TJ Demand | Task_Type_EMEA_TJ_Demand__c | Bid/GEO recommendations · Blocklist/Allowlist · Creatives analysis · Event flow / campaign setup analysis · Low conversion rate · Per app bidding · QBR |
 | EMEA TJ Supply | Task_Type_EMEA_TJ_Supply__c | Benchmarks & Best Practice · Geo Multiplayer · Placements · QBR · Segmentation · eCPM drop |
 | APAC | Task_Type_APAC__c | Benchmarks & Best Practice · Event Structure Analysis · Other · Performance Analysis · Performance Issue Investigation · QBR |
+
+> **Verified 2026-11-11:** `Task_Type_EMEA_Ads__c` now holds Benchmarks · Campaign Sanity Check · Campaign is not reaching ROAS target · Creatives analysis · Drop Investigation · General account review · QBR ("Benchmarks & Best Practice" was renamed to "Benchmarks" and "Campaign Sanity Check" added on 11 November 2026).
 
 **How four Task Type fields become one**
 
@@ -87,6 +95,8 @@ None of those four fields is what the process reports on. Task_Type__c is. Conne
   - > All four form fields carry values on both record types, so nothing prevents an APAC record from being written by an EMEA field, or the reverse.
 
   - > Task_Type__c is a dependent picklist controlled by Product__c, but the four form fields are not dependent on anything. The flow can therefore write a Task Type that is not a valid pairing for the record's Product — the most likely explanation when a task type looks wrong in reporting.
+
+> **Verified 2026-11-11:** On 11 November 2026 "Benchmarks & Best Practice" was removed from `Task_Type__c` and replaced by "Benchmarks" (available for uAds, TJ Demand, TJ Supply) and "Campaign Sanity Check" (uAds only). `Task_Type_EMEA_TJ_Supply__c` and `Task_Type_APAC__c` still carry "Benchmarks & Best Practice", which is no longer a value of the restricted `Task_Type__c` list.
 
 # 4. The flows — what each does and what triggers it
 
@@ -103,6 +113,8 @@ Four active flows and no Apex. Two carry the whole process: Connect 360 - Action
 | **INACTIVE — BUT STILL WIRED UP** | | |
 | Connect_360_Fill_Follow_Up_fields | Screen — the "Follow Up" quick action on the record | This is the flow behind the Follow Up button. It writes Request Impact, Revenue Impact and the notes, stamps Follow_Up_Timestamp__c and sets Status__c = "Done". The quick action still points at it and it is inactive in the org. |
 | Performance_Manager_Request_Follow_Up | Scheduled | The follow-up reminder sweep — the mechanism behind "notification on the follow-up date, and again two days later". Also inactive. |
+
+> **Verified 2026-11-11:** Create_Performance_Manager_Request now shows a required Sanity Check Type dropdown (New Launch, Low Performance) when the EMEA Product is iAds, uAds or iAds and uAds and Task Type is Campaign Sanity Check, plus a Which Metrics Drop dropdown (ROAS, Spend, Both, Other) that writes `Which_Metrics_Drop__c`. It also gained an ErrorScreen ("Process Failed", with a Support Case link) shown when a step faults; these changes landed between August and November 2026. Since 13 August 2026 every action in Performance_Manager_Request_Actions_on_creation has a fault path to a Create_Error_Object step that writes an `ErrorObject__c` row (`ClassName__c` = the flow name, `Message__c` = `$Flow.FaultMessage`, `RecordIds__c` = the Connect 360 Id). A failed route or notification therefore leaves an `ErrorObject__c` record to check; the duplicate "Copy 1 of" elements were renamed to plain labels with no change in routing. The "New from Slack?" branch of Performance_Manager_Request_Run_Flow now tests `Request_Source__c` = "Slack" (previously "External Slack Channel"), and only for new records; Performance_Manager_Request_Actions_on_creation still contains one "External Slack Channel" test. Since August 2026 the status and timestamp writes go through a varConnect360 record variable and two Update Connect 360 steps, each with a fault path that writes `ErrorObject__c`.
 
 # 5. Approval processes
 

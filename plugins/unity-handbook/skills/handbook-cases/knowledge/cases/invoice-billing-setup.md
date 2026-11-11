@@ -20,6 +20,8 @@ Advertiser invoices fail to generate or carry wrong data (view type, BI opportun
 - Separate billing: one account per legal entity, campaigns split between them; 'Send bill per BI opportunity' keeps bills separate on one account.
 - Amount mismatches vs Workday: credit and reissue the invoice.
 - Blank invoice emails: verify the billing contact addresses on the account.
+- An invoice cannot sync to Workday while its advertiser account is not synced. Check the account sync first, sync the account, then retry the invoice. (learned 2026-10-14 from closed cases)
+- Invoices not syncing to Workday because of the view type: set the invoice view type to Detailed and update the invoice lines, then let the sync retry. (learned 2026-10-14 from closed cases)
 
 ## What to ask the requester
 - Invoice numbers (INV-) and account link?

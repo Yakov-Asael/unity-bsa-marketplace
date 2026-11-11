@@ -4,7 +4,7 @@ description: >
   Verifies the BSA Process Handbook's reference files against the live Salesforce org and produces a drift report, so the
   handbook stays current instead of decaying into a stale snapshot. Use when someone asks whether the handbook is still
   accurate, wants to refresh or re-sync it, needs the current org value behind a documented claim, is running the scheduled
-  handbook review, or has just been told a handbook answer is out of date. Read-only against Salesforce — it never writes to
+  handbook review, or has just been told a handbook answer is out of date. Read-only against Salesforce and the SFDC-IS metadata repo — it never writes to
   the org, and it proposes reference-file edits for review rather than applying them silently.
   Trigger on: refresh the handbook, update the handbook, is the handbook still accurate, handbook drift, verify against the org,
   re-sync handbook, handbook review, check the handbook, handbook out of date, stale handbook, does this still match production,
@@ -17,8 +17,8 @@ You keep the BSA Process Handbook honest. The reference files under `handbook-pr
 
 ## Operating Principles (apply to every response)
 
-1. **Plan first** — state which process tab(s) and which claim classes you are about to verify before querying. Never sweep all twelve tabs unless explicitly asked.
-2. **Read-only against Salesforce, always.** Use `soqlQuery` and `getObjectSchema` only. Never create, update or delete an org record, and never change org configuration — even when the fix looks trivial.
+1. **Plan first** — state which process tab(s) and which claim classes you are about to verify before querying. A full sweep of all twelve tabs runs in repo-first mode (below); connector-only checks stay scoped to the tabs asked about.
+2. **Read-only against Salesforce and the repo, always.** Use `soqlQuery` and `getObjectSchema` only. Never create, update or delete an org record, and never change org configuration — even when the fix looks trivial. In `SFDC-IS`, only `fetch`, `show`, `log` and `diff`; never checkout, commit or push.
 3. **Never declare drift from a single query.** A "missing" result is usually the wrong metadata type, not a real gap. See *The false-drift trap* below — this is the most common failure mode of this skill.
 4. **Self-review** against `references/org-verification-queries.md` before presenting: every verdict traceable to a query you actually ran, and every unverifiable claim labelled as such rather than assumed fine.
 5. **Propose, never apply.** You may draft the exact reference-file edit, but a human reviews and merges it through the repo flow in `references/refresh-runbook.md`. Do not silently rewrite reference files.
@@ -28,6 +28,21 @@ You keep the BSA Process Handbook honest. The reference files under `handbook-pr
 
 > Load `references/org-verification-queries.md` for the validated query catalogue (what is checkable by SOQL, the exact query shapes, and their known traps).
 > Load `references/refresh-runbook.md` for the update process: cadence, triggers, who signs off, and how a change reaches `main`.
+> `references/claims.json` is the claims manifest (one row per checkable claim, with its `verified_on` date); `scripts/drift_scan.py` checks it against the repo.
+
+## Repo-first mode (default for a sweep)
+
+Most drift is visible in metadata, and the `SFDC-IS` repo's `Production` branch is synced nightly from the org by the `Production Metadata Sync` CI job, so it carries Setup changes too. Reading it locally costs almost nothing; querying claim by claim through the connector costs a round trip per claim and cannot see inside flows. So a sweep runs in this order, and only what changed reaches you:
+
+1. **Scan.** `python3 scripts/drift_scan.py references/claims.json <SFDC-IS path> --fetch`. It reads `origin/Production` with `git show` (never touches the working copy or its branch) and prints only findings: `MISSING`, `FOUND_ELSEWHERE`, `STATE_CHANGED`, `VALUE_CHANGED`, `CHANGED_SINCE` (with the commits since the claim's `verified_on`), plus the `LIVE` list. Exit 0 means nothing changed: report that in one line and stop.
+2. **Fallback if the fetch fails** (the host sits behind Okta and the internal network): the scan continues on the last fetched ref and prints its date. Say how old it is in the report; a ref older than a week is a stale baseline, not a verification.
+3. **Read only the changed files.** For each `CHANGED_SINCE`, `git -C <repo> diff <commit>~1 <commit> -- <path>` and decide whether the handbook sentence is affected. A diff that only bumps an API version or reorders XML is not drift.
+4. **Live-only checks through the connector.** Batch the `LIVE` claims (named people, cron jobs, custom metadata rows) into as few queries as possible, per `references/org-verification-queries.md`. These are the only connector calls a sweep needs.
+5. **Close the loop.** For every claim confirmed or corrected, set its `verified_on` in `claims.json` to the scan date, so the next sweep starts from today. Add a claim for any identifier a new or edited reference section introduces.
+
+Flow XML makes thresholds checkable: a claim's `contains` regexes are matched against the file at the ref, so a changed approval threshold surfaces as `VALUE_CHANGED` instead of `NEEDS MANUAL CHECK`. Claims without a regex stay Tier 3 for their values.
+
+The connector-only procedure below still applies to a one-claim spot-check, or when no repo copy is available at all.
 
 ## The false-drift trap (read before reporting anything missing)
 
@@ -50,14 +65,14 @@ Sort every claim you are checking into one of these, and never let a Tier 3 clai
 | **1 — Automated** | Flow existence + active state, approval processes, record types, object/field existence, picklist values, permission sets, custom permissions, named people still active | SOQL / `getObjectSchema` per the query catalogue | Authoritative |
 | **1b — Automated via code** | Anything in Apex or a schedule: batch logic, hardcoded thresholds and IDs, trigger status, **job cron expressions and paused/waiting state** | Readable from the org — `ApexClass.Body`, `ApexTrigger`, `CronTrigger`. Delegate to `handbook-code-lookup` rather than querying here | Authoritative for deployed code |
 | **2 — Partial** | Which object a flow runs on, trigger type, field types and help text, approval process target object | SOQL gives metadata but not behaviour — confirms the wiring, not the logic | Directional; state what you did *not* confirm |
-| **3 — Manual** | Thresholds and branch logic *inside a flow*, approval step counts, approver matrix rows, validation rule messages, email alert recipients, page layout and button visibility, LWC behaviour, business ownership, "known defect / live issue" notes | Not reachable by SOQL. Requires Setup, the flow XML in the `SFDC-IS` repo, or asking the owner | **Unverifiable here** — report as `NEEDS MANUAL CHECK`, never as verified |
+| **3 — Manual** | Thresholds and branch logic *inside a flow*, approval step counts, approver matrix rows, validation rule messages, email alert recipients, page layout and button visibility, LWC behaviour, business ownership, "known defect / live issue" notes | Not reachable by SOQL. Automated in repo-first mode when the claim has a `contains` regex; otherwise Setup or the owner | **Unverifiable without a regex** — report as `NEEDS MANUAL CHECK`, never as verified |
 
 Two things follow from Tier 1b, and both change how a refresh should be run:
 
 - **A "not documented anywhere" claim is often just "not documented in prose".** Before recording a gap, check whether the answer is in Apex or a cron entry. The batch run times behind the Dispute tab's "waiting for next invoice/bill" flag were readable all along, and their absence from the handbook produced a wrong answer in real use.
 - **"Live issue" notes need the code checked, not just the flow.** The Dispute tab warned that `PE_Deduct_Add_dispute_to_invoice_or_bill` is inactive and implied nothing would attach. The flow is inactive — and two scheduled Apex jobs do the work and are live. Verifying only the flow would have confirmed a misleading warning as correct.
 
-The handbook's most business-critical remaining content — the approval thresholds and approver-matrix rows that live *inside flows* — is still **Tier 3**. Be explicit about that: a report that verifies thirty flow names and stays silent on the thresholds implies a level of assurance you have not delivered. Flow XML from the `SFDC-IS` repo would move this block into Tier 1b; see `handbook-code-lookup`.
+Thresholds inside flows, approval process steps, validation rules and email alerts move from Tier 3 to automated once a claim carries a `contains` regex checked against the `SFDC-IS` repo (repo-first mode). Approver-matrix rows stored as records, page layouts seen by users and human facts stay Tier 3. Be explicit about which claims had a regex: a report that verifies thirty flow names and stays silent on the thresholds implies a level of assurance you have not delivered.
 
 ## Drift report format
 
