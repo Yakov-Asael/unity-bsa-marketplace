@@ -1,0 +1,84 @@
+{
+  "_comment": "Scope for the SOX approver-matrix workbooks. Add/remove objects, change approvers or columns here. Deal Payment (Tier__c) is deprecated and intentionally absent.",
+
+  "org": {
+    "org_id_15": "00Db0000000JqmV",
+    "org_id_18": "00Db0000000JqmVEAS",
+    "org_name": "ironSource",
+    "lightning_host": "ironsrc.lightning.force.com"
+  },
+
+  "custom_setting": {
+    "label": "Dynamic Approval Process",
+    "api_name": "Dynamic_Approval_Process__c",
+    "key_prefix": "a1X",
+    "csv": "custom_setting.csv"
+  },
+
+  "shared_csvs": {
+    "modify_all": "modify_all.csv",
+    "permset_users": "permset_users.csv",
+    "profile_users": "profile_users.csv"
+  },
+
+  "objects": [
+    {
+      "key": "bill",
+      "display": "Bills",
+      "sobject": "Bill__c",
+      "csv": "bill_results.csv",
+      "report_id": "00OQv000008wGFtMAM",
+      "report_name": "Bills Approver Matrix",
+      "modify_all_tab": "Modify All users",
+      "approvers": ["Eyal Kaner", "Yathish Rai"],
+      "columns": ["Approver Matrix: ID", "Approver Matrix: Approver Matrix Name", "Object API Name", "Division", "Office", "Approver1", "Approver2"],
+      "soql": "SELECT Id, Name, Division__c, Office__c, Approver1__r.Name, Approver2__r.Name FROM Approver_Matrix__c WHERE Object_API_Name__c = 'Bill__c' ORDER BY Id"
+    },
+    {
+      "key": "invoice",
+      "display": "Invoice",
+      "sobject": "Invoice__c",
+      "csv": "invoice_results.csv",
+      "report_id": "00OQv000008wGB3MAM",
+      "report_name": "Invoices Approver Matrix",
+      "modify_all_tab": "Modify All Users",
+      "approvers": ["Eyal Kaner", "Yathish Rai"],
+      "columns": ["Approver Matrix: ID", "Approver Matrix: Approver Matrix Name", "Object API Name", "Division", "Approver1", "Approver2"],
+      "soql": "SELECT Id, Name, Division__c, Approver1__r.Name, Approver2__r.Name FROM Approver_Matrix__c WHERE Object_API_Name__c = 'Invoice__c' ORDER BY Id"
+    },
+    {
+      "key": "dispute",
+      "display": "Dispute",
+      "sobject": "Dispute__c",
+      "csv": "dispute_results.csv",
+      "report_id": "00OQv000008wGRBMA2",
+      "report_name": "Disputes Approver Matrix",
+      "modify_all_tab": "Modify All User",
+      "approvers": ["Tal Rahamim", "Eyal Kaner"],
+      "team_summary": true,
+      "columns": ["Approver Matrix: ID", "Dispute Type", "Division", "Department", "Team", "Dispute Amount", "Approver1", "Approver2", "Approver3", "Approver 4", "Approver5"],
+      "soql": "SELECT Id, Dispute_Type__c, Division__c, Department__c, Team__c, Dispute_Amount__c, Approver1__c, Approver2__c, Approver3__c, Approver_4__c, Approver5__c FROM Approver_Matrix__c WHERE Object_API_Name__c = 'Dispute__c' ORDER BY Id LIMIT 700",
+      "soql_note": "Page with AND Id > '<last 18-char Id>'. Resolve approver Ids to names with SELECT Id, Name, IsActive FROM User WHERE Id IN (...)."
+    },
+    {
+      "key": "credit",
+      "display": "Credit",
+      "sobject": "Credit_Check__c",
+      "csv": "credit_results.csv",
+      "report_id": "00OQv000008wGarMAE",
+      "report_name": "Credits Approver Matrix",
+      "modify_all_tab": "Modify All Users",
+      "approvers": ["Eyal Kaner"],
+      "columns": ["Approver Matrix: ID", "Approver Matrix: Approver Matrix Name", "Object API Name", "Division", "Sub Division", "Department", "Office", "Team", "Team for Approval", "Credit Amount", "Account Manager", "Approver1", "Approver2", "Approver3", "Approver 4"],
+      "soql": "SELECT Id, Name, Division__c, Sub_Division__c, Department__c, Office__c, Team__c, Team_for_Approval__c, Credit_Amount__c, Account_Manager__r.Name, Approver1__r.Name, Approver2__r.Name, Approver3__r.Name, Approver_4__r.Name FROM Approver_Matrix__c WHERE Object_API_Name__c = 'Credit_Check__c' ORDER BY Id"
+    }
+  ],
+
+  "previous_examples": {
+    "_comment": "July 2026 control files (layout reference; Deal Payment is deprecated).",
+    "bills": "https://docs.google.com/spreadsheets/d/16Q2PZuDtYX_dwehE1ymGngZt8Q2lrycBk3Sv2JtOmcI",
+    "invoice": "https://docs.google.com/spreadsheets/d/1-v3s-Ileu7Bd1_rp2ea8At9ARR41h-gpOsu8GClK-mw",
+    "dispute": "https://docs.google.com/spreadsheets/d/1bkM0wnES-fPoHieHaggO5vjtmgWuJ2CKf20IH54dBCg",
+    "deal_payment_deprecated": "https://docs.google.com/spreadsheets/d/1dwZ4ZuqyJwSgJewBLRqRITC5OBK2xh_3nFVCD-VxIcg"
+  }
+}
