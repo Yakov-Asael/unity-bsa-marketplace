@@ -18,6 +18,7 @@ Unity's **SOX compliance toolkit for Salesforce**. It turns the team's quarterly
 | [`sox-salesforce-access-review`](./skills/sox-salesforce-access-review) | Quarterly access review — Test 1 `ProfileStrongPermission` (User/Profile) and Test 2 `ProfilePermissionSets` (PermissionSetAssignment): compare quarters, flag new/changed/removed access, check against the Definition tab's approved lists, and surface genuine exceptions. |
 | [`sox-manual-change-review`](./skills/sox-manual-change-review) | Change-management review of the Setup Audit Trail — classifies each quarter's configuration changes as Confident Relevant vs. Manual Review using a maintained whitelist (91.9% precision / 86.2% recall on real historical data). |
 | [`sox-approver-matrix`](./skills/sox-approver-matrix) | Runs the quarterly approver-matrix control end to end — exports from Salesforce production, captures OCR-verified evidence screenshots, and builds one workbook per object (Bills/Invoice/Dispute/Credit) with Results/IPE/Modify-All/Custom-Settings/Approval tabs. |
+| [`sox-approver-matrix-workbooks`](./skills/sox-approver-matrix-workbooks) | Connector edition of the approver-matrix control — builds the four per-object workbooks (Results/IPE/Modify All/Custom Settings/Approval) directly from Salesforce Grow production via the MCP connector, with an identity gate and count verification. No local browser run; screenshot evidence is added afterwards. |
 
 ## Install
 
@@ -26,7 +27,7 @@ Unity's **SOX compliance toolkit for Salesforce**. It turns the team's quarterly
 
 ## Versioning
 
-Current: **v0.2.0** (see `.claude-plugin/plugin.json`).
+Current: **v0.3.0** (see `.claude-plugin/plugin.json`).
 
 ## Author
 
