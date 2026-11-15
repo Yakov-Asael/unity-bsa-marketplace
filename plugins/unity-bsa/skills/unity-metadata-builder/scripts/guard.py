@@ -15,6 +15,7 @@ from common import load_policy, build_org, load_state, save_state, find_organiza
 from scan import BLOCK, scan
 
 READ_METHODS = {"GET", "HEAD"}
+DRY_RUN_PATH = re.compile(r"/(?:flowbuilder/flow/actions/validate|connect/formula/validate)/?$")
 RECORD_WRITE = re.compile(r"^(create|update|delete)\w*Record")
 PROTECTED_DIRS = (os.path.join("skills", "unity-metadata-builder", "config"),
                   os.path.join("skills", "unity-metadata-builder", "scripts"),
@@ -115,6 +116,8 @@ def check_mcp(tool_name, tool_input, state, policy):
     if not server:
         return None
     if tool == "dispatch" and str(tool_input.get("method", "GET")).upper() not in READ_METHODS:
+        if DRY_RUN_PATH.search(str(tool_input.get("url", ""))):
+            return None
         return check_metadata_write(server, tool, tool_input, state, policy)
     if tool.startswith("executeMetadataAction"):
         return check_metadata_write(server, tool, tool_input, state, policy)

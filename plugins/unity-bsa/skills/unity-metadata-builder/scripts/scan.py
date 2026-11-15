@@ -16,6 +16,7 @@ BLOCK = "BLOCK"
 WARN = "WARN"
 
 DML_ELEMENTS = ("recordcreates", "recordupdates", "recorddeletes")
+PROFILE_ASSIGNMENT_KEYS = {"fullname", "layoutassignments", "recordtypevisibilities"}
 SKIP_ID_KEYS = {"id", "attributes", "url", "fullname", "developername"}
 ID_TOKEN = re.compile(r"(?<![A-Za-z0-9])[A-Za-z0-9]{15}(?:[A-Za-z0-9]{3})?(?![A-Za-z0-9])")
 FLOW_LABEL = re.compile(r"^[^-]+ - [^-]+ - .+$")
@@ -126,8 +127,20 @@ def scalar(value):
     return value if isinstance(value, str) else ""
 
 
+def is_profile_assignment_only(tree):
+    """
+    Checks whether every Profile in the payload only carries layout assignments or record-type visibility.
+    @param tree The normalized payload
+    @returns bool True when the profile change is assignment-only
+    """
+    profiles = [value for key, value, _ in walk(tree) if key == "profile" and isinstance(value, dict)]
+    return bool(profiles) and all(set(profile) <= PROFILE_ASSIGNMENT_KEYS for profile in profiles)
+
+
 def check_forbidden_types(tree, policy, metadata_type, url):
     forbidden = {name.lower(): name for name in policy["forbidden_metadata_types"]}
+    if is_profile_assignment_only(tree):
+        forbidden.pop("profile", None)
     hits = set()
     if metadata_type and metadata_type.lower() in forbidden:
         hits.add(forbidden[metadata_type.lower()])
@@ -184,6 +197,10 @@ def check_flow(flow, policy):
     error_calls = {scalar(sub.get("name")): sub for sub in as_list(flow.get("subflows"))
                    if isinstance(sub, dict) and scalar(sub.get("flowname")) == error_flow}
     findings.extend(check_error_calls(name, error_calls.values(), policy))
+
+    start = flow.get("start") if isinstance(flow.get("start"), dict) else {}
+    if scalar(start.get("triggertype")) == "RecordBeforeSave":
+        return findings
 
     for kind in DML_ELEMENTS:
         for element in as_list(flow.get(kind)):

@@ -130,6 +130,22 @@ class ForbiddenTypeTest(unittest.TestCase):
                 "xmlRep": f'<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">{xml_rep}</CustomObject>'}
         self.assertEqual(rules(scan(body, POLICY), BLOCK), ["A4"])
 
+    def test_before_save_update_needs_no_fault_path(self):
+        xml = GOOD_FLOW.replace("<faultConnector><targetReference>Log_Error</targetReference></faultConnector>", "")
+        xml = xml.replace("<status>Draft</status>", "<status>Draft</status><start><triggerType>RecordBeforeSave</triggerType></start>")
+        self.assertEqual(scan(xml, POLICY), [])
+
+    def test_profile_layout_assignment_only_is_allowed(self):
+        body = {"type": "Profile", "fullName": "Custom Sales",
+                "xmlRep": "<Profile><layoutAssignments><layout>Account-Account Layout</layout></layoutAssignments></Profile>"}
+        self.assertEqual(scan(body, POLICY), [])
+
+    def test_profile_with_permissions_blocks(self):
+        body = {"type": "Profile", "fullName": "Custom Sales",
+                "xmlRep": "<Profile><layoutAssignments><layout>A-B</layout></layoutAssignments>"
+                          "<fieldPermissions><field>Account.X__c</field></fieldPermissions></Profile>"}
+        self.assertEqual(rules(scan(body, POLICY), BLOCK), ["B19"])
+
     def test_profile_blocks(self):
         self.assertEqual(rules(scan("<Profile><custom>true</custom></Profile>", POLICY), BLOCK), ["B19"])
 

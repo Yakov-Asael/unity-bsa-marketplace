@@ -29,6 +29,7 @@ For specialized work, defer to the dedicated Unity skill:
 | If the task is... | Use skill |
 |---|---|
 | Reviewing / validating / designing a Flow | `unity-flow-reviewer` |
+| Building fields, objects, validation rules, permission sets, picklists, list views or Flows in the UAT sandbox | `unity-metadata-builder` |
 | Writing a PRD or TDD, or a user story / acceptance criteria | `unity-tech-design` |
 | A mockup, SLDS UI, or HTML email alert | `unity-sfdc-mockups` |
 | A status update or stakeholder reply | `unity-comms` |

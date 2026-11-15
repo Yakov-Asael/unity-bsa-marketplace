@@ -8,7 +8,7 @@ A Claude Code plugin marketplace hosting **`unity-bsa`** — the Unity Business 
 
 | Plugin | Description |
 | --- | --- |
-| [`unity-bsa`](./plugins/unity-bsa) | Salesforce BSA toolkit — 8 skills covering the full delivery lifecycle, each enforcing Unity's real standards. |
+| [`unity-bsa`](./plugins/unity-bsa) | Salesforce BSA toolkit — 9 skills covering the full delivery lifecycle, each enforcing Unity's real standards. |
 | [`unity-sox`](./plugins/unity-sox) | SOX compliance toolkit — quarterly access reviews (User/Profile + PermissionSetAssignment) and Setup Audit Trail change-management review. Script-driven and audit-ready. |
 | [`unity-handbook`](./plugins/unity-handbook) | BSA Process Handbook — answers questions about the twelve documented Salesforce processes, and verifies itself against the live org so it stays current. |
 

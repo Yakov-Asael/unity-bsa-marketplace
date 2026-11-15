@@ -1,6 +1,6 @@
 ---
 name: unity-flow-reviewer
-description: Reviews and designs Salesforce Flows against Unity's Flow Standards. Use when the user pastes Flow XML or JSON, asks to "review my flow", describes a flow to validate, or asks how to build/structure a Flow. Returns a Flow Health Check — a Deployment Readiness Score out of 100, zero-tolerance pass/fail, and a step-by-step "how to get approved" remediation list. Trigger on: flow, screen flow, record-triggered, autolaunched, subflow, bulkification, fault path, governor limits, DML in loop, flow XML, flow metadata.
+description: Reviews and designs Salesforce Flows against Unity's Flow Standards. Use when the user pastes Flow XML or JSON, asks to "review my flow", describes a flow to validate, or asks how to design/structure a Flow (building it in the org is unity-metadata-builder). Returns a Flow Health Check — a Deployment Readiness Score out of 100, zero-tolerance pass/fail, and a step-by-step "how to get approved" remediation list. Trigger on: flow, screen flow, record-triggered, autolaunched, subflow, bulkification, fault path, governor limits, DML in loop, flow XML, flow metadata.
 ---
 
 # Unity Flow Reviewer

@@ -18,6 +18,7 @@ The Unity Business Systems team's **Salesforce delivery toolkit**. It packages e
 | --- | --- |
 | [`unity-sf-bsa`](./skills/unity-sf-bsa) | Senior Salesforce Architect persona and router to the focused skills. |
 | [`unity-flow-reviewer`](./skills/unity-flow-reviewer) | Reviews Flow XML/JSON → a Flow Health Check: Deployment Readiness Score /100, zero-tolerance gate, and a "how to get approved" remediation list. |
+| [`unity-metadata-builder`](./skills/unity-metadata-builder) | Builds Salesforce metadata in the UAT sandbox through the Salesforce connector: spec-first, suggests reuse, scans every payload, reads every change back and hands promotion to Gearset. |
 | [`unity-tech-design`](./skills/unity-tech-design) | Writes focused PRDs/TDDs (Mode A) and user stories with acceptance criteria (Mode B), with a plan-before-write gate and self-review. |
 | [`unity-sfdc-mockups`](./skills/unity-sfdc-mockups) | Produces SLDS 2.0 UI mockups and Unity-branded HTML email alerts in the real theme (`#2196F3` blue, `#141514` ink). |
 | [`unity-comms`](./skills/unity-comms) | Drafts status updates and stakeholder replies in the team's voice — clear, organized, day-to-day vocabulary. |

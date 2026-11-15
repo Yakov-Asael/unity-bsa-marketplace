@@ -74,6 +74,12 @@ class GuardTest(unittest.TestCase):
         record_org(BETA, UAT)
         self.assertIn("B19", self.dispatch({"Body": "x"}, url="/services/data/v66.0/tooling/sobjects/ApexClass"))
 
+    def test_flow_validate_is_a_dry_run(self):
+        self.assertIsNone(self.dispatch({"flow": {}}, url="/services/data/v66.0/flowbuilder/flow/actions/validate"))
+
+    def test_flow_save_is_a_write(self):
+        self.assertIn("Organization", self.dispatch({"flow": {}}, url="/services/data/v66.0/flowbuilder/flow/actions/save"))
+
     def test_read_dispatch_is_not_checked(self):
         self.assertIsNone(self.dispatch({}, method="GET"))
 
