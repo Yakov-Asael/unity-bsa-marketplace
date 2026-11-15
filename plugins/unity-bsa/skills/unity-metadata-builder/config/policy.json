@@ -1,0 +1,45 @@
+{
+  "build_orgs": [
+    {
+      "id": "00DQI00000J4hjN2AR",
+      "label": "ironSource UAT",
+      "host": "ironsrc--uat.sandbox.my.salesforce.com"
+    }
+  ],
+  "skill_name": "unity-metadata-builder",
+  "story_key_pattern": "^ISITBA-\\d+$",
+  "reviewer_min_score": 85,
+  "field_limit": 800,
+  "field_limit_warn_pct": 95,
+  "high_volume_objects": [
+    "Case",
+    "Account",
+    "Opportunity",
+    "Lead",
+    "Contact",
+    "EmailMessage",
+    "Task",
+    "Invoice__c",
+    "Bill__c"
+  ],
+  "error_subflow": {
+    "name": "Subflow_Log_Error",
+    "object": "ErrorObject__c",
+    "inputs": ["txtErrorMessage", "txtFlowName", "txtRecordId"]
+  },
+  "forbidden_metadata_types": [
+    "ApexClass",
+    "ApexTrigger",
+    "ApexPage",
+    "ApexComponent",
+    "Profile",
+    "Workflow",
+    "WorkflowRule"
+  ],
+  "forbidden_process_types": ["Workflow", "CustomEvent", "InvocableProcess"],
+  "id_key_prefixes": [
+    "001", "003", "005", "006", "00D", "00E", "00G", "00Q", "00T", "00U", "00e",
+    "012", "015", "01I", "01p", "02s", "0PS", "0Pa", "300", "301", "500", "701", "800", "a0", "a1"
+  ],
+  "sfdc_repo_markers": ["SFDC-IS"]
+}
