@@ -100,6 +100,18 @@ class GuardTest(unittest.TestCase):
         reason = run("pre", {"tool_name": "mcp__prod__updateSobjectRecordplatform_sobject_mutations", "tool_input": {}})
         self.assertIn("production", reason)
 
+    def test_field_permissions_dispatch_is_denied(self):
+        record_org(BETA, UAT)
+        reason = self.dispatch({"Field": "Account.X__c"}, url="/services/data/v67.0/sobjects/FieldPermissions")
+        self.assertIn("B23", reason)
+
+    def test_permission_record_write_during_skill_is_denied(self):
+        run("post", {"tool_name": "Skill", "tool_input": {"skill": "unity-bsa:unity-metadata-builder"}})
+        record_org("mcp__uat__", UAT)
+        reason = run("pre", {"tool_name": "mcp__uat__createSobjectRecordplatform_sobject_all",
+                             "tool_input": {"sobjectName": "PermissionSetAssignment", "fields": {}}})
+        self.assertIn("recommend-only", reason)
+
     def test_other_skill_does_not_activate(self):
         run("post", {"tool_name": "Skill", "tool_input": {"skill": "unity-bsa:unity-qa-debug"}})
         self.assertIsNone(run("pre", {"tool_name": "mcp__x__createSobjectRecordplatform_sobject_all", "tool_input": {}}))

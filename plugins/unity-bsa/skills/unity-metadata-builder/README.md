@@ -2,21 +2,23 @@
 
 # unity-metadata-builder
 
-Builds Salesforce metadata in the **ironSource UAT sandbox** through the "Beta - Salesforce Grow Admin - UAT" connector: fields, objects, validation rules, permission sets, global picklists, page layouts and assignments, and Flows. Promotion to production stays in **Gearset**.
+Builds Salesforce metadata in the **ironSource UAT sandbox** through the "Beta - Salesforce Grow Admin - UAT" connector: fields, objects, validation rules, global picklists and Flows. Permissions and page layouts are recommend-only: the analyst applies them in Setup and the skill verifies. Promotion to production stays in **Gearset**.
 
 ## How it works
 
 1. **Spec gate:** an ISITBA story and a design, plus an understanding check. Nothing is built from one sentence.
 2. **Reuse recon:** suggests existing fields, flows, subflows and permission sets. Suggestions, not blocks.
 3. **Flow review:** `unity-flow-reviewer` zero-tolerance pass and at least 85/100.
-4. **Build Plan:** one screen; the analyst types `approve build plan`.
+4. **Build Plan:** one screen, with recommended permission and layout steps; the analyst types `approve build plan`.
 5. **Build:** every payload is scanned, every change is read back. The connector can't do something → the manual Setup steps, then verification.
 6. **Hand-offs:** QA scenarios and a Gearset component list.
+7. **Session summary:** what was built, what's waiting in Setup, next steps (an Artifact when available).
 
 ## Guardrails (plugin hook, `hooks/hooks.json`)
 
 - Metadata writes only on UAT, after an Organization query through the same connector.
-- No Apex, no Process Builder or workflow rules, no profile permissions, no Active flows in a payload.
+- No Apex, no Process Builder or workflow rules, no Active flows in a payload.
+- No permission, profile or page-layout writes: recommend only.
 - Every flow DML element has a fault path to `Subflow_Log_Error`.
 - No `sf` deploys and no git branch/commit/push in the Salesforce org repo: Gearset only.
 - Record writes outside UAT are blocked while this skill is running.

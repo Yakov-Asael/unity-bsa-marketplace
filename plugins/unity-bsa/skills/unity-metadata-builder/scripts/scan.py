@@ -16,7 +16,6 @@ BLOCK = "BLOCK"
 WARN = "WARN"
 
 DML_ELEMENTS = ("recordcreates", "recordupdates", "recorddeletes")
-PROFILE_ASSIGNMENT_KEYS = {"fullname", "layoutassignments", "recordtypevisibilities"}
 SKIP_ID_KEYS = {"id", "attributes", "url", "fullname", "developername"}
 ID_TOKEN = re.compile(r"(?<![A-Za-z0-9])[A-Za-z0-9]{15}(?:[A-Za-z0-9]{3})?(?![A-Za-z0-9])")
 FLOW_LABEL = re.compile(r"^[^-]+ - [^-]+ - .+$")
@@ -127,33 +126,40 @@ def scalar(value):
     return value if isinstance(value, str) else ""
 
 
-def is_profile_assignment_only(tree):
+def type_hits(tree, names, metadata_type, url):
     """
-    Checks whether every Profile in the payload only carries layout assignments or record-type visibility.
+    Finds which of the given metadata or sObject types a payload, its declared type or its URL targets.
     @param tree The normalized payload
-    @returns bool True when the profile change is assignment-only
+    @param names Type names to look for
+    @param metadata_type The declared metadata type, if any
+    @param url The request URL, if any
+    @returns set The matched type names
     """
-    profiles = [value for key, value, _ in walk(tree) if key == "profile" and isinstance(value, dict)]
-    return bool(profiles) and all(set(profile) <= PROFILE_ASSIGNMENT_KEYS for profile in profiles)
-
-
-def check_forbidden_types(tree, policy, metadata_type, url):
-    forbidden = {name.lower(): name for name in policy["forbidden_metadata_types"]}
-    if is_profile_assignment_only(tree):
-        forbidden.pop("profile", None)
+    lookup = {name.lower(): name for name in names}
     hits = set()
-    if metadata_type and metadata_type.lower() in forbidden:
-        hits.add(forbidden[metadata_type.lower()])
-    for name in forbidden.values():
+    if metadata_type and metadata_type.lower() in lookup:
+        hits.add(lookup[metadata_type.lower()])
+    for name in names:
         if url and re.search(rf"/{name}(?:/|$|\?)", url):
             hits.add(name)
     for key, value, _ in walk(tree):
-        if key in forbidden and isinstance(value, dict):
-            hits.add(forbidden[key])
-        if key in ("metadatatype", "type") and scalar(value).lower() in forbidden:
-            hits.add(forbidden[scalar(value).lower()])
+        if key in lookup and isinstance(value, dict):
+            hits.add(lookup[key])
+        if key in ("metadatatype", "type") and scalar(value).lower() in lookup:
+            hits.add(lookup[scalar(value).lower()])
+    return hits
+
+
+def check_forbidden_types(tree, policy, metadata_type, url):
+    hits = type_hits(tree, policy["forbidden_metadata_types"], metadata_type, url)
     return [Finding(BLOCK, "B19", f"{name} is not allowed here: Apex, profiles and workflow rules are out of scope. "
-                    "Use a Flow and permission sets; logic too complex for Flow is a dev ticket.") for name in sorted(hits)]
+                    "Use a Flow; logic too complex for Flow is a dev ticket.") for name in sorted(hits)]
+
+
+def check_recommend_only_types(tree, policy, metadata_type, url):
+    hits = type_hits(tree, policy["recommend_only_types"], metadata_type, url)
+    return [Finding(BLOCK, "B23", f"{name} is recommend-only: put the permission or layout change in the Build Plan "
+                    "and the analyst applies it in Setup (references/manual-paths.md).") for name in sorted(hits)]
 
 
 def check_hardcoded_ids(tree, policy):
@@ -271,6 +277,7 @@ def scan(text, policy, metadata_type=None, url=None):
     """
     tree = load_payload(text) if isinstance(text, str) else normalize(text)
     findings = check_forbidden_types(tree, policy, metadata_type, url)
+    findings += check_recommend_only_types(tree, policy, metadata_type, url)
     findings += check_hardcoded_ids(tree, policy)
     for flow in find_flows(tree):
         findings += check_flow(flow, policy)

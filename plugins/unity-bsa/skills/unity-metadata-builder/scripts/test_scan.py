@@ -135,16 +135,29 @@ class ForbiddenTypeTest(unittest.TestCase):
         xml = xml.replace("<status>Draft</status>", "<status>Draft</status><start><triggerType>RecordBeforeSave</triggerType></start>")
         self.assertEqual(scan(xml, POLICY), [])
 
-    def test_profile_layout_assignment_only_is_allowed(self):
+    def test_profile_layout_assignment_blocks(self):
         body = {"type": "Profile", "fullName": "Custom Sales",
                 "xmlRep": "<Profile><layoutAssignments><layout>Account-Account Layout</layout></layoutAssignments></Profile>"}
-        self.assertEqual(scan(body, POLICY), [])
-
-    def test_profile_with_permissions_blocks(self):
-        body = {"type": "Profile", "fullName": "Custom Sales",
-                "xmlRep": "<Profile><layoutAssignments><layout>A-B</layout></layoutAssignments>"
-                          "<fieldPermissions><field>Account.X__c</field></fieldPermissions></Profile>"}
         self.assertEqual(rules(scan(body, POLICY), BLOCK), ["B19"])
+
+    def test_new_permission_set_is_recommend_only(self):
+        body = {"type": "PermissionSet", "fullName": "Credit_Check_Edit",
+                "xmlRep": "<PermissionSet><label>Credit Check Edit</label></PermissionSet>"}
+        self.assertEqual(rules(scan(body, POLICY), BLOCK), ["B23"])
+
+    def test_field_permissions_row_is_recommend_only(self):
+        body = {"ParentId": "x", "Field": "Account.Credit_Check_Status__c", "PermissionsRead": True}
+        url = "/services/data/v67.0/sobjects/FieldPermissions"
+        self.assertEqual(rules(scan(body, POLICY, url=url), BLOCK), ["B23"])
+
+    def test_layout_patch_is_recommend_only(self):
+        url = "/services/data/v67.0/tooling/sobjects/Layout/00h000000000001"
+        self.assertEqual(rules(scan({"Metadata": {"layoutSections": []}}, POLICY, url=url), BLOCK), ["B23"])
+
+    def test_permission_set_assignment_url_is_not_confused_with_permission_set(self):
+        url = "/services/data/v67.0/tooling/sobjects/PermissionSetAssignment"
+        findings = [f for f in scan({"AssigneeId": "x"}, POLICY, url=url) if f.level == BLOCK]
+        self.assertEqual([f.message.split()[0] for f in findings], ["PermissionSetAssignment"])
 
     def test_profile_blocks(self):
         self.assertEqual(rules(scan("<Profile><custom>true</custom></Profile>", POLICY), BLOCK), ["B19"])

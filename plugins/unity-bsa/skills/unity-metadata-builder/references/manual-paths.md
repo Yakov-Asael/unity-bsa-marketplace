@@ -4,6 +4,10 @@ Say exactly this, then give the steps for that type, filled in with the Build Pl
 
 > The UAT admin connector can't do this step (`<reason>`). Switch to manual: build it in Setup using the steps below, then tell me when you're done and I'll verify it.
 
+For **permissions and page layouts** (recommend-only, never written by Claude) say instead:
+
+> Permissions and page layouts are yours to apply. Here's what I recommend and the Setup steps. Tell me when you're done and I'll verify it.
+
 After "done", verify with a read-only query and report what matches and what doesn't. Never mark a manual step verified without the read-back.
 
 ## Custom field
@@ -18,7 +22,7 @@ Verify: `SELECT QualifiedApiName, Label FROM EntityDefinition WHERE QualifiedApi
 Setup → Object Manager → `<Object>` → Validation Rules → New → Rule Name, Active, Description, Error Condition Formula (paste the validated formula), Error Message, Error Location → Save.
 Verify (Tooling): `SELECT ValidationName, Active, ErrorMessage FROM ValidationRule WHERE EntityDefinition.QualifiedApiName='<Object>' AND ValidationName='<Name>'`
 
-## Permission set
+## Permission set (recommend only)
 Setup → Permission Sets → New (or open `<Name>`) → Object Settings → `<Object>` → Edit → object access and field permissions from the plan → Save.
 Verify: `SELECT Field, PermissionsRead, PermissionsEdit FROM FieldPermissions WHERE Parent.Name='<Name>' AND SobjectType='<Object>'`
 
@@ -30,7 +34,7 @@ Verify (Tooling): `SELECT DeveloperName, MasterLabel FROM GlobalValueSet WHERE D
 App Launcher → `<Object>` tab → list view controls (gear) → New → List Name, API name, who sees it (narrowest group) → Save → Filters per the plan → Save → Select Fields to Display → Save.
 Verify: `SELECT DeveloperName, Name FROM ListView WHERE SobjectType='<Object>' AND DeveloperName='<API name>'`
 
-## Page layout / assignment
+## Page layout / assignment (the analyst sets it)
 Setup → Object Manager → `<Object>` → Page Layouts → `<Layout>` → drag the field into `<section>` → Save. Assignment: Page Layouts → Page Layout Assignment → Edit Assignment → select profiles/record types → choose `<Layout>` → Save.
 Verify (Tooling): `SELECT LayoutId FROM ProfileLayout WHERE ProfileId='<Id>' AND TableEnumOrId='<Object>'`
 

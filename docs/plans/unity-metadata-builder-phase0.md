@@ -690,3 +690,9 @@ Consequences for the plan:
 - Hooks: the matchers add `mcp__.*__dispatch$` (writes). `dispatch_readonly`, `discover` and `describe` are reads. The org check uses the same Organization query through `dispatch_readonly`.
 - Q6 (action names) is closed: `describe` returns the steps and paths.
 - Next check before building: `describe` on each recipe (read-only) to record its steps and whether it deploys to the org directly or returns XML, and confirm layout assignment.
+
+### 11.12 Decisions, 16 November 2026
+
+- **Permissions are recommend-only.** The skill never writes permission sets, field or object access, assignments or profiles. It puts them in the Build Plan as R-rows with Setup steps, and verifies with a read-only query after the analyst applies them. Hook rule B23 (`recommend_only_types` in `config/policy.json`).
+- **Page layouts and layout assignments are set by the BSA.** Same handling as permissions. The Profile layout-assignment exception was removed: Profile writes are blocked again (B19).
+- **Session summary.** The skill ends every session with a summary (built and verified, waiting in Setup, not done, next steps), as an Artifact when available.

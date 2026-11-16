@@ -36,6 +36,18 @@
     "Workflow",
     "WorkflowRule"
   ],
+  "recommend_only_types": [
+    "PermissionSet",
+    "PermissionSetGroup",
+    "MutingPermissionSet",
+    "PermissionSetAssignment",
+    "PermissionSetGroupComponent",
+    "FieldPermissions",
+    "ObjectPermissions",
+    "SetupEntityAccess",
+    "ProfileLayout",
+    "Layout"
+  ],
   "forbidden_process_types": ["Workflow", "CustomEvent", "InvocableProcess"],
   "id_key_prefixes": [
     "001", "003", "005", "006", "00D", "00E", "00G", "00Q", "00T", "00U", "00e",

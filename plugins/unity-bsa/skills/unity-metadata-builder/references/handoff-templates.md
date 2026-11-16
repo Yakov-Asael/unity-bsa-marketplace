@@ -14,6 +14,8 @@ Components to include in the Gearset comparison (UAT → Production):
 | Type | API name | New / changed |
 |---|---|---|
 | CustomField | Account.Credit_Check_Status__c | new |
+| PermissionSet | Credit_Check_Edit | changed (applied by the analyst) |
+| Layout | Account-Account Layout | changed (applied by the analyst) |
 
 Flows: deploy as built; activation is a separate step after the bulk test.
 Flow review: <score>/100, zero-tolerance ✅. Production needs 100/100 including the 200-record bulk test.
@@ -35,6 +37,20 @@ What I want to build: <one paragraph>
 Why I'm asking: <the risk, with numbers, e.g. "Case has 794/800 custom fields">
 Options I see: 1) <reuse X>, 2) <build Y>, 3) <defer>
 What I need from you: <decision>
+```
+
+## Session summary (end of every session)
+
+Publish it as an Artifact when the session has the Artifact tool; otherwise give it as Markdown. One per session, updated if the session continues.
+
+```markdown
+## Session summary: <ISITBA-n> <title>, <date>
+**Built and verified in UAT:** <component, read-back result>
+**Recommended, waiting for you in Setup:** <R1 field access …, R2 layout …> (verified: yes / not yet)
+**Manual steps:** <list views, anything the connector couldn't do>
+**Not done and why:** <blocked, deferred, out of scope>
+**Hand-offs:** QA <sent / pending>, Gearset <ready / pending>
+**Next steps:** 1) … 2) …
 ```
 
 ## Optional

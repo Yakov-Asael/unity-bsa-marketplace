@@ -111,6 +111,21 @@ def check_metadata_write(server, tool, tool_input, state, policy):
     return f"Blocked by the metadata-builder scan:\n{lines}"
 
 
+def access_record_problem(tool_input, policy):
+    """
+    Blocks record writes to permission or layout sObjects (FieldPermissions, PermissionSetAssignment, ...).
+    @param tool_input The record tool's input
+    @param policy The loaded policy
+    @returns str|None The deny reason
+    """
+    text = json.dumps(tool_input)
+    hits = [name for name in policy["recommend_only_types"] if f'"{name}"' in text]
+    if not hits:
+        return None
+    return (f"Blocked: {', '.join(hits)} is recommend-only. Put the access or layout change in the Build Plan "
+            "and the analyst applies it in Setup.")
+
+
 def check_mcp(tool_name, tool_input, state, policy):
     server, tool = split_mcp_tool(tool_name)
     if not server:
@@ -122,7 +137,7 @@ def check_mcp(tool_name, tool_input, state, policy):
     if tool.startswith("executeMetadataAction"):
         return check_metadata_write(server, tool, tool_input, state, policy)
     if RECORD_WRITE.match(tool) and state["skill_active"]:
-        return org_problem(server, state, policy)
+        return org_problem(server, state, policy) or access_record_problem(tool_input, policy)
     return None
 
 

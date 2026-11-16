@@ -6,7 +6,8 @@ Tags: **[FS]** Flow Standards doc (V2 wins over v1.0) · **[RN]** release-notes 
 - Description on every component: what it's for and the story ID. ⛔ for fields and flows [FS][P]
 - No hardcoded record IDs anywhere: DeveloperName lookup, Custom Metadata, Custom Settings or Custom Labels ⛔ [FS]
 - Prefer standard and existing components (reuse recon) [P]
-- Access through permission sets, never profiles ⛔ (profiles only for layout assignment) [P][RN]
+- Access through permission sets, never profiles ⛔ [P][RN]
+- Permissions and page layouts are **recommend-only**: Claude writes the recommendation, the analyst applies it in Setup ⛔ [P]
 
 ## Custom field
 - API name `Snake_Case_Words__c`; prefixes only for integrations (`WD_`, `NS_`); label = API name with spaces ⚠ [ORG 55%][P]
@@ -27,7 +28,7 @@ Tags: **[FS]** Flow Standards doc (V2 wins over v1.0) · **[RN]** release-notes 
 - Error message says what to do, shown at the field when there's one field [SF]
 - Formula validated with the connector's dry run before saving [SF]
 
-## Permission set
+## Permission set (recommend only)
 - Name `<Feature>_<Access>` (e.g. `Credit_Check_Edit`), with a description of who gets it [P]
 - Least privilege: read before edit; no View All / Modify All without the lead [SF]
 - Never field permissions on required fields; formula fields read-only [SF]
@@ -40,7 +41,7 @@ Tags: **[FS]** Flow Standards doc (V2 wins over v1.0) · **[RN]** release-notes 
 ## List view
 - Manual path. Label under 40 characters; share with the narrowest group that needs it [SF]
 
-## Page layout
+## Page layout and assignment (the analyst sets it)
 - Add fields to an existing section; field behavior `Edit` / `Required` / `Readonly` [SF]
 - Prefer Dynamic Forms on Lightning pages when the object already uses them [SF]
 

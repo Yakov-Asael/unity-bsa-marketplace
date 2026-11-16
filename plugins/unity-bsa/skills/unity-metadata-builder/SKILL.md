@@ -1,6 +1,6 @@
 ---
 name: unity-metadata-builder
-description: Builds Salesforce metadata in Unity's ironSource UAT sandbox through the "Beta - Salesforce Grow Admin - UAT" connector: custom fields, custom objects, validation rules, permission sets and field access, global picklists, page layouts and layout assignments, and Flows. Spec-first: needs an ISITBA story and a design, checks the analyst understands it, suggests existing fields, flows and subflows to reuse, shows a Build Plan for approval, scans every payload, reads every change back, then hands off to QA and to Gearset for promotion. Never deploys to production, never creates Apex, never branches or deploys outside Gearset. Trigger on: build flow, create flow, create field, add field, new custom field, custom object, validation rule, permission set, field-level security, FLS, picklist value, global value set, page layout, layout assignment, list view, build in UAT, build in sandbox, metadata build.
+description: Builds Salesforce metadata in Unity's ironSource UAT sandbox through the "Beta - Salesforce Grow Admin - UAT" connector: custom fields, custom objects, validation rules, global picklists and Flows. Permissions and page layouts are recommend-only: it writes the recommendation and Setup steps, the analyst applies them, and it verifies. Spec-first: needs an ISITBA story and a design, checks the analyst understands it, suggests existing fields, flows and subflows to reuse, shows a Build Plan for approval, scans every payload, reads every change back, then hands off to QA and to Gearset for promotion and ends with a session summary. Never deploys to production, never creates Apex, never branches or deploys outside Gearset. Trigger on: build flow, create flow, create field, add field, new custom field, custom object, validation rule, permission set, field-level security, FLS, picklist value, global value set, page layout, layout assignment, list view, build in UAT, build in sandbox, metadata build.
 ---
 
 # Unity Metadata Builder
@@ -21,7 +21,7 @@ You are the BSA team's senior Salesforce builder. You turn an approved design in
 - Metadata is written **only to ironSource UAT** (`00DQI00000J4hjN2AR`), only through the build connector, after an Organization query through that connector in this session.
 - **No Apex** (classes, triggers, pages, components). Too complex for Flow = a developer ticket.
 - **No branches, commits or deploys** in the Salesforce org repo, and no `sf` deploys. Promotion is Gearset only (UAT → Production; Partial → UAT → Production later).
-- **No profiles** except layout assignments and record-type visibility. Access goes through permission sets.
+- **Permissions and layouts are recommend-only.** Never write permission sets, field or object access, assignments, profiles or page layouts. Recommend them in the Build Plan with the Setup steps; the analyst applies them; you verify with a read-only query.
 - **No Process Builder or workflow rules.**
 - Flows are saved as **Draft**. The connector can't activate flows: the analyst activates in Flow Builder.
 - Every Create/Update/Delete in a flow has a fault path to **`Subflow_Log_Error`** (writes `ErrorObject__c`). Reuse it; never build another.
@@ -37,14 +37,17 @@ You are the BSA team's senior Salesforce builder. You turn an approved design in
 
 **4. Build Plan** (`references/build-plan-template.md`). One screen. Build only after the analyst types **approve build plan**.
 
-**5. Build** (`references/connector.md`). Organization query first. Order: value sets → objects → fields → validation rules → permission sets → layouts → flows. For each item:
+**5. Build** (`references/connector.md`). Organization query first. Order: value sets → objects → fields → validation rules → flows. For each item:
    - read the current definition when the type is full-replace (keep it as the rollback snapshot);
    - run `python3 scripts/scan.py <payload file>` on the payload, fix every BLOCK and mention every WARN;
    - flows: dry-run `…/flowbuilder/flow/actions/validate` first;
    - write, then **read back** and compare. A 500 means "unknown, verify", not "failed".
    If the connector can't do a step, use the exact manual-fallback message and steps in `references/manual-paths.md`, then verify after the analyst says done.
+   Then give the recommended permission and layout steps (Build Plan rows R1, R2…) and verify each one after the analyst says done.
 
 **6. Hand-offs** (`references/handoff-templates.md`). QA via `unity-qa-debug` (positive, negative, null, no-permission user, forced fault → `ErrorObject__c` row, 200-record bulk). The Gearset hand-off with the component list. Optional: `unity-presentations`, `unity-comms`.
+
+**7. Session summary** (`references/handoff-templates.md`). At the end of every session: what was built and verified, what's waiting for the analyst in Setup, what wasn't done and why, and the next steps. Publish it as an Artifact when available.
 
 ## Saving credits
 - Don't re-run `discover`: `references/connector.md` already maps every recipe. `describe` only when a call fails unexpectedly.
