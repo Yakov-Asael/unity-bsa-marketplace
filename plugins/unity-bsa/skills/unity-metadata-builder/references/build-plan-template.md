@@ -3,9 +3,9 @@
 Show this before the first write. Build only after the analyst replies **approve build plan**. Any change to the plan needs a new approval.
 
 ```markdown
-## Build Plan: <ISITBA-n> <story title>
+## Build Plan: <ISITBA-n or design name> <title>
 **Org:** ironSource UAT (00DQI00000J4hjN2AR, sandbox), confirmed <time> by Organization query
-**Spec:** <PRD/TDD link> · story ✅ sprint-ready · understanding check ✅
+**Spec:** <PRD/TDD link> · design ✅ build-ready · understanding check ✅
 
 | # | Type | API name | Change | Reused? | Build route |
 |---|---|---|---|---|---|

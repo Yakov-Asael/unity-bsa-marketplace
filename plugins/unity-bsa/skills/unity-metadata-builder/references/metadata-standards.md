@@ -3,7 +3,7 @@
 Tags: **[FS]** Flow Standards doc (V2 wins over v1.0) · **[RN]** release-notes deck · **[SF]** Salesforce/connector guidance · **[ORG]** observed in the ironSource org · **[P]** proposed in the plan and approved by Yakov (Nov 2026). `scripts/scan.py` enforces the rules marked ⛔ (blocks) and ⚠ (warns).
 
 ## Every type
-- Description on every component: what it's for and the story ID. ⛔ for fields and flows [FS][P]
+- Description on every component: what it's for and the story ID or design name. ⛔ for fields and flows [FS][P]
 - No hardcoded record IDs anywhere: DeveloperName lookup, Custom Metadata, Custom Settings or Custom Labels ⛔ [FS]
 - Prefer standard and existing components (reuse recon) [P]
 - Access through permission sets, never profiles ⛔ [P][RN]

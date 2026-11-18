@@ -4,11 +4,11 @@
     {
       "id": 1,
       "prompt": "add a field on account for credit check status",
-      "expected_output": "Does not build. Asks for the ISITBA story and the design, offers unity-tech-design, and asks the first batch of questions.",
+      "expected_output": "Does not build. Asks for the design (PRD/TDD), offers unity-tech-design, and asks the first batch of questions. A story key is optional.",
       "files": [],
       "expectations": [
         "Makes no write call through any connector",
-        "Asks for an ISITBA story key and a PRD/TDD or routes to unity-tech-design",
+        "Asks for a PRD/TDD or routes to unity-tech-design; does not refuse only because there is no ISITBA key",
         "Asks at most five questions in the first batch",
         "Ends with a single Next Step"
       ]
@@ -108,6 +108,17 @@
         "Recommends the layout, section and field behavior, and the permission set with read/edit",
         "Gives Setup steps and offers read-only verify queries after the analyst says done",
         "Ends with a single Next Step"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "No Jira ticket yet, we're mid-migration. Design doc attached: new Offboarding_Request__c object with Leaver__c (Lookup User) and Status__c (Open, In Progress, Completed). Build it in UAT.",
+      "expected_output": "Proceeds without a story key: runs the understanding check, reuse recon and a Build Plan named after the design doc.",
+      "files": [],
+      "expectations": [
+        "Does not block or insist on an ISITBA key",
+        "Names the Build Plan after the design doc",
+        "Still runs the understanding check before the Build Plan"
       ]
     }
   ]

@@ -8,6 +8,7 @@
   ],
   "skill_name": "unity-metadata-builder",
   "story_key_pattern": "^ISITBA-\\d+$",
+  "story_required": false,
   "reviewer_min_score": 85,
   "field_limit": 800,
   "field_limit_warn_pct": 95,

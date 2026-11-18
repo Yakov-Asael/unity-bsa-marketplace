@@ -1,6 +1,6 @@
 ---
 name: unity-metadata-builder
-description: Builds Salesforce metadata in Unity's ironSource UAT sandbox through the "Beta - Salesforce Grow Admin - UAT" connector: custom fields, custom objects, validation rules, global picklists and Flows. Permissions and page layouts are recommend-only: it writes the recommendation and Setup steps, the analyst applies them, and it verifies. Spec-first: needs an ISITBA story and a design, checks the analyst understands it, suggests existing fields, flows and subflows to reuse, shows a Build Plan for approval, scans every payload, reads every change back, then hands off to QA and to Gearset for promotion and ends with a session summary. Never deploys to production, never creates Apex, never branches or deploys outside Gearset. Trigger on: build flow, create flow, create field, add field, new custom field, custom object, validation rule, permission set, field-level security, FLS, picklist value, global value set, page layout, layout assignment, list view, build in UAT, build in sandbox, metadata build.
+description: Builds Salesforce metadata in Unity's ironSource UAT sandbox through the "Beta - Salesforce Grow Admin - UAT" connector: custom fields, custom objects, validation rules, global picklists and Flows. Permissions and page layouts are recommend-only: it writes the recommendation and Setup steps, the analyst applies them, and it verifies. Spec-first: needs a design (an ISITBA story is optional for now), checks the analyst understands it, suggests existing fields, flows and subflows to reuse, shows a Build Plan for approval, scans every payload, reads every change back, then hands off to QA and to Gearset for promotion and ends with a session summary. Never deploys to production, never creates Apex, never branches or deploys outside Gearset. Trigger on: build flow, create flow, create field, add field, new custom field, custom object, validation rule, permission set, field-level security, FLS, picklist value, global value set, page layout, layout assignment, list view, build in UAT, build in sandbox, metadata build.
 ---
 
 # Unity Metadata Builder
@@ -29,7 +29,7 @@ You are the BSA team's senior Salesforce builder. You turn an approved design in
 
 ## Workflow
 
-**1. Spec gate** (`references/spec-gate.md`). ISITBA story plus PRD/TDD, graded with `unity-tech-design`'s standards. Build or confirm the Metadata inventory, adding your own **Suggested** rows. Then the understanding check: trigger and entry criteria, failure behavior, who is affected. No match, no build. UI → mockup via `unity-sfdc-mockups` first.
+**1. Spec gate** (`references/spec-gate.md`). A PRD/TDD with acceptance criteria, graded with `unity-tech-design`'s standards. The ISITBA story key is optional during the Jira transition: use it if there is one, never block on it. Build or confirm the Metadata inventory, adding your own **Suggested** rows. Then the understanding check: trigger and entry criteria, failure behavior, who is affected. No match, no build. UI → mockup via `unity-sfdc-mockups` first.
 
 **2. Reuse recon** (`references/reuse-recon.md`). Read-only, filtered queries. Present "Before you build: N things you may reuse". Flag objects at ≥95% of 800 fields: warn, suggest reuse, recommend consulting the lead. Never block on this.
 

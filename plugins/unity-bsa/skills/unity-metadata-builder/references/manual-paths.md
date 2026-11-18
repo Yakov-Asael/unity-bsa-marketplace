@@ -39,5 +39,5 @@ Setup → Object Manager → `<Object>` → Page Layouts → `<Layout>` → drag
 Verify (Tooling): `SELECT LayoutId FROM ProfileLayout WHERE ProfileId='<Id>' AND TableEnumOrId='<Object>'`
 
 ## Flow
-Setup → Flows → New Flow (or open `<API name>`) → build per the reviewed design → Save (label and API name per the Flow Standards, description with the story ID) → don't activate until the reviewer and the bulk test pass.
+Setup → Flows → New Flow (or open `<API name>`) → build per the reviewed design → Save (label and API name per the Flow Standards, description with the story ID or design name) → don't activate until the reviewer and the bulk test pass.
 Verify: `SELECT ApiName, Label, ActiveVersionId, LatestVersionId FROM FlowDefinitionView WHERE ApiName='<API name>'`

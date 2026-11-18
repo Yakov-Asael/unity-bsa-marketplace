@@ -6,14 +6,14 @@ Nothing is built from one sentence. The gate has three parts, run in order. Ask 
 
 | Needed | Missing → |
 |---|---|
-| An ISITBA story (`ISITBA-<n>`) with acceptance criteria | Hand off to `unity-tech-design` Mode B to write it |
-| A PRD or TDD for anything beyond a single field | Hand off to `unity-tech-design` Mode A |
+| A PRD or TDD for anything beyond a single field, with acceptance criteria | Hand off to `unity-tech-design` Mode A |
+| A story key (`ISITBA-<n>`) | **Optional during the Jira transition** (`story_required: false` in `config/policy.json`). Use it if there is one; otherwise name the work after the design doc. Never block on it |
 
 Grade what exists with the sibling standards (don't copy them here):
-- the story: `unity-tech-design/references/user-story-standard.md` (INVEST, Definition of Ready, AC for edge, null, 200-record, permission and error cases);
+- the acceptance criteria (in the story or the design): `unity-tech-design/references/user-story-standard.md` (AC for edge, null, 200-record, permission and error cases);
 - the PRD/TDD: `unity-tech-design/references/prd-tdd-template.md` and that skill's self-review checklist.
 
-"Not sprint-ready" stops the build. List the gaps, quoting the vague lines.
+A design that isn't build-ready stops the build. List the gaps, quoting the vague lines.
 
 ## 2. The Metadata inventory
 

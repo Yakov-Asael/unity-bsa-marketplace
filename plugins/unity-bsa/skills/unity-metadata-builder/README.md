@@ -6,7 +6,7 @@ Builds Salesforce metadata in the **ironSource UAT sandbox** through the "Beta -
 
 ## How it works
 
-1. **Spec gate:** an ISITBA story and a design, plus an understanding check. Nothing is built from one sentence.
+1. **Spec gate:** a design with acceptance criteria, plus an understanding check (an ISITBA story is optional during the Jira transition). Nothing is built from one sentence.
 2. **Reuse recon:** suggests existing fields, flows, subflows and permission sets. Suggestions, not blocks.
 3. **Flow review:** `unity-flow-reviewer` zero-tolerance pass and at least 85/100.
 4. **Build Plan:** one screen, with recommended permission and layout steps; the analyst types `approve build plan`.
@@ -32,7 +32,7 @@ build flow, create field, custom object, validation rule, permission set, FLS, p
 
 ## References
 
-- `references/spec-gate.md`: story, design, inventory and understanding check
+- `references/spec-gate.md`: design, inventory and understanding check
 - `references/reuse-recon.md`: read-only queries for reuse suggestions
 - `references/build-plan-template.md`: the approval screen
 - `references/connector.md`: the exact connector call for each type

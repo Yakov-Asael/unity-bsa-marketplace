@@ -696,3 +696,7 @@ Consequences for the plan:
 - **Permissions are recommend-only.** The skill never writes permission sets, field or object access, assignments or profiles. It puts them in the Build Plan as R-rows with Setup steps, and verifies with a read-only query after the analyst applies them. Hook rule B23 (`recommend_only_types` in `config/policy.json`).
 - **Page layouts and layout assignments are set by the BSA.** Same handling as permissions. The Profile layout-assignment exception was removed: Profile writes are blocked again (B19).
 - **Session summary.** The skill ends every session with a summary (built and verified, waiting in Setup, not done, next steps), as an Artifact when available.
+
+### 11.13 Decision, 18 November 2026
+
+- **Jira gate removed for now** (Jira transition). The ISITBA story key is optional: used when there is one, never blocking. The design (PRD/TDD with acceptance criteria) and the understanding check still gate the build. Switch: `story_required` in `config/policy.json`.
