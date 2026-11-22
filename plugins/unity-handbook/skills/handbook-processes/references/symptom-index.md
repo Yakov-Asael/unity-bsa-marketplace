@@ -156,6 +156,23 @@ Worth knowing before you search a file, because the shape differs:
 
 ---
 
+### Commission
+
+`commission.md` has no FAQ yet. The rows below are candidate clusters derived from the mechanics, not graded cases. Answer from "Troubleshooting (candidate clusters, not yet from real cases)" and say they are hypotheses to check.
+
+| The ticket says | Section |
+|---|---|
+| A manual number on a Custom or MBO line did not save, or changed back | "Custom and MBO lines (manual numbers)", then "Troubleshooting (candidate clusters, not yet from real cases)" |
+| A user has no commission this quarter | "Troubleshooting (candidate clusters, not yet from real cases)", then "Batches and schedules" (Create runs once per quarter) |
+| Commission stuck in Pending, or the number keeps changing | "Scoring rules" (status flow, only Pending is recalculated), then "Batches and schedules" |
+| The group total or a Group line looks wrong | "Troubleshooting (candidate clusters, not yet from real cases)", then "Batches and schedules" (Group Line jobs) |
+| Why is the actual different from the invoice or revenue total? | "Filters (how the right data is pulled)" |
+| Adjustment detail is missing on a line | "Batches and schedules" (the 130,000-character rule) |
+
+Commission timing questions (when the numbers refresh) go to `handbook-code-lookup`.
+
+---
+
 ## Cross-process symptoms
 
 Where the symptom does not tell you which process owns it. Read the primary file first; open the second only if the answer is genuinely incomplete.

@@ -1,7 +1,7 @@
 ---
 name: handbook-code-lookup
 description: >
-  Answers questions about the twelve documented Salesforce processes whose real answer lives in Apex, triggers or scheduled
+  Answers questions about the thirteen documented Salesforce processes whose real answer lives in Apex, triggers or scheduled
   jobs rather than in the handbook — batch run times and cron schedules, what a class actually does, why an automation fired
   or did not fire, hardcoded thresholds and IDs, trigger order. Reads deployed source directly from the org (read-only) and
   cites it; optionally consults the SFDC-IS repository for git history. Use when the handbook is silent on a mechanism, when
@@ -13,7 +13,7 @@ description: >
 
 # Handbook Code Lookup
 
-Some questions about the twelve processes cannot be answered from the handbook because the answer was never in a document — it is in Apex, in a trigger, or in a scheduled job's cron expression. This skill reads the **deployed source from the org** and answers from it, with citations.
+Some questions about the thirteen processes cannot be answered from the handbook because the answer was never in a document — it is in Apex, in a trigger, or in a scheduled job's cron expression. This skill reads the **deployed source from the org** and answers from it, with citations.
 
 This exists because of a real failure: *"when does the next bill/invoice cycle attach to invoices and bills?"* The handbook describes the "waiting for next invoice/bill" flag and even links a document about the batch, but states no run times — so answering it from the handbook alone produces a confident guess. The run times are in two scheduled jobs, and they are readable.
 
