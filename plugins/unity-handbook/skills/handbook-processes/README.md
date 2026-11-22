@@ -2,7 +2,7 @@
 
 # handbook-processes
 
-**Answers questions about the twelve Salesforce processes** documented in Unity's BSA Process Handbook — how one works, why it broke, who approves what, and who owns it now. Built to carry ticket work: a reported symptom routes to the process that owns it.
+**Answers questions about the thirteen Salesforce processes** documented in Unity's BSA Process Handbook — how one works, why it broke, who approves what, and who owns it now. Built to carry ticket work: a reported symptom routes to the process that owns it.
 
 ## How it works
 
@@ -78,4 +78,4 @@ Answers from the handbook only. Org verification and reference-file updates are 
 
 `references/symptom-index.md` — symptom → file → section routing for ticket work, plus the cross-process table, timing-question handoffs, and the pre-send checklist for a ticket reply.
 
-`references/` — twelve process files, one per tab: `dispute.md`, `handover.md`, `connect-360.md`, `game-design-revenue-consultancy.md`, `credit-check-auto-approval.md`, `customer-community.md`, `knowledge.md`, `csat.md`, `deals.md`, `pipeline-summary.md`, `gps.md`, `bills-invoice-sync.md`. Each preserves its original `> Source:` provenance header and names its business and technical owner.
+`references/` — thirteen process files: `dispute.md`, `handover.md`, `connect-360.md`, `game-design-revenue-consultancy.md`, `credit-check-auto-approval.md`, `customer-community.md`, `knowledge.md`, `csat.md`, `deals.md`, `pipeline-summary.md`, `gps.md`, `bills-invoice-sync.md`, plus `commission.md` (added November 2026, not a verbatim tab). Each preserves its original `> Source:` provenance header and names its business and technical owner.

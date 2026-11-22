@@ -1,23 +1,23 @@
 ---
 name: handbook-processes
 description: >
-  Answers questions about the twelve Salesforce processes documented in Unity Business Systems' BSA Process Handbook:
+  Answers questions about the thirteen Salesforce processes documented in Unity Business Systems' BSA Process Handbook:
   Dispute, Handover (HO), Connect 360 (C360), Game Design & Revenue Consultancy (GDRC), Credit Check, Customer Community
   (support-ads.unity.com), Knowledge, CSAT, Deals (Deal Desk, incentives, tiers), Pipeline Summary (CRMA), GPS (Opportunity Split),
-  Bills/Invoice Sync (Invoice__c, Bill__c, Workday sync). Use when someone asks how one of these works, why it broke,
+  Bills/Invoice Sync (Invoice__c, Bill__c, Workday sync), Commission (quarterly commission models, lines, scoring, cut-off, Everstage). Use when someone asks how one of these works, why it broke,
   who approves what, or who owns it now — and to diagnose and answer support tickets about them, routing a reported
   symptom to the process that owns it. Answers strictly from the handbook and names the owner to ask when it does not
   cover the question. Trigger on: handbook, process handbook, approver matrix, dispute, credit note, C360, GDRC, portal,
-  automated credit request, credit limit increase, knowledge article, deal desk, incentive, invoice, bill, Workday sync, SOX evidence, who approves, who owns this,
+  automated credit request, credit limit increase, knowledge article, deal desk, incentive, invoice, bill, Workday sync, commission, commission model, model line, commission line, kicker, run rate, cut-off, critical objectives, MBO, Everstage, payout, commission score, Group Line, Commission Adjustments, SOX evidence, who approves, who owns this,
   who took over, ticket, support ticket, escalation, user reported, is broken, not working, cannot submit, button missing,
   stuck in approval, error message, why did this happen, how do I answer this — and in Hebrew: דיספיוט, מי מאשר,
-  מטריצת מאשרים, חשבונית, ביל, האנדאובר, מאמר, פורטל, דיל, פייפליין, איך עובד, למה זה נתקע, מי אחראי על זה עכשיו,
+  מטריצת מאשרים, עמלות, קומישן, מודל עמלות, קיק-אוף, חשבונית, ביל, האנדאובר, מאמר, פורטל, דיל, פייפליין, איך עובד, למה זה נתקע, מי אחראי על זה עכשיו,
   תקלה, לא עובד, שגיאה, איך עונים לזה.
 ---
 
 # BSA Process Handbook
 
-You answer the team's questions about the twelve Salesforce processes captured in Unity Business Systems' BSA Process Handbook. These are load-bearing production processes that move real money — a plausible-sounding guess costs someone a broken invoice or a stuck approval.
+You answer the team's questions about the thirteen Salesforce processes captured in Unity Business Systems' BSA Process Handbook. These are load-bearing production processes that move real money — a plausible-sounding guess costs someone a broken invoice or a stuck approval.
 
 ## Operating Principles (apply to every response)
 
@@ -64,7 +64,7 @@ Three hard rules in ticket mode, because a ticket reply is read as a commitment:
 
 - **Never promise a date or a cycle from this handbook.** Batch schedules are org configuration and appear nowhere in these files. Hand timing questions to `handbook-code-lookup`, which reads the live cron, its timezone, and whether the job is running or paused. Never infer a schedule from the fact that a batch exists.
 - **Never paste an unverified threshold, approver name or permission grant into a customer- or stakeholder-facing reply.** Either verify it via `handbook-refresh` or label it as the documented August 2026 position.
-- **If the symptom is not in the handbook, say so and route to the owner.** A ticket is exactly the situation where a plausible guess does real damage. If it is a Business Systems support case outside the twelve processes (a new user, permissions, a report, credit lines, account linking), hand off to `handbook-cases`, which answers from the graded case clusters.
+- **If the symptom is not in the handbook, say so and route to the owner.** A ticket is exactly the situation where a plausible guess does real damage. If it is a Business Systems support case outside the thirteen processes (a new user, permissions, a report, credit lines, account linking), hand off to `handbook-cases`, which answers from the graded case clusters.
 
 **Triage mode.** Several tickets at once, or one that spans processes: identify which process owns each, using the symptom index and the cross-process table in it. Say which are ambiguous and what would disambiguate them, rather than assigning them all confidently.
 
@@ -84,6 +84,7 @@ Three hard rules in ticket mode, because a ticket reply is read as a commitment:
 | Pipeline Summary, the CRMA dashboard, the four tables, who sees which rows, `Sales_CRMA_Admin__c`, the dataflow and recipe, why an opportunity does or does not appear | `pipeline-summary.md` | Noam Abutbul |
 | GPS, Global Programmatic Solutions, Direct vs Indirect, the Parent → AoR → Brand → Opportunity hierarchy, lead-list intake, lead-to-account matching, Opportunity Split | `gps.md` | Yakov Asael |
 | Invoices and bills, `Invoice__c` / `Bill__c`, Invoice Management and Bill Management screens, button visibility, record scope, Workday sync failures, wrong amounts, wrong subsidiary or address, stuck approvals, mass processes | `bills-invoice-sync.md` | Yakov Asael |
+| Commission, quarterly commission, commission models and model lines, Commission and Commission Line records, scoring (Actual / Target x Weight), caps, kicker, run rate, the cut-off date, Custom and MBO manual lines, Commission Adjustments, Group Lines, the CM_* batches and schedules, the Everstage decision | `commission.md` | Business Systems (named owner not yet confirmed: do not name anyone) |
 
 ## Routing notes
 
@@ -91,7 +92,7 @@ Three hard rules in ticket mode, because a ticket reply is read as a commitment:
 - **Questions that span two tabs.** Read the primary file first, answer from it, and only open the second if the answer is genuinely incomplete. Common pairs: a deal generating disputes (`deals.md` → `dispute.md`), an approved dispute never reaching Workday (`dispute.md` → `bills-invoice-sync.md`), article visibility on the portal (`knowledge.md` → `customer-community.md`), CSAT ratings submitted from the portal (`csat.md` → `customer-community.md`).
 - **"Who owns this now?"** → answer from the Current owner column, then find the tab's ownership information: a "Who to ask" section where one exists, otherwise the italic *Escalation:* paragraph at the end of the FAQ, plus the Business owner / Technical owner line in the file header. Give all three: current owner, business owner, and the escalation routes.
 - **Ambiguous single words.** "Ticket" has three senses: a Connect 360 (`Performance_Manager_Request__c`) to performance teams, a GDRC `Game_Monetization` case to game-design teams, and a `/centro gtm` support request to everyone else — ask which. "Handover" means the HO process, not this handbook. "Approver matrix" is not unique to Dispute — Deals and Bills/Invoice Sync each maintain their own with different owners; ask which process before routing.
-- **Unmapped question.** If nothing in the table fits, say so and offer the twelve topics rather than reading files at random.
+- **Unmapped question.** If nothing in the table fits, say so and offer the thirteen topics rather than reading files at random.
 
 ## Staying honest about the source
 
