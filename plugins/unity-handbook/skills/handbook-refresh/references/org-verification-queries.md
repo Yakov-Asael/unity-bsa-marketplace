@@ -179,3 +179,32 @@ Drift scan of `references/claims.json` (527 claims) against `SFDC-IS` `origin/Pr
 **Resolved 11 November 2026:** both of Dror Diamant's User records were still active, past his 10 September 2026 departure. That is a finding, raised with the SOX access-review owner; the row was removed from this list.
 
 **Ownership retired 11 November 2026:** the outgoing `Dror Diamant →` half was removed from every tab's `Technical owner` line, so the successor is the only owner named. He remains only where the org still points at him (the Dispute Approvers - Monitor subscription and three GPS campaigns); those are org facts, re-checked on each refresh.
+
+## Commission (`commission.md`): validated aggregate queries, 17 November 2026
+
+All ran successfully on Grow production on 2026-11-17. Aggregate only: never select individual commission amounts or user names. Aliases are allowed on aggregate expressions only. `Commission__c.Year__c` and the quarter fields are formulas and cannot be grouped, so group on the date.
+
+```sql
+-- In-use assignments, models and users (expect 135 / 66 / 135 on 2026-11-17)
+SELECT COUNT(Id) c_assign_create FROM Commission_Model_With_Users__c WHERE Create_Model__c = true
+SELECT COUNT_DISTINCT(Commission_Model__c) c_models_inuse, COUNT_DISTINCT(User__c) c_users_inuse FROM Commission_Model_With_Users__c WHERE Create_Model__c = true
+
+-- Commissions per quarter
+SELECT CALENDAR_YEAR(Commission_Date__c) y, CALENDAR_QUARTER(Commission_Date__c) q, COUNT(Id) c_comm FROM Commission__c GROUP BY CALENDAR_YEAR(Commission_Date__c), CALENDAR_QUARTER(Commission_Date__c)
+
+-- Status mix by quarter
+SELECT CALENDAR_QUARTER(Commission_Date__c) q, Status__c, COUNT(Id) c_status FROM Commission__c WHERE CALENDAR_YEAR(Commission_Date__c) = 2026 GROUP BY CALENDAR_QUARTER(Commission_Date__c), Status__c
+
+-- Commission lines in a quarter (Q4 2026 was 628, Q3 2026 was 612)
+SELECT COUNT(Id) c_lines_q4 FROM Commission_Line__c WHERE Commission__r.Commission_Date__c = THIS_QUARTER
+
+-- Adjustment record types: group by the Date field, not CreatedDate
+SELECT CALENDAR_QUARTER(Date__c) q, RecordType.Name rt, COUNT(Id) c_adjq FROM Commission_Adjustments__c WHERE CALENDAR_YEAR(Date__c) = 2026 GROUP BY CALENDAR_QUARTER(Date__c), RecordType.Name
+
+-- Schedules (row query: no aliases). Expect six commission jobs WAITING plus four CM_GroupLineUpdate* jobs
+SELECT CronJobDetail.Name, CronExpression, State, NextFireTime FROM CronTrigger WHERE CronJobDetail.Name LIKE '%ommission%' OR CronJobDetail.Name LIKE '%Group%' OR CronJobDetail.Name LIKE '%Aggregate%'
+```
+
+Also check: `CM_AggregateToGroup%` should return no scheduled job (it is manual only); `Custom` lines with Data Source = External should still be zero in use. Repository checks against `origin/Production`: `setCutOffDate` dates (22 April, July, October, 22 January next year), the `130000` literal in `CM_CommissionUpdateBatch`, the three `Status__c` picklist values, and the three `Commission_Adjustments__c` record types (General, Personal, External).
+
+Confirmed 17 November 2026: all of the above match `commission.md`, except the points the file records as Verified corrections (Create chains Update with batch size 3; two separate Update schedulers; `CM_AggregateToGroupBatch` unscheduled; Personal and External adjustments occur in closed quarters; the 130,000 rule nulls the field).

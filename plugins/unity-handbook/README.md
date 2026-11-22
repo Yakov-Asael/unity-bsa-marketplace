@@ -2,7 +2,7 @@
 
 # unity-handbook
 
-Unity's **BSA Process Handbook for Salesforce**. Twelve load-bearing processes were documented in detail at a handover in August 2026; this plugin turns that documentation into something the team can ask questions of — and keeps it honest against the live org instead of letting it decay into a stale snapshot.
+Unity's **BSA Process Handbook for Salesforce**. Twelve load-bearing processes were documented in detail at a handover in August 2026, and Commission was added in November 2026 as a thirteenth; this plugin turns that documentation into something the team can ask questions of — and keeps it honest against the live org instead of letting it decay into a stale snapshot.
 
 It is the team's **knowledge centre for answering tickets**: a reported symptom routes to the process that owns it, a support case is matched against 24 issue clusters graded from real closed cases, the answer names the check to run and who is allowed to run it, and anything the handbook never recorded is read from the org rather than guessed.
 
@@ -20,7 +20,7 @@ It is the team's **knowledge centre for answering tickets**: a reported symptom 
 
 | Skill | What it does |
 | --- | --- |
-| [`handbook-processes`](./skills/handbook-processes) | Answers questions about the twelve processes — how one works, why it broke, who approves what, who owns it now — and diagnoses tickets. Routes by topic, or by symptom for a problem report, to exactly one reference file; reproduces values verbatim; surfaces the tab's known gaps and live issues. |
+| [`handbook-processes`](./skills/handbook-processes) | Answers questions about the thirteen processes — how one works, why it broke, who approves what, who owns it now — and diagnoses tickets. Routes by topic, or by symptom for a problem report, to exactly one reference file; reproduces values verbatim; surfaces the tab's known gaps and live issues. |
 | [`handbook-refresh`](./skills/handbook-refresh) | Verifies handbook claims against the live Salesforce org (read-only) and produces a drift report with proposed reference-file edits. Tiers each claim by what is actually checkable, and refuses to declare drift from a single query. |
 | [`handbook-code-lookup`](./skills/handbook-code-lookup) | Answers questions whose answer lives in Apex rather than the handbook — batch run times and cron schedules, what a class does, hardcoded thresholds, why an automation didn't fire. Reads deployed source from the org (read-only) and cites it; optionally consults the `SFDC-IS` repo for git history and flow XML. |
 | [`handbook-cases`](./skills/handbook-cases) | Answers Business Systems support cases (`Saleforce` record type) from 24 issue clusters built from real closed cases and graded by the owner: new users, permissions, credit lines, Workday sync, approvers, reports, handovers, account structure and more. Returns a Summary, numbered steps for the teammate and a percentage confidence. Strictly read-only. |
@@ -49,7 +49,7 @@ Or hand it a ticket as it arrived, without naming a process (`handbook-processes
 
 The handbook is a **snapshot from 9–10 August 2026**, and Salesforce configuration drifts continuously. Two things keep it true:
 
-1. **The standing rule** — whoever changes one of these twelve processes updates its reference file **in the same PR as the change**.
+1. **The standing rule** — whoever changes one of these thirteen processes updates its reference file **in the same PR as the change**.
 2. **Scheduled verification** — a quarterly Tier 1 sweep alongside the SOX review cycle, and a semi-annual Tier 3 pass re-confirming thresholds and approver matrices with each process's business owner.
 
 The `handbook-refresh` skill runs the verification repo-first: a script compares a manifest of 524 handbook claims with the `SFDC-IS` Production branch (synced nightly from the org) and returns only what changed since each claim was last verified, so the connector is needed only for live checks such as people and scheduled jobs. Last full sweep: **11 November 2026**. The skill drafts the edits; a human reviews and merges them through the normal repo flow. Precedence when sources disagree: **the org → the repo's reference files → the source Google Doc**. The repo is what ships, so a correction made only in the doc changes nothing for users.
@@ -83,7 +83,7 @@ Current: **v0.4.1** (see `.claude-plugin/plugin.json`).
 
 ## Provenance
 
-The twelve reference files were written on 9–10 August 2026 and are preserved verbatim, apart from owner lines updated as ownership changes. Each file carries its own `> Source:` line and names the process's business and technical owner. Corrections confirmed against the org are appended as `> **Verified <date>:**` notes rather than overwriting the original text. Maintained by the Unity Business Systems team.
+Twelve of the reference files were written on 9–10 August 2026 and are preserved verbatim, apart from owner lines updated as ownership changes. `commission.md` was added in November 2026 from a Business Systems analysis, verified against the Production branch and the live org, and is not a verbatim handbook tab. Each file carries its own `> Source:` line and names the process's business and technical owner. Corrections confirmed against the org are appended as `> **Verified <date>:**` notes rather than overwriting the original text. Maintained by the Unity Business Systems team.
 
 ## Author
 

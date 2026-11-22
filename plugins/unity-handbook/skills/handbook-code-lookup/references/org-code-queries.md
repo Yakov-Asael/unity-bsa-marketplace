@@ -100,6 +100,22 @@ This is consistent with what `bills-invoice-sync.md` already documents: Workday 
 
 So: **a `PAUSED` state is not automatically a finding.** Check whether the job belongs to a superseded integration before reporting it. Genuinely unexplained paused jobs are still worth surfacing — the test is whether a decommission explains it, not whether the state looks alarming.
 
+### Commission: classes and schedules, confirmed 17 November 2026
+
+Read from `CronTrigger` (Grow production) and `origin/Production`. Job names are free text; search `LIKE '%ommission%'` and `LIKE 'CM_%'`. Names of two job pairs were not captured, so confirm them before quoting.
+
+| Class | Schedule found | Batch size |
+|---|---|---|
+| `CM_CommissionCreateBatch` | `0 0 6 1 JAN,APR,JUL,OCT ?` | 5 (chains Update with size 3 in `finish`) |
+| `CM_GroupLineCreateBatch` | `0 0 9 1 JAN,APR,JUL,OCT ?` | default |
+| `CM_CommissionUpdateThisQuarterSchedule` | `0 30 10 * * ?` and `0 30 22 ? * *` | 1 |
+| `CM_CommissionUpdateLastQuarterSchedule` | `0 30 10 * * ?` and `0 30 22 ? * *` | 1 |
+| `CM_GroupLineUpdateBatch` (launched by `CM_GroupLineUpdateJob` fallback above 5,000 records or 1,400 revenue rows) | four jobs named `CM_GroupLineUpdate*`: two at `0 0 10 ? * *`, two at `0 0 22 ? * *` | 1 |
+| `CM_AggregateToGroupBatch` | none (no `CronTrigger`), manual `webService` launch only | 1 |
+| Flow `Commission_Line_Alert_on_Commission_with_no_Target-6` | `0 0 12 ? * 3 *` (Tuesday) | n/a |
+
+The cut-off date rule lives in `CM_CommissionUtil.setCutOffDate`. The 130,000-character nulling of `Adjustments_Json__c` is in `CM_CommissionUpdateBatch`. Commission code is in the repository under `CM_*`, `Ctrl_UserCommission` and `Ctrl_TLCommission`.
+
 ## 4. Flows
 
 ```sql
