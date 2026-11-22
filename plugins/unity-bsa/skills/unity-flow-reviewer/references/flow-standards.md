@@ -1,9 +1,17 @@
 # Salesforce Flow Standards
 
 **Business Systems Analyst Development Guidelines — Unity**
-Version 1.0 | Effective Date: April 2026 | Review Cycle: Quarterly
+V2 (Flow Manual tab) + Version 1.0 (April 2026) | Review Cycle: Quarterly | Synced 2026-11-15
 
-This is the authoritative ruleset for the `unity-flow-reviewer` skill. Source of truth: the team's "Salesforce Flow Design Standards & Best Practices" Google Doc.
+This is the authoritative ruleset for the `unity-flow-reviewer` and `unity-metadata-builder` skills. Source of truth: the team's "Salesforce Flow Design Standards & Best Practices" Google Doc. Where V2 and v1.0 differ, V2 wins.
+
+---
+
+## 0. Architecture (V2)
+
+- **One flow per object** per trigger context. Use the **Trigger Explorer** to manage execution order. Keep **Fast Field Updates (Before-Save)** separate from **Actions & Related Records (After-Save)**.
+- **Entry criteria** as specific as possible. Never run on every update unless necessary: choose "Only when a record is updated to meet the condition requirements".
+- **Subflows:** any logic repeated more than twice (error logging, standard notifications) moves to a subflow.
 
 ---
 
@@ -27,14 +35,15 @@ These rules have **ZERO TOLERANCE**. Any flow violating them is **REJECTED in co
 ### Rule 3: NO Hardcoded IDs
 - NEVER hardcode 15- or 18-char Salesforce IDs (Record Types, Users, Queues, Profiles, custom records).
 - **Why:** IDs are environment-specific; flows break on sandbox refresh and fail to deploy.
-- Approved alternatives: Custom Labels, Dynamic Lookup (Get Records by DeveloperName), Custom Metadata Types.
+- Approved alternatives: Dynamic Lookup (Get Records by DeveloperName), Custom Metadata Types, Custom Settings, Custom Labels.
 
 ---
 
 ## 2. Naming Conventions
 
-**Flow name:** `[Object]_[TriggerType]_[BusinessProcess]`
-Good: `Account_AfterCreate_AssignSalesManager`, `Case_ScreenFlow_CreateFinanceTicket`. Bad: `NewFlow1`, `acc update`, `test`.
+**Flow label (V2):** `[Object] - [Trigger Type] - [Brief Description]`, e.g. `Account - After Update - Assign Sales Manager`.
+**Flow API name (v1.0):** `[Object]_[TriggerType]_[BusinessProcess]`, e.g. `Account_AfterUpdate_AssignSalesManager`.
+Bad: `NewFlow1`, `acc update`, `test`.
 
 **Flow type prefixes:**
 
@@ -72,7 +81,7 @@ Good: `Account_AfterCreate_AssignSalesManager`, `Case_ScreenFlow_CreateFinanceTi
 ## 3. Design Patterns
 
 **Pattern 1 — Bulk processing:** `Trigger → Decision (add {!$Record} to col_) → Loop (build col_recordsToUpdate) → Update Records (collection)`.
-**Pattern 2 — Error handling:** every DML fault path → `Subflow_Log_Error(ErrorMessage={!$Flow.FaultMessage}, FlowName={!$Flow.APIName}, RecordId)`.
+**Pattern 2 — Error handling:** every DML fault path → `Subflow_Log_Error(txtErrorMessage={!$Flow.FaultMessage}, txtFlowName={!$Flow.APIName}, txtRecordId={!$Record.Id})`.
 **Pattern 3 — Dynamic ID lookup:** `Get Records on RecordType where SObjectType + DeveloperName → store rec_recordType → use {!rec_recordType.Id}`.
 **Pattern 4 — Subflow for reusability:** extract logic used in 3+ flows or 10+ elements. Naming `Subflow_[Purpose]` (e.g., `Subflow_SendEmailNotification`).
 
@@ -80,10 +89,10 @@ Good: `Account_AfterCreate_AssignSalesManager`, `Case_ScreenFlow_CreateFinanceTi
 
 ## 4. Error Handling
 
-Every DML requires a fault connector. Fault paths must:
-- **Screen Flow:** error screen with friendly message + `{!$Flow.FaultMessage}` in smaller text.
-- **Auto-launched:** email admin with Flow APIName, FaultMessage, Record Id, timestamp.
-- **Critical:** create `Error_Log__c` (`Flow_Name__c`, `Error_Message__c`, `Record_Id__c`, `User_Id__c`, `Timestamp__c`, `Stack_Trace__c`).
+Every DML requires a fault connector, and **every fault path calls the shared `Subflow_Log_Error`** (V2: one generic error subflow). Don't build a new one.
+- **The Unity org's subflow:** `Subflow_Log_Error` (label "Subflow - Log Error", autolaunched, Active in UAT, on SFDC-IS `Production` via PR #1929). It writes to **`ErrorObject__c`**. The Google Doc's v1.0 text says `Error_Log__c`; the org uses `ErrorObject__c`.
+- **Inputs:** `txtErrorMessage` = `{!$Flow.FaultMessage}`, `txtFlowName` = the flow API name, `txtRecordId` = the triggering record ID.
+- **Screen Flow:** after the subflow call, show an error screen with a friendly message and `{!$Flow.FaultMessage}` in smaller text.
 
 Do not expose technical jargon to end users; provide actionable next steps + support contact.
 
@@ -114,6 +123,7 @@ Governor limits per transaction: 100 SOQL, 150 DML, triggers process up to 200 r
 **Flow Description (required):** Purpose, Trigger, Object(s), Owner (BSA name), Last Modified. Must include the **User Story ID**.
 **Element descriptions:** required and specific ("Get all active Account Team Members where Role = 'Sales Manager'" — not "Get records").
 **Version history:** `v1.3 — 2026-04-20 — [Name] — [what changed]`.
+**Process Map and ERD (V2):** update them when the business logic or data model changes.
 
 ---
 
@@ -138,7 +148,7 @@ A flow deploys only when: self-review complete, peer review approved, all auto-f
 
 ## 10. Common Patterns Library
 
-Bulkified record update; create related records; dynamic record-type assignment; conditional email notification; `Subflow_Log_Error` reusable error handler (inputs `txtErrorMessage`, `txtFlowName`, `txtRecordId`; creates `Error_Log__c` + admin email; output `isSuccess`).
+Bulkified record update; create related records; dynamic record-type assignment; conditional email notification; `Subflow_Log_Error` reusable error handler (inputs `txtErrorMessage`, `txtFlowName`, `txtRecordId`; writes `ErrorObject__c` in the Unity org).
 
 ---
 
@@ -158,6 +168,7 @@ Bulkified record update; create related records; dynamic record-type assignment;
 | Complete documentation | 5 |
 | **TOTAL** | **100** |
 
-**Minimum score to deploy: 100/100. Anything less = REJECT.**
+**Minimum score to deploy to production (Gearset): 100/100. Anything less = REJECT.**
+**Build gate in UAT (`unity-metadata-builder`):** zero-tolerance pass and at least 85/100 to build the flow inactive. Bulk-test points come after the build; the analyst activates the flow in UAT, runs the bulk test, and re-scores before promotion.
 
 The three zero-tolerance rules apply to ALL flows, no exceptions.

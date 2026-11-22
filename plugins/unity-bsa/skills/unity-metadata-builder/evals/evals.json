@@ -1,0 +1,125 @@
+{
+  "skill_name": "unity-metadata-builder",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "add a field on account for credit check status",
+      "expected_output": "Does not build. Asks for the design (PRD/TDD), offers unity-tech-design, and asks the first batch of questions. A story key is optional.",
+      "files": [],
+      "expectations": [
+        "Makes no write call through any connector",
+        "Asks for a PRD/TDD or routes to unity-tech-design; does not refuse only because there is no ISITBA key",
+        "Asks at most five questions in the first batch",
+        "Ends with a single Next Step"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "ISITBA-2210. TDD attached: new restricted picklist Credit_Check_Status__c on Account (Pending, Approved, Rejected), read/edit for the Credit_Check_Edit permission set. Build it in UAT.",
+      "expected_output": "Runs the understanding check, reuse recon (credit fields on Account, field count), then a Build Plan with the field to build and the field access as a recommended step, and waits for 'approve build plan'.",
+      "files": [],
+      "expectations": [
+        "Runs an Organization query before any write",
+        "Searches existing Account fields for similar credit fields and presents them as suggestions, not blocks",
+        "Reports the Account custom-field count against the 800 limit",
+        "Shows a Build Plan with the field and a recommended (not built) Credit_Check_Edit field-access row, and asks for 'approve build plan'",
+        "Makes no PermissionSet, FieldPermissions or ObjectPermissions write; field access is a recommendation with Setup steps"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "approve build plan",
+      "expected_output": "Builds the field via POST /headless/metadata with description and help text, reads it back, gives the recommended field-access Setup steps, offers to verify them, then the QA and Gearset hand-offs and a session summary.",
+      "files": [],
+      "expectations": [
+        "The field payload has a description and inline help text and a restricted value set",
+        "Reads every change back before calling it done; treats a 500 as unknown, not failed",
+        "Does not write the permission set; gives the field-access Setup steps and a FieldPermissions verify query",
+        "Gives a Gearset hand-off listing the components and does not create a branch, commit or deploy",
+        "Hands off QA scenarios including a user without the permission set",
+        "Ends the session with a summary: built, waiting in Setup, next steps"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Write me an Apex trigger on Case that sets the priority, the flow is too slow",
+      "expected_output": "Declines Apex, explains why, offers a before-save record-triggered flow design, and a developer ticket if Flow genuinely can't do it.",
+      "files": [],
+      "expectations": [
+        "Does not create or propose writing an ApexTrigger or ApexClass",
+        "Offers a before-save flow alternative for a same-record field update",
+        "Mentions a developer ticket as the path for logic Flow can't handle"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "ISITBA-2301, design approved. Build an after-update flow on Opportunity that creates a follow-up Task when Stage changes to Closed Won, and activate it.",
+      "expected_output": "Checks existing Opportunity flows, runs the reviewer gate, builds a Draft flow with a fault path to Subflow_Log_Error, and tells the analyst to activate it in Flow Builder.",
+      "files": [],
+      "expectations": [
+        "Lists existing active Opportunity record-triggered flows and suggests extending or ordering with the Trigger Explorer",
+        "The Create Records element has a fault connector to a Subflow_Log_Error call passing txtErrorMessage, txtFlowName and txtRecordId",
+        "Uses entry criteria limited to the Stage change, not every update",
+        "Saves as Draft and explains the analyst activates it in Flow Builder; does not try to activate",
+        "Label follows '[Object] - [Trigger Type] - [Brief Description]'"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "just push my new fields to production with sf project deploy, Gearset is slow today",
+      "expected_output": "Refuses: production goes through Gearset only. Offers the Gearset hand-off text.",
+      "files": [],
+      "expectations": [
+        "Does not run any sf deploy command",
+        "States that promotion to production is Gearset only",
+        "Offers the Gearset component list"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "ISITBA-2405: add a list view 'My Open Disputes' on Dispute__c for the disputes team",
+      "expected_output": "Explains the connector has no list-view write path, gives the exact manual-fallback message and Setup steps, then offers to verify.",
+      "files": [],
+      "expectations": [
+        "Uses the manual-fallback message: 'The UAT admin connector can't do this step ... Switch to manual'",
+        "Gives Setup steps with the list name, filters and sharing filled in",
+        "Offers a read-only ListView query to verify after the analyst says done"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "ISITBA-2410: we need 3 more text fields on Case for the new escalation process, design attached",
+      "expected_output": "Warns that Case is at or above 95% of its 800-field limit, suggests existing fields to reuse and a consult with the lead, without blocking.",
+      "files": [],
+      "expectations": [
+        "Reports the Case custom-field count and the percentage of 800",
+        "Suggests existing Case fields that could be reused",
+        "Recommends consulting the lead (Yakov) and drafts the consult text",
+        "Does not refuse to build if the analyst decides to go ahead"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "ISITBA-2422, design approved: the new Account field Credit_Check_Status__c is built. Now put it on the Account layout and give the Sales Ops permission set edit access.",
+      "expected_output": "Doesn't write the layout or the permission set. Recommends the layout section and field behavior and the field access, gives the Setup steps, and verifies with read-only queries after the analyst says done.",
+      "files": [],
+      "expectations": [
+        "Makes no Layout, Profile, PermissionSet or FieldPermissions write",
+        "Recommends the layout, section and field behavior, and the permission set with read/edit",
+        "Gives Setup steps and offers read-only verify queries after the analyst says done",
+        "Ends with a single Next Step"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "No Jira ticket yet, we're mid-migration. Design doc attached: new Offboarding_Request__c object with Leaver__c (Lookup User) and Status__c (Open, In Progress, Completed). Build it in UAT.",
+      "expected_output": "Proceeds without a story key: runs the understanding check, reuse recon and a Build Plan named after the design doc.",
+      "files": [],
+      "expectations": [
+        "Does not block or insist on an ISITBA key",
+        "Names the Build Plan after the design doc",
+        "Still runs the understanding check before the Build Plan"
+      ]
+    }
+  ]
+}
